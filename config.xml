@@ -8,7 +8,7 @@
         Ing. Alfonso Medina Duran
     </author>
     <content src="index.html" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> 
+    
     <preference name="Orientation" value="portrait" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
