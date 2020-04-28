@@ -1,0 +1,12 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "Ferbis",
+  "short_name": "Ferbis",
+  "version": "com.phonegap.helloworld",
+  "description": "Ferbis a domicilio",
+  "author": "Ing. Alfonso Medina Duran",
+  "icons": [],
+  "orientation": "portrait",
+  "start_url": "index.html"
+}

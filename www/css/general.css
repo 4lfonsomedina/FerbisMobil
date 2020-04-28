@@ -1,0 +1,160 @@
+.menu_bar{
+	background-color: #A60000; 
+	padding: 10px;
+	height: 10vh
+}
+.menu_buscar{
+	height: 10vh;
+	padding-top: 10px;
+}
+.menu_dep{
+	height: 15vh; 
+	overflow-x: auto;
+}
+.row,body{
+	width: 100%; 
+	margin: 0px;
+}
+.btn{
+	width: 100%;
+}
+.form-control{
+	border-radius: 0px;
+}
+/* SEARCH */
+.fa-search {
+	position: absolute;
+	top: 9px;
+	margin-left: 26px;
+    right: initial;
+    left: 0;
+    color: black;
+}
+.input_search {
+    padding-left: 34px;
+}
+.tabla_menu td{
+	width: 100%;
+	text-align:center;
+	padding: 5px;
+}
+.img_dep{
+	border-radius:4px;
+	/*border:solid 3px;*/
+	max-width: 100px;
+	padding: 3px;
+}
+.img_dep img{
+	-webkit-filter: invert(100%);
+    filter: invert(100%);
+	height: 12vh;
+}
+
+.dep_001{background-color: #FF9700; /*naranja*/}
+.dep_002{background-color: #D00000 /*rojo*/}
+.dep_005{background-color: #209800; /*verde*/}
+.dep_01{background-color: #0049CA; /*amarillo*/}
+.dep_007{background-color: #000000; /*azul*/}
+.row_articulo{
+	padding-left: 6px;
+	padding-right: 6px;
+}
+#contenedor_articulos{
+	height: 65vh; 
+	width: 100%; 
+	overflow-y: auto;
+}
+.articulo{
+	border-radius: 5px;
+	border:solid 1px;
+	border-color: #909090;
+	margin-bottom: 5px;
+	padding: 5px;
+}
+.art_prec{
+	text-align: right;
+}
+.art_desc{
+	font-weight: bold;
+}
+.img_art{
+	width: 60px;
+	height: 60px;
+	border-radius: 5px;
+}
+.img_dep_001{background-color: red;}
+.input_orden{
+	text-align: center; 
+	font-size: 20px;
+}
+.ord_menos,.ord_mas{
+	width: 60px;
+}
+.input_orden{
+	height: 38px;
+}
+.mini_burbuja{
+	position: relative;
+	top:-25px;
+	left:-10px;
+	padding: 5px;
+	background-color: blue;
+	font-weight: bold;
+	color:white;
+	border-radius: 10px;
+}
+.menu_lateral_izq{
+	position: absolute;
+	top:0px;
+	left:0px;
+	background-color:white;
+	width: 80%;
+	height: 100vh;
+	z-index: 3;
+}
+.menu_lateral_cliente{
+	padding-top:20px;
+	padding-left: 10px; 
+	color:white;
+	background-color:#287A3B;
+}
+.menu_lateral_cliente i{
+	position:absolute;
+	top:20px;
+}
+.datos_cliente{
+	margin-left: 60px;
+	padding-bottom: 20px;
+}
+.sombra_menu{
+	position: absolute;
+	top:0px;
+	left:0px;
+	background-color:black;
+	opacity:.5;
+	width: 100%;
+	height: 100vh;
+	z-index: 2;
+}
+.menu_lateral_der{
+	position: absolute;
+	top:0px;
+	right:0px;
+	background-color:white;
+	width: 80%;
+	height: 100vh;
+	z-index: 3;
+}
+.opcion_menu{
+	width: 100%;
+	padding-top: 15px;
+	padding-left: 25px;
+	padding-bottom: 15px;
+}
+.opcion_menu i{
+	width: 35px;
+	text-align: center
+}
+.opcion_menu span{
+	padding-left: 15px;
+}
