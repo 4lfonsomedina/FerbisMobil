@@ -29,11 +29,14 @@ $(document).ready(function() {
 	//
 
 	//verificar si el cliente esta dado de alta
-	if(sessionStorage.getItem("FerbisAPP_id")!=null){
+	setTimeout(function(){
+		if(sessionStorage.getItem("FerbisAPP_id")!=null){
 		actualizar_session(sessionStorage.getItem("FerbisAPP_id"));
-	}else{
-		$('#modal_bienvenida').modal({backdrop: 'static', keyboard: false});
-	}
+		}else{
+			$('#modal_bienvenida').modal({backdrop: 'static', keyboard: false});
+		}
+	}, 2000);
+	
 
 	//Captura de nombre
 	$(document).on("click",".btn_bienvenida",function(){
