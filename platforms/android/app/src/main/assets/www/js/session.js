@@ -1,5 +1,7 @@
 
 
+
+
 $(document).ready(function() {
 	//sessionStorage.clear();
 	function actualizar_session(session_id){
