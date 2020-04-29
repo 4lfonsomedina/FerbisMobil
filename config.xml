@@ -51,6 +51,10 @@
         <splash src="www/img/screen/ios/Default-Landscape@2x~ipad.png" width="2048" height="1536" /> 
         </platform>
         <platform name="android">
+            <config-file after="uses-permission" parent="/maniferst" target="AndroidManifest.xml">
+                <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+                <uses-permission android:name="android.permission.INTERNET"/>
+            </config-file>
         <icon src="www/img/icon/android/ldpi.png" qualifier="ldpi" />
         <icon src="www/img/icon/android/mdpi.png" qualifier="mdpi" />
         <icon src="www/img/icon/android/hdpi.png" qualifier="hdpi" />
