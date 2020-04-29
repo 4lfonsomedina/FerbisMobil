@@ -1,13 +1,6 @@
 
 
 $(document).ready(function() {
-	//funcion de verificacion de conexion
-	checkConnection();
-	function checkConnection(){
-        var networkState = navigator.connection.type;
-        if(Connection.NONE==networkState)
-            return "<p>No connection</p>";
-	}
 	//sessionStorage.clear();
 	function actualizar_session(session_id){
 		$.post(url_api+"actualizar_session",{id:session_id},function(r){
