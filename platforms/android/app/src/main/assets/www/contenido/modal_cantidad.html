@@ -1,0 +1,64 @@
+<!-- MODAL PARA INDICAR LA CANTIDAD -->
+<div id="agregarArticuloModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><b>Agregar al Carrito</b></h4>
+      </div>
+      <form id="form_alta_carrito">
+      <div class="modal-body">
+        <div class="row imagen_modal" style="text-align: center">
+            <img src='img/no_image.png' class='img_art'>
+        </div>
+        <div class="row descripcion_modal" style="text-align: center">
+                DESCRIPCION
+        </div>
+        <BR>
+        <div class="row" style="text-align: center">
+            <div class="col col-xs-4" style="padding: 0px">
+                <a class="btn btn-danger btn-sm ord_menos" style="color: white">
+                    <i class="fa fa-minus-circle fa-2x" aria-hidden="true"></i>
+                </a>
+            </div>
+            <div class="col col-xs-4" style="padding: 0px">
+                <input type="hidden" name="producto" id="producto_modal">
+                <input type="number" class="form-control input_orden" value="0" name="cantidad">
+            </div>
+            <div class="col col-xs-4" style="padding: 0px">
+                <a class="btn btn-success btn-sm ord_mas" style="color: white">
+                    <i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+        <div class="row unidad_modal" style="text-align: center;font-weight: bold;"></div>
+        <div class="row" >
+            <div class="col-xs-8" style="text-align: right; padding-top: 10px">Servicio de Asado</div>
+            <div class="col-xs-2"><input type="checkbox" class="form-control check_asado" name="asado"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <textarea name="" class="form-control ord_detalles" rows="3" placeholder="Detalles del producto" name="detalles"></textarea>
+            </div>
+        </div>
+    </div>
+      
+      <div class="modal-footer">
+        <div class="row">
+            <div class="col-xs-6">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">
+                    <i class="fa fa-reply fa-2x" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="col-xs-6">
+                <button type="button" class="btn btn-info">
+                    <i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+      </div>
+    </form>
+
+    </div>
+  </div>
+</div> <!--FIN MODAL-->
