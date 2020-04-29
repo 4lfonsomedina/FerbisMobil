@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
 	//funcion de verificacion de conexion
-	checkConnection()ñ
+	checkConnection();
 	function checkConnection(){
         var networkState = navigator.connection.type;
         if(Connection.NONE==networkState)
