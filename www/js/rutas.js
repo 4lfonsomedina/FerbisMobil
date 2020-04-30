@@ -10,7 +10,14 @@ $(document).ready(function() {
 		window.open("notificaciones.html");
 	})
 	$(document).on("click",".cerrar_ventana",function(){
-		window.close();
+		closeBrowser();
 	})
 
+	closeBrowser(){
+	    if(history.length==1){
+	        window.open('mobile/close');
+	    }else{
+	        history.back();
+	    }
+	}
 });
