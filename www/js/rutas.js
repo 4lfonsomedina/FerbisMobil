@@ -13,7 +13,7 @@ $(document).ready(function() {
 		closeBrowser();
 	})
 
-	closeBrowser(){
+	function closeBrowser(){
 	    if(history.length==1){
 	        window.open('mobile/close');
 	    }else{
