@@ -3,21 +3,23 @@
 
 
 $(document).ready(function() {
-	//sessionStorage.clear();
+	//sesion_local.clear();
+	var sesion_local = window.localStorage;
+
 	function actualizar_session(session_id){
 		$.post(url_api+"actualizar_session",{id:session_id},function(r){
 			//actualizamos variables
 			var cliente = jQuery.parseJSON(r)[0];
-			sessionStorage.setItem("FerbisAPP_id",		cliente.id_cliente);
-			sessionStorage.setItem("FerbisAPP_numero", 	cliente.numero);
-			sessionStorage.setItem("FerbisAPP_nombre",	cliente.nombre);
-			sessionStorage.setItem("FerbisAPP_telefono", cliente.telefono);
-			sessionStorage.setItem("FerbisAPP_correo", 	cliente.correo);
-			sessionStorage.setItem("FerbisAPP_dir_calle", cliente.dir_calle);
-			sessionStorage.setItem("FerbisAPP_dir_numero1", cliente.dir_numero1);
-			sessionStorage.setItem("FerbisAPP_dir_numero2", cliente.dir_numero2);
-			sessionStorage.setItem("FerbisAPP_lat", cliente.lat);
-			sessionStorage.setItem("FerbisAPP_lon", cliente.lon);
+			sesion_local.setItem("FerbisAPP_id",		cliente.id_cliente);
+			sesion_local.setItem("FerbisAPP_numero", 	cliente.numero);
+			sesion_local.setItem("FerbisAPP_nombre",	cliente.nombre);
+			sesion_local.setItem("FerbisAPP_telefono", cliente.telefono);
+			sesion_local.setItem("FerbisAPP_correo", 	cliente.correo);
+			sesion_local.setItem("FerbisAPP_dir_calle", cliente.dir_calle);
+			sesion_local.setItem("FerbisAPP_dir_numero1", cliente.dir_numero1);
+			sesion_local.setItem("FerbisAPP_dir_numero2", cliente.dir_numero2);
+			sesion_local.setItem("FerbisAPP_lat", cliente.lat);
+			sesion_local.setItem("FerbisAPP_lon", cliente.lon);
 
 			actualizar_interfaz();
 		});
@@ -25,15 +27,15 @@ $(document).ready(function() {
 
 	//actualizamos interfaz
 	function actualizar_interfaz(){
-		$("#nombre_usuario").html(sessionStorage.getItem("FerbisAPP_nombre"));
+		$("#nombre_usuario").html(sesion_local.getItem("FerbisAPP_nombre"));
 	}
 	//evitar que se pueda ocultar el modal de bienvenida
 	//
 
 	//verificar si el cliente esta dado de alta
 	setTimeout(function(){
-		if(sessionStorage.getItem("FerbisAPP_id")!=null){
-		actualizar_session(sessionStorage.getItem("FerbisAPP_id"));
+		if(sesion_local.getItem("FerbisAPP_id")!=null){
+		actualizar_session(sesion_local.getItem("FerbisAPP_id"));
 		}else{
 			$('#modal_bienvenida').modal({backdrop: 'static', keyboard: false});
 		}
