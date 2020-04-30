@@ -3,4 +3,14 @@ $(document).ready(function() {
 	$(".div_contenido").each(function(index, el) {
 		$(this).load('contenido/'+$(this).attr("contenido"));
 	});
+	$(document).on("click",".menu_inicio",function(){
+		window.location.href = "index.html";
+	})
+	$(document).on("click",".menu_notificaciones",function(){
+		window.open("notificaciones.html");
+	})
+	$(document).on("click",".cerrar_ventana",function(){
+		window.close();
+	})
+
 });
