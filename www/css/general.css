@@ -3,6 +3,11 @@
 	padding: 10px;
 	height: 10vh
 }
+.contenido_emergente{
+	height: 90vh;
+	padding: 10px;
+	overflow-y: auto;
+}
 .menu_buscar{
 	height: 10vh;
 	padding-top: 10px;
