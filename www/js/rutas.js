@@ -6,8 +6,8 @@ $(document).ready(function() {
 	$(document).on("click",".menu_inicio",function(){
 		window.location.href = "index.html";
 	})
-	$(document).on("click",".menu_notificaciones",function(){
-		window.open("notificaciones.html");
+	$(document).on("click",".ventana_emergente",function(){
+		window.open($(this).attr('ruta'));
 	})
 	$(document).on("click",".cerrar_ventana",function(){
 		closeBrowser();
