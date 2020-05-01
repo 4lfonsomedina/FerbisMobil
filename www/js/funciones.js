@@ -37,11 +37,21 @@ $(document).ready(function() {
 	$(document).on("click",".row_articulo",function(){
 		$(".descripcion_modal").html($(this).attr('descripcion'));
 		$(".unidad_modal").html($(this).attr('unidad'));
-		$("#producto_modal").val($(this).attr('producto'))
 		$(".input_orden").val(1);
 		$(".check_asado").prop('checked',false);
 		$(".ord_detalles").val("");
+		$(".check_asado_input").val(0);
+
+		//datos fara formulario 
+		$("#producto_modal_form").val($(this).attr('producto'));
+		$("#unidad_modal_form").val($(this).attr('unidad'));
+		$("#cliente_modal_form").val(sesion_local.getItem("FerbisAPP_id"));
+		$("#descripcion_modal_form").val($(this).attr('descripcion'));
 		$("#agregarArticuloModal").modal("show");
+	})
+	$(document).on('click',".check_asado",function(){
+		if($(this).is(":checked")){$(".check_asado_input").val(1);}
+		else{$(".check_asado_input").val(0);}
 	})
 	
 // Al precional el boton de mas producto
@@ -50,16 +60,13 @@ $(document).ready(function() {
 	})
 // Al precional el boton de menos producto
 	$(document).on("click",".ord_menos",function(){
-		if($(".input_orden").val()>0)
+		if($(".input_orden").val()>1)
 			$(".input_orden").val(parseInt($(".input_orden").val())-1);
 	})
 // Al precional el input de cantidad
 	$(document).on("click",".input_orden",function(){
 		$(this).select();
 	})
-
-// funcion con cadena para mostrar el loader en pantalla
-	
 
 //functiones para abrir menu lateral
 	$(document).on("click","#abrir_menu_lateral",function(){
@@ -73,6 +80,17 @@ $(document).ready(function() {
 		$(".contenedor_menu_lateral_der").hide(300);
 	})
 
+//funcion alta de producto al carrito
+$(document).on("click",".agregar_al_carrito_btn",function(){
+	$("#agregarArticuloModal").modal("hide");
+	$.post(url_api+'agregar_producto_pedido_activo',$("#form_alta_carrito").serialize(),function(r){
+		if(r>0){
+			notificacion("Producto agregado a su carrito!");
+		}else{
+			notificacion("Error!");
+		}
+	})
+})
 
 // Funcion para mostrar los articulos de la busqueda
 	function string_articulos(string_json){
@@ -101,8 +119,13 @@ $(document).ready(function() {
 
 });//fin
 
-
-
+// alerta global
+function notificacion(mensaje){
+	$(".alerta_multiusos").html(mensaje);
+	$(".alerta_multiusos").show(100);
+	setTimeout(function() {$(".alerta_multiusos").hide(100);}, 3000);
+}
+// loader global
 function loader(){
 		return '<div style="text-align:center;padding-top:100px;"><i class="fa fa-spinner fa-spin fa-5x fa-fw"></i><span class="sr-only"></span></div>';
 	}

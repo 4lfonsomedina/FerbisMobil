@@ -22,8 +22,12 @@
                 </a>
             </div>
             <div class="col col-xs-4" style="padding: 0px">
-                <input type="hidden" name="producto" id="producto_modal">
-                <input type="number" class="form-control input_orden" value="0" name="cantidad">
+                <input type="hidden" name='asado' class="check_asado_input">
+                <input type="hidden" name="producto" id="unidad_modal_form">
+                <input type="hidden" name="id_cliente" id="cliente_modal_form">
+                <input type="hidden" name="producto" id="producto_modal_form">
+                <input type="hidden" name="descripcion" id="descripcion_modal_form">
+                <input type="number" class="form-control input_orden" value="1" name="cantidad">
             </div>
             <div class="col col-xs-4" style="padding: 0px">
                 <a class="btn btn-success btn-sm ord_mas" style="color: white">
@@ -34,11 +38,11 @@
         <div class="row unidad_modal" style="text-align: center;font-weight: bold;"></div>
         <div class="row" >
             <div class="col-xs-8" style="text-align: right; padding-top: 10px">Servicio de Asado</div>
-            <div class="col-xs-2"><input type="checkbox" class="form-control check_asado" name="asado"></div>
+            <div class="col-xs-2"><input type="checkbox" class="form-control check_asado"></div>
         </div>
         <div class="row">
             <div class="col-xs-12">
-                <textarea name="" class="form-control ord_detalles" rows="3" placeholder="Detalles del producto" name="detalles"></textarea>
+                <textarea name="detalles" class="form-control ord_detalles" rows="2" placeholder="Detalles del producto"></textarea>
             </div>
         </div>
     </div>
@@ -47,12 +51,12 @@
         <div class="row">
             <div class="col-xs-6">
                 <button type="button" class="btn btn-warning" data-dismiss="modal">
-                    <i class="fa fa-reply fa-2x" aria-hidden="true"></i>
+                    <i class="fa fa-reply" aria-hidden="true"></i>  Regresar
                 </button>
             </div>
             <div class="col-xs-6">
-                <button type="button" class="btn btn-info">
-                    <i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i>
+                <button type="button" class="btn btn-success agregar_al_carrito_btn">
+                    <i class="fa fa-cart-plus" aria-hidden="true"></i> Agregar
                 </button>
             </div>
         </div>

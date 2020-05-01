@@ -1,5 +1,6 @@
 $(document).ready(function() {
-	//$('body').html(loader());
+
+	//carcar contenidos de los div_contenido
 	$(".div_contenido").each(function(index, el) {
 		if($(this).attr("contenido")==""){
 			$(this).attr("contenido",get_value("ruta"));
@@ -10,19 +11,23 @@ $(document).ready(function() {
 			})
 		});
 	});
-	//agregamos titulo a emergentes
 	
+	//regresar a inicio
 	$(document).on("click",".menu_inicio",function(){
 		window.location.href = "index.html";
 	})
+
+	//cargar ventanas emergentes
 	$(document).on("click",".ventana_emergente",function(){
 		window.open('emergente.html?ruta='+$(this).attr('ruta')+".html");
 	})
+
+	//cerrar ventanas emergentes
 	$(document).on("click",".cerrar_ventana",function(){
-		window.close();
 		closeBrowser();
 	})
 
+	//funcion phonegap para cerrar ventanas
 	function closeBrowser(){
 	    if(history.length==1){
 	        window.open('mobile/close');
@@ -30,6 +35,8 @@ $(document).ready(function() {
 	        history.back();
 	    }
 	}
+
+	//funcion que extrae variables get
 	function get_value(variable){ 
 	  var query = window.location.search.substring(1); 
 	  var vars = query.split("&"); 
