@@ -109,9 +109,9 @@
 	height: 38px;
 }
 .mini_burbuja{
-	position: relative;
-	top:-25px;
-	left:50px;
+	position: absolute;
+	top:-5px;
+	right:5px;
 	padding: 5px;
 	background-color: blue;
 	font-weight: bold;
