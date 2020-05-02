@@ -45,6 +45,7 @@ $(document).ready(function() {
 		//datos fara formulario 
 		$("#producto_modal_form").val($(this).attr('producto'));
 		$("#unidad_modal_form").val($(this).attr('unidad'));
+		$("#precio_modal_form").val($(this).attr('precio'));
 		$("#cliente_modal_form").val(sesion_local.getItem("FerbisAPP_id"));
 		$("#descripcion_modal_form").val($(this).attr('descripcion'));
 		$("#agregarArticuloModal").modal("show");
@@ -74,6 +75,15 @@ $(document).ready(function() {
 	})
 	$(document).on("click","#abrir_menu_lateral_der",function(){
 		$(".contenedor_menu_lateral_der").show(300);
+		$(".contenido_carrito").html(loader());
+		$.post(url_api+'get_carrito_activo',{id_cliente:sesion_local.getItem("FerbisAPP_id")},function(r){
+			if(r==0){
+				$(".contenido_carrito").html("<div class='carrito_vacio'>Carrito vacío</div>");
+			}else{
+				console.log(string_carrito(r));
+				$(".contenido_carrito").html(string_carrito(r));
+			}
+		})
 	})
 	$(document).on("click",".sombra_menu",function(){
 		$(".contenedor_menu_lateral_izq").hide(300);
@@ -116,6 +126,21 @@ $(document).on("click",".agregar_al_carrito_btn",function(){
 		$("#contenedor_articulos").slideDown(1000);
 	}
 
+	function string_carrito(string_json){
+		var string_ret="";
+		$.each(jQuery.parseJSON(string_json), function( i, prod ) {
+			string_ret+="<div class='articulo_carrito' "+
+							"producto='"+prod.producto+"' "+
+							"descripcion='"+prod.descripcion+"' "+
+							"unidad='"+prod.unidad+"' "+
+							"precio='"+prod.precio+"' >"+
+			  				"<div class='col-xs-2 car_cantidad'>"+parseFloat(prod.cantidad).toFixed(2)+"<br><b>"+prod.unidad+"</b></div>"+
+			  				"<div class='col-xs-8 car_desc'>"+prod.descripcion+"</div>"+
+			  				"<div class='col-xs-2 car_importe'>"+parseFloat(prod.cantidad*prod.precio).toFixed(2)+"</div>"+
+			  				"</div>";
+		});
+		return string_ret;
+	}
 
 });//fin
 
