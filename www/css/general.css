@@ -54,7 +54,7 @@
 	padding: 5px;
 }
 .img_dep{
-	border-radius:4px;
+	border-radius:0px;
 	/*border:solid 3px;*/
 	max-width: 100px;
 	padding: 3px;
@@ -80,7 +80,7 @@
 	overflow-y: auto;
 }
 .articulo{
-	border-radius: 5px;
+	border-radius: 0px;
 	border:solid 1px;
 	border-color: #909090;
 	margin-bottom: 5px;
@@ -95,7 +95,7 @@
 .img_art{
 	width: 60px;
 	height: 60px;
-	border-radius: 5px;
+	border-radius: 0px;
 }
 .img_dep_001{background-color: red;}
 .input_orden{
@@ -196,7 +196,7 @@
 }
 .alerta_multiusos{
 	position: absolute;
-	width: 100%;
+	width: 95%;
 	padding:10px;
 	bottom: 10px;
 	border-radius: 5px;
@@ -241,6 +241,7 @@
 	text-align: left;
 }
 .car_importe{
+	padding-left: 0px;
 	padding-right: 5px !important;
 	text-align: right;
 }
@@ -261,16 +262,23 @@ button, a, .modal-content{
     align-items: center;
     justify-content: center;
 }
-.small_pedido{
+.small_pedido, .resumen_pedido{
 	font-size: 12px;
 }
 .pedido_tot{
 	text-align: right;
 }
-.label{
-	width: 100% !important;
-}
 .contenido_pedido{
 	height: 300px;
 	overflow-y: auto;
+}
+.car_desc{
+	padding-right: 5px;
+}
+.resumen_pedido{
+	padding: 10px;
+}
+.resumen_pedido table tr td{
+	padding-top: 10px;
+	padding-right: 12px;
 }
