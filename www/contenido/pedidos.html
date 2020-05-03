@@ -1,0 +1,92 @@
+<div class="contenedor_pedidos">
+	<div class="pedido_row row">
+		<div class="col-xs-3"><span class="label label-info">Capturando</span></div>
+		<div class="col-xs-5"><b>37 Productos</b><br><span class="small_pedido">2020-05-02</span></div>
+		<div class="col-xs-4 pedido_tot"><span class="small_pedido"><b>Total aprox</b></span><br>1500.00</div>
+	</div>
+
+	<div class="pedido_row row">
+		<div class="col-xs-3"><span class="label label-primary">Procesando</span></div>
+		<div class="col-xs-5"><b>37 Productos</b><br><span class="small_pedido">2020-05-02</span></div>
+		<div class="col-xs-4 pedido_tot"><span class="small_pedido"><b>Total aprox</b></span><br>1500.00</div>
+	</div>
+
+	<div class="pedido_row row">
+		<div class="col-xs-3"><span class="label label-success">Entregado</span></div>
+		<div class="col-xs-5"><b>37 Productos</b><br><span class="small_pedido">2020-05-02</span></div>
+		<div class="col-xs-4 pedido_tot"><span class="small_pedido"><b>Total aprox</b></span><br>1500.00</div>
+	</div>
+</div>
+
+
+
+<!-- MODAL CON LOS PROCUCTOS DEL PEDIDO -->
+<div id="modal_pedido" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"><h4 class="modal-title"><b>Contenido del pedido</b></h4></div>
+      <div class="modal-body" style="padding: 0px;">
+      	<div class="contenido_pedido">
+      		
+      	</div>
+      </div>
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-warning" data-dismiss="modal">
+            <i class="fa fa-reply" aria-hidden="true"></i> Regresar
+        </button>
+      </div>
+    </div>
+  </div>
+</div> <!--FIN MODAL-->
+
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$.post(url_api+"get_carritos",{id:sesion_local.getItem("FerbisAPP_id")},function(r){
+			var string_contenido="";
+			if(jQuery.parseJSON(r).length>0){
+				$.each(jQuery.parseJSON(r), function( i, pedido ) {
+					var estatus = pedido.status;
+					var status_desc="";
+					if(estatus==0){estatus='info'; 		status_desc='Capturando';}
+					if(estatus==1){estatus='primary'; 	status_desc='Procesando';}
+					if(estatus==2){estatus='success'; 	status_desc='Entregado';}
+					string_contenido+='<div class="pedido_row row" id_carrito="'+pedido.id_carrito+'">'+
+		'<div class="col-xs-3"><span class="label label-'+estatus+'">'+status_desc+'</span></div>'+
+		'<div class="col-xs-5"><b>'+pedido.cantidad+' Productos</b><br><span class="small_pedido">'+pedido.fecha+'</span></div>'+
+		'<div class="col-xs-4 pedido_tot"><span class="small_pedido"><b>Total aprox</b></span><br>'+pedido.total+'</div>'+
+	'</div>';
+				})
+
+				$(".contenedor_pedidos").html(string_contenido);
+			}else{
+				$(".contenedor_pedidos").html("<h2 align='center'>No se encontraron pedidos</h2>");
+			}
+			console.log(r);
+		})
+
+		$(document).on("click",".pedido_row",function(){
+			$.post(url_api+"get_carritos_id",{id:$(this).attr('id_carrito')},function(r){
+				$(".contenido_pedido").html(string_carrito_pedido(r));
+				$("#modal_pedido").modal("show");
+			})
+			
+		})
+
+
+
+		function string_carrito_pedido(string_json){
+		var string_ret="";
+		$.each(jQuery.parseJSON(string_json), function( i, prod ) {
+			var asado=""; if(prod.asado=='1'){ asado='<i class="fa fa-fire ico_asado" aria-hidden="true"></i>';}
+			string_ret+="<div class='articulo_carrito_pedido row' >"+
+			  				"<div class='col-xs-2 car_cantidad'>"+parseFloat(prod.cantidad).toFixed(2)+"<br><b>"+prod.unidad+"</b></div>"+
+			  				"<div class='col-xs-8 car_desc'>"+asado+" "+prod.descripcion+"</div>"+
+			  				"<div class='col-xs-2 car_importe'>"+parseFloat(prod.cantidad*prod.precio).toFixed(2)+"</div>"+
+			  				"</div>";
+		});
+		return string_ret;
+	}
+	});
+</script>

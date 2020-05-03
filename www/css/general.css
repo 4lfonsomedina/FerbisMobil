@@ -222,6 +222,15 @@
     align-items: center;
     justify-content: center;
 }
+.articulo_carrito_pedido{
+	padding-top: 7px;
+	padding-bottom: 7px;
+	border-top: solid 1px gray;
+	font-size: 12px;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .articulo_carrito div{
 	padding: 0px;
 }
@@ -244,4 +253,24 @@ button, a, .modal-content{
 }
 .tab-pane{
 	padding-top: 10px;
+}
+.pedido_row{
+	border-top: solid 1px gray;
+	border-bottom: solid 1px gray;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.small_pedido{
+	font-size: 12px;
+}
+.pedido_tot{
+	text-align: right;
+}
+.label{
+	width: 100% !important;
+}
+.contenido_pedido{
+	height: 300px;
+	overflow-y: auto;
 }
