@@ -238,3 +238,10 @@
 button, a, .modal-content{
 	border-radius: 0px !important;
 }
+.nav-tabs a{
+	color: white;
+	background-color: #A60000;
+}
+.tab-pane{
+	padding-top: 10px;
+}
