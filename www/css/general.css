@@ -284,6 +284,13 @@ button, a, .modal-content{
 	height: 300px;
 	overflow-y: auto;
 }
+.pedido_radio{
+	padding-top: 15px;
+	text-align: center
+}
+.pedido_radio input{
+	box-shadow:none;
+}
 .car_desc{
 	padding-right: 5px;
 }
@@ -304,4 +311,14 @@ button, a, .modal-content{
 }
 .contenedor_ayuda{
 	text-align: center;
+}
+.contenedor_pedido{
+	height: 75vh;
+}
+.contenedor_pedido_btn{
+	height: 10vh;
+}
+.contenedor_pedido_btn button{
+	width: 100%;
+	height: 100%;
 }

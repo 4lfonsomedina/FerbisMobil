@@ -1,0 +1,106 @@
+<div class="contenedor_pedido">
+
+	<ul class="nav nav-tabs">
+	  <li class="active" style="width: 33%; text-align: center"><a data-toggle="tab" href="#pedido_1">Paso 1</a></li>
+	  <li style="width: 33%;text-align: center"><a data-toggle="tab" href="#pedido_2">Paso 2</a></li>
+	  <li style="width: 33%;text-align: center"><a data-toggle="tab" href="#pedido_3">Paso 3</a></li>
+	</ul>
+
+
+	<div class="tab-content">
+	  <div id="pedido_1" class="tab-pane fade in active">
+
+<!--seleccion de servicio-->
+	  	<div class="col-xs-6 pedido_radio"><label>
+	  		<input type="radio" class="form-control" name="servicio" checked value="1">
+	  		A domicilio
+	  	</label></div>
+	  	<div class="col-xs-6 pedido_radio"><label>
+	  		<input type="radio" class="form-control" name="servicio" value="2">
+	  		Paso por el
+	  	</label></div>
+
+<!-- en caso de que sea a domicilio pedir datos de la ubicacion-->
+	  	<table class="table tabla_cuenta">
+			<tr>
+				<td class="tabla_cuenta_titulo">Colonia</td>
+				<td colspan="3"><input type="text" class="form-control cuenta_colonia" name="dir_colonia"></td>
+			</tr>
+			<tr>
+				<td class="tabla_cuenta_titulo">Calle</td>
+				<td colspan="3"><input type="text" class="form-control cuenta_calle" name="dir_calle"></td>
+			</tr>
+			<tr>
+				<td class="tabla_cuenta_titulo">#ext.</td>
+				<td><input type="number" class="form-control cuenta_num" name="dir_numero1"></td>
+				<td class="tabla_cuenta_titulo">#int.</td>
+				<td><input type="number" class="form-control cuenta_num2" name="dir_numero2"></td>
+			</tr>
+			<tr>
+				<td class="tabla_cuenta_titulo">Referencia</td>
+				<td colspan="3"><textarea rows="2" class="form-control cuenta_referencia" name="referencia"></textarea></td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<button type="button" class="btn btn-default btn_mapa_cuenta">
+						<i class="fa fa-map-marker" aria-hidden="true"></i> Ubicación
+					</button>
+				</td>
+			</tr>
+		</table>
+
+	  </div>
+	  <div id="pedido_2" class="tab-pane fade">
+	  	<table class="table tabla_cuenta">
+			<tr>
+				<td class="tabla_cuenta_titulo">Nombre</td>
+				<td><input type="text" class="form-control cuenta_nombre" name="nombre"></td>
+			</tr>
+			<tr>
+				<td class="tabla_cuenta_titulo">Telefono</td>
+				<td><input type="number" class="form-control cuenta_telefono" name="telefono"></td>
+			</tr>
+			<tr>
+				<td class="tabla_cuenta_titulo">No.Cliente Frecuente</td>
+				<td><input type="number" class="form-control cuenta_numero" name="numero"></td>
+			</tr>
+		</table>
+	  </div>
+	  <div id="pedido_3" class="tab-pane fade">confirmar</div>
+	</div>
+</div>
+<div class="contenedor_pedido_btn">
+	<button class="btn btn-success">Siguiente <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> </button>
+</div>
+
+<script>
+	$(document).ready(function() {
+		mostrar_tabla();
+		$(document).on("click",".pedido_radio",function(){
+			mostrar_tabla();
+		})
+		function mostrar_tabla(){
+			if($('input:radio[name=servicio]:checked').val()==1){
+				$(".tabla_cuenta").show(500);
+			}else{
+				$(".tabla_cuenta").hide(500);
+			}
+			
+		}
+		$.post(url_api+'datos_cuenta',{id_cliente:sesion_local.getItem("FerbisAPP_id")},function(r){
+			var cuenta = jQuery.parseJSON(r);
+			$(".cuenta_id_cliente").val(cuenta.id_cliente);
+			$(".cuenta_lat").val(cuenta.lat);
+			$(".cuenta_lon").val(cuenta.lon);
+			$(".cuenta_nombre").val(cuenta.nombre);
+			$(".cuenta_telefono").val(cuenta.telefono);
+			$(".cuenta_correo").val(cuenta.correo);
+			$(".cuenta_numero").val(cuenta.numero);
+			$(".cuenta_colonia").val(cuenta.dir_colonia);
+			$(".cuenta_calle").val(cuenta.dir_calle);
+			$(".cuenta_num").val(cuenta.dir_numero1);
+			$(".cuenta_num2").val(cuenta.dir_numero2);
+			$(".cuenta_referencia").val(cuenta.referencia);
+		})
+	});
+</script>

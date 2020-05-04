@@ -79,15 +79,17 @@ $(document).ready(function() {
 		$(".contenedor_menu_lateral_der").show(300);
 		$(".contenido_carrito").html(loader());
 		$.post(url_api+'get_carrito_activo',{id_cliente:sesion_local.getItem("FerbisAPP_id")},function(r){
+			$(".cant_carrito").html(jQuery.parseJSON(r).length);
 			if(jQuery.parseJSON(r).length==0){
 				$(".contenido_carrito").html("<div class='carrito_vacio'>Carrito vacío</div>");
-			}else{
-				$(".cant_carrito").html(jQuery.parseJSON(r).length);
+				$(".div_procesar_pedido").hide();
+			}else{	
+				$(".div_procesar_pedido").show();
 				$(".contenido_carrito").html(string_carrito(r));
-				var total_aprox=0;
-				$(".car_importe").each(function() {total_aprox+=parseFloat($(this).html());});
-				$(".total_pedido").html(parseFloat(total_aprox).toFixed(2));
 			}
+			var total_aprox=0;
+			$(".car_importe").each(function() {total_aprox+=parseFloat($(this).html());});
+			$(".total_pedido").html(parseFloat(total_aprox).toFixed(2));
 		})
 	})
 	$(document).on("click",".sombra_menu",function(){
