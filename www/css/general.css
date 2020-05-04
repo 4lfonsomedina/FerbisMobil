@@ -112,7 +112,14 @@
 	position: absolute;
 	top:-5px;
 	right:5px;
-	padding: 5px;
+	padding: 3px 8px 3px 8px;
+	background-color: blue;
+	font-weight: bold;
+	color:white;
+	border-radius: 20px;
+}
+.mini_burbuja_notificaciones{
+	padding: 3px 8px 3px 8px !important;
 	background-color: blue;
 	font-weight: bold;
 	color:white;
@@ -255,14 +262,19 @@ button, a, .modal-content{
 .tab-pane{
 	padding-top: 10px;
 }
-.pedido_row{
-	border-top: solid 1px gray;
-	border-bottom: solid 1px gray;
+.pedido_row,.notificacion_row{
+	border: solid 1px gray;
 	display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 2px 5px 5px;
+    margin-bottom: 15px;
 }
-.small_pedido, .resumen_pedido{
+.small_pedido, 
+.resumen_pedido,
+.small_notificacion,
+.resumen_notificacion,
+.contenido_notificacion{
 	font-size: 12px;
 }
 .pedido_tot{
@@ -275,10 +287,21 @@ button, a, .modal-content{
 .car_desc{
 	padding-right: 5px;
 }
-.resumen_pedido{
+.resumen_pedido,
+.resumen_notificacion,.contenido_notificacion{
 	padding: 10px;
+}
+.contenido_notificacion{
+	text-align: justify;
 }
 .resumen_pedido table tr td{
 	padding-top: 10px;
 	padding-right: 12px;
+}
+.resumen_notificacion table tr td{
+	padding-top: 10px;
+	padding-right: 12px;
+}
+.contenedor_ayuda{
+	text-align: center;
 }

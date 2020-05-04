@@ -13,6 +13,7 @@ $(document).ready(function() {
 		$.post(url_api+'get_productos_dep',{dep:'007'}, function(resp_json){
 			string_articulos(resp_json);
 			actualizar_burbuja_carrito();
+			actualizar_burbuja_notificaciones();
 		});
 	}
 
@@ -101,6 +102,7 @@ $(document).on("click",".agregar_al_carrito_btn",function(){
 		if(r>0){
 			notificacion("Producto agregado a su carrito!");
 			actualizar_burbuja_carrito();
+			actualizar_burbuja_notificaciones();
 		}else{
 			notificacion("Error!");
 		}
@@ -137,6 +139,7 @@ $(document).on("click",".btn_modal_borrar_e", function(){
 		$("#editarArticuloModal").modal("hide");
 		$.post(url_api+'remover_carrito',{id_carrito_det:id_carrito_det},function(r){
 			actualizar_burbuja_carrito();
+			actualizar_burbuja_notificaciones();
 			notificacion("Articulo removido del carrito");
 		})
 	}
@@ -172,7 +175,7 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 		//agregamos al contenedor
 		$("#contenedor_articulos").hide();
 		$("#contenedor_articulos").html(string_ret);
-		$("#contenedor_articulos").slideDown(1000);
+		$("#contenedor_articulos").slideDown(500);
 	}
 
 	function string_carrito(string_json){
@@ -218,6 +221,17 @@ function actualizar_burbuja_carrito(){
 	})
 }
 
+//funcion que actualiza la burbuja de notificaciones
+function actualizar_burbuja_notificaciones(){
+	$.post(url_api+'get_num_notificaciones',{id_cliente:sesion_local.getItem("FerbisAPP_id")},function(r){
+		if(parseInt(r)>0){
+			$(".mini_burbuja_notificaciones").html(r);
+			$(".mini_burbuja_notificaciones").show(100);
+		}else{
+			$(".mini_burbuja_notificaciones").hide(100);
+		}
+	})
+}
 
 // loader global
 function loader(){
