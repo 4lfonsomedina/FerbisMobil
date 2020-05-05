@@ -328,10 +328,10 @@ button, a, .modal-content{
 	text-align: center;
 }
 .contenedor_pedido{
-	height: 75vh;
+	height: 80vh;
 }
 .contenedor_pedido_btn{
-	height: 10vh;
+	height: 5vh;
 }
 .contenedor_pedido_btn button{
 	width: 100%;

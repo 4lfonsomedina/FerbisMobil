@@ -105,10 +105,10 @@
 	  			<td><b>Articulos:</b></td><td class="pedido_articulos" ></td>
 	  		</tr>
 	  		<tr>
-	  			<td><b>Total (aprox):</b></td><td class="pedido_total"></td>
+	  			<td><b>Total (aprox):</b></td><td><span class="pedido_total"></span> <span class="pedido_envio">+ 30.00 x envio</span></td>
 	  		</tr>
 	  	</table>
-	  	<div class="contenedor_resumen_pedido" style="height: 47vh; overflow-y: auto;">
+	  	<div class="contenedor_resumen_pedido" style="height: 54vh; overflow-y: auto;">
 	  		
 	  	</div>
 	  </div>
@@ -117,16 +117,16 @@
 </div>
 <div class="contenedor_pedido_btn">
 	<div class="btn_paso btn_paso_1" paso='2'>
-		<button class="btn btn-success" >Siguiente <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> </button>
+		<button class="btn btn-success btn-lg" >Siguiente <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> </button>
 	</div>
 	<div class="btn_paso btn_paso_2" paso='3' hidden>
-		<button class="btn btn-success">Siguiente <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> </button>
+		<button class="btn btn-success btn-lg">Siguiente <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> </button>
 	</div>
 	<div class="btn_paso btn_paso_3" paso='4' hidden>
-		<button class="btn btn-success">Siguiente <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> </button>
+		<button class="btn btn-success btn-lg">Siguiente <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> </button>
 	</div>
 	<div class="btn_paso btn_paso_4" hidden>
-		<button class="btn btn-primary">Enviar Pedido <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> </button>
+		<button class="btn btn-primary btn-lg">Enviar Pedido <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> </button>
 	</div>
 </div>
 
@@ -163,6 +163,7 @@
 				total+=parseFloat(prod.cantidad)*parseFloat(prod.precio);
 			});
 			$('.pedido_total').html(parseFloat(total).toFixed(2));
+			mostrar_tabla();
 			$(".contenedor_resumen_pedido").html(string_carrito(r));
 		});
 
@@ -175,9 +176,11 @@
 			if($('input:radio[name=servicio]:checked').val()==1){
 				$(".tabla_cuenta").fadeIn(500);
 				$(".contenedor_tipo_pago").show();
+				$(".pedido_envio").show();
 			}else{
 				$(".tabla_cuenta").fadeOut(500);
 				$(".contenedor_tipo_pago").hide();
+				$(".pedido_envio").hide();
 			}
 			mostrar_tabla_pago();
 		}
