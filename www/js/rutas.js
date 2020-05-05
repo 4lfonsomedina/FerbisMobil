@@ -12,7 +12,7 @@ $(document).ready(function() {
 		});
 		$(".div_contenido").each(function(index, el){
 			$(this).hide();
-			$(this).fadeIn(1000,"swing");
+			$(this).fadeIn(600,"swing");
 		})
 		//$(this).show('10000');
 	});
