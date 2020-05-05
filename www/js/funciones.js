@@ -177,7 +177,7 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 		//agregamos al contenedor
 		$("#contenedor_articulos").hide();
 		$("#contenedor_articulos").html(string_ret);
-		$("#contenedor_articulos").slideDown(500);
+		$("#contenedor_articulos").slideDown(200);
 	}
 
 	function string_carrito(string_json){

@@ -8,11 +8,12 @@ $(document).ready(function() {
 		$(this).load('contenido/'+$(this).attr("contenido"),function(){
 			$(".titulo_emergente").each(function(index, el) {
 				$(this).html(get_value("ruta").toUpperCase().split(".")[0]);
+				$(".slash").fadeOut(500,"swing");
 			})
 		});
 		$(".div_contenido").each(function(index, el){
 			$(this).hide();
-			$(this).fadeIn(600,"swing");
+			$(this).slideDown(500);
 		})
 		//$(this).show('10000');
 	});
