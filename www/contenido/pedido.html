@@ -54,7 +54,7 @@
 
 	  </div>
 	  <div id="pedido_2" class="tab-pane fade">
-	  	<table class="table tabla_cuenta">
+	  	<table class="table tabla_cuenta_paso2">
 			<tr>
 				<td class="tabla_cuenta_titulo">Nombre</td>
 				<td><input type="text" class="form-control cuenta_nombre" name="nombre"></td>
@@ -73,6 +73,7 @@
 	  		<b>Articulos:</b> <span class="pedido_articulos">0000</span><br>
 	  		<b>Total Aprox:</b> <span class="pedido_total">$10000</span> <span class="pedido_envio">+ 30.00 x envio</span><br>
 	  		<p></p>
+	  		<div class="contenedor_tipo_pago">
 	  	<div class="col-xs-6 pedido_radio"><label>
 	  		<input type="radio" class="form-control" name="pago" checked value="1">
 		  		Efectivo
@@ -89,7 +90,8 @@
 		  			<td><input type="number" name="pago_cuanto"></td>
 		  		</tr>
 		  	</table>
-		  	<p class="aprox">*Debido a la presentación del producto, no es posible entregar exactamente 1 kg de manzana (ejemplo), por esta razón el precio es aproximado</p>
+		  </div>
+		  	<p class="aprox"><b>Cuando su pedido este listo recibirá una llamada para informarle el total exacto</b><br>*Debido a la presentación del producto, no es posible entregar exactamente 1 Kg. de manzana (ejemplo), por esta razón el precio es aproximado</p>
 	  </div>
 	   <div id="pedido_4" class="tab-pane fade">
 	  	<table class="table tabla_paso_3">
@@ -97,32 +99,18 @@
 	  			<td><b>Nombre:</b></td><td class="p3_nombre"></td>
 	  		</tr>
 	  		<tr>
-	  			<td><b>Teléfono:</b></td><td class="p3_telefono"></td>
+	  			<td><b>Servicio:</b></td><td class="p3_servicio"></td>
 	  		</tr>
 	  		<tr>
-	  			<td><b>#clie:</b></td><td class="p3_frecuente"></td>
+	  			<td><b>Articulos:</b></td><td class="pedido_articulos" ></td>
 	  		</tr>
 	  		<tr>
-	  			<td><b>servicio:</b></td><td class="p3_servicio"></td>
+	  			<td><b>Total (aprox):</b></td><td class="pedido_total"></td>
 	  		</tr>
-	  		<tr>
-	  			<td><b>Dirección:</b></td><td class="p3_direccion"></td>
-	  		</tr>
-	  		<tr>
-	  			<td><b>Referencia:</b></td><td class="p3_referencia"></td>
-	  		</tr>
-	  		<tr>
-	  			<td><b>Pago:</b></td><td class="p3_pago"></td>
-	  		</tr>
-	  		<tr>
-	  			<td><b>Articulos:</b></td><td class="p3_articulos" ></td>
-	  		</tr>
-	  		<tr>
-	  			<td><b>Total (aprox):</b></td><td class="p3_total"></td>
-	  		</tr>
-	  		
-
 	  	</table>
+	  	<div class="contenedor_resumen_pedido" style="height: 47vh; overflow-y: auto;">
+	  		
+	  	</div>
 	  </div>
 	</div>
 </form>
@@ -148,11 +136,14 @@
 			$(".btn_paso").hide();
 			$(".btn_paso_"+$(this).attr('paso')).show();
 			actualizar_paso3();
+			mostrar_tabla();
 		})
 		$(document).on("click",".btn_paso",function(){
 			$(".li_paso"+$(this).attr('paso')+" > a").click();
 			actualizar_paso3();
+			mostrar_tabla();
 		})
+
 		function actualizar_paso3(){
 			var pedido = objectifyForm($("#pedido_form").serializeArray());
 			$(".p3_nombre").html(pedido.nombre);
@@ -164,24 +155,36 @@
 			$(".p3_referencia").html(pedido.referencia);
 		}
 
+		$.post(url_api+'get_carrito_activo',{id_cliente:sesion_local.getItem("FerbisAPP_id")},function(r){
+			var productos_carrito = jQuery.parseJSON(r);
+			$('.pedido_articulos').html(productos_carrito.length);
+			var total=0;
+			$.each(productos_carrito, function( i, prod ) {
+				total+=parseFloat(prod.cantidad)*parseFloat(prod.precio);
+			});
+			$('.pedido_total').html(parseFloat(total).toFixed(2));
+			$(".contenedor_resumen_pedido").html(string_carrito(r));
+		});
+
 		function objectifyForm(formArray) {//serialize data function
 		  var returnArray = {};for (var i = 0; i < formArray.length; i++){returnArray[formArray[i]['name']] = formArray[i]['value'];}
 		  return returnArray;
 		}
-
-		mostrar_tabla();
 		$(document).on("click",".pedido_radio",function(){mostrar_tabla();})
 		function mostrar_tabla(){
 			if($('input:radio[name=servicio]:checked').val()==1){
 				$(".tabla_cuenta").fadeIn(500);
+				$(".contenedor_tipo_pago").show();
 			}else{
 				$(".tabla_cuenta").fadeOut(500);
+				$(".contenedor_tipo_pago").hide();
 			}
+			mostrar_tabla_pago();
 		}
 
 		mostrar_tabla();
 		$(document).on("click",".pedido_radio",function(){mostrar_tabla();})
-		function mostrar_tabla(){
+		function mostrar_tabla_pago(){
 			if($('input:radio[name=pago]:checked').val()==1){
 				$(".tabla_pago").fadeIn(500);
 			}else{
@@ -203,5 +206,27 @@
 			$(".cuenta_num2").val(cuenta.dir_numero2);
 			$(".cuenta_referencia").val(cuenta.referencia);
 		})
+
+
+		function string_carrito(string_json){
+		var string_ret="";
+		$.each(jQuery.parseJSON(string_json), function( i, prod ) {
+			var asado=""; if(prod.asado=='1'){ asado='<i class="fa fa-fire ico_asado" aria-hidden="true"></i>';}
+			string_ret+="<div class='articulo_carrito' "+
+							"id_carrito_det='"+prod.id_carrito_det+"' "+
+							"producto='"+prod.producto+"' "+
+							"cantidad='"+prod.cantidad+"' "+
+							"asado='"+prod.asado+"' "+
+							"descripcion='"+prod.descripcion+"' "+
+							"unidad='"+prod.unidad+"' "+
+							"detalles='"+prod.detalles+"' "+
+							"precio='"+prod.precio+"' >"+
+			  				"<div class='col-xs-2 car_cantidad'>"+parseFloat(prod.cantidad).toFixed(2)+"<br><b>"+prod.unidad+"</b></div>"+
+			  				"<div class='col-xs-8 car_desc'>"+asado+" "+prod.descripcion+"</div>"+
+			  				"<div class='col-xs-2 car_importe'>"+parseFloat(prod.cantidad*prod.precio).toFixed(2)+"</div>"+
+			  				"</div>";
+		});
+		return string_ret;
+	}
 	});
 </script>
