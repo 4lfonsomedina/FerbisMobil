@@ -11,6 +11,7 @@ $(document).ready(function() {
 				$(this).html(get_value("ruta").toUpperCase().split(".")[0]);
 			})
 		});
+
 		$(".div_contenido").each(function(index, el){
 			$(this).hide();
 			$(this).slideDown(500);
