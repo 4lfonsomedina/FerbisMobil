@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 	//carcar contenidos de los div_contenido
-	$(".div_contenido").each(function(index, el) {
+	$(".div_contenido").each(function(index, el){
 		if($(this).attr("contenido")==""){
 			$(this).attr("contenido",get_value("ruta"));
 		}
@@ -10,6 +10,11 @@ $(document).ready(function() {
 				$(this).html(get_value("ruta").toUpperCase().split(".")[0]);
 			})
 		});
+		$(".div_contenido").each(function(index, el){
+			$(this).hide();
+			$(this).fadeIn(1000,"swing");
+		})
+		//$(this).show('10000');
 	});
 	
 	//regresar a inicio
