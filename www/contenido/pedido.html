@@ -21,9 +21,12 @@
 	  	</label></div>
 
 <!-- en caso de que sea a domicilio pedir datos de la ubicacion-->
+		<input type="hidden" class="pedido_id_carrito" name="id_carrito">
 		<input type="hidden" class="cuenta_id_cliente" name="id_cliente">
 		<input type="hidden" class="cuenta_lat" name="lat">
 		<input type="hidden" class="cuenta_lon" name="lon">
+		<input type="hidden" class="pedido_articulos_input" name="articulos">
+		<input type="hidden" class="pedido_total_input" name="total">
 	  	<table class="table tabla_cuenta">
 			<tr>
 				<td class="tabla_cuenta_titulo">Colonia</td>
@@ -126,12 +129,19 @@
 		<button class="btn btn-success btn-lg">Siguiente <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> </button>
 	</div>
 	<div class="btn_paso btn_paso_4" hidden>
-		<button class="btn btn-primary btn-lg">Enviar Pedido <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> </button>
+		<button class="btn btn-primary btn-lg btn_enviar_pedido">Enviar Pedido <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> </button>
 	</div>
 </div>
 
 <script>
 	$(document).ready(function() {
+		$(document).on("click",".btn_enviar_pedido",function(){
+			/*validaciones:
+			nunca debe de faltar el nombre ni el telefono
+			que si es a domicilio no falten colonia, calle,numero1
+			*/
+			console.log($("#pedPido_form").serializeArray());
+		})
 		$(document).on("click",".li_paso",function(){
 			$(".btn_paso").hide();
 			$(".btn_paso_"+$(this).attr('paso')).show();
@@ -158,11 +168,14 @@
 		$.post(url_api+'get_carrito_activo',{id_cliente:sesion_local.getItem("FerbisAPP_id")},function(r){
 			var productos_carrito = jQuery.parseJSON(r);
 			$('.pedido_articulos').html(productos_carrito.length);
+			$('.pedido_articulos_input').val(productos_carrito.length);
+			$(".pedido_id_carrito").val(productos_carrito[0].id_carrito);
 			var total=0;
 			$.each(productos_carrito, function( i, prod ) {
 				total+=parseFloat(prod.cantidad)*parseFloat(prod.precio);
 			});
 			$('.pedido_total').html(parseFloat(total).toFixed(2));
+			$('.pedido_total_input').val(parseFloat(total).toFixed(2));
 			mostrar_tabla();
 			$(".contenedor_resumen_pedido").html(string_carrito(r));
 		});
