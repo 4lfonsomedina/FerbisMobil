@@ -138,6 +138,10 @@
 		          map: map,
 		          title: 'Ferbis Brasil'
 		        });
+		        marker.addListener("dragend", function(e) { 
+		        	$(".cuenta_lat").val(e.latLng.lat);
+					$(".cuenta_lon").val(e.latLng.lng);
+		        }); 
 		        map.addListener('click', function(e) {
 					marker.setPosition(e.latLng);
 					$(".cuenta_lat").val(e.latLng.lat);

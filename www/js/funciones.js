@@ -80,7 +80,7 @@ $(document).ready(function() {
 		$(".contenido_carrito").html(loader());
 		$.post(url_api+'get_carrito_activo',{id_cliente:sesion_local.getItem("FerbisAPP_id")},function(r){
 			$(".cant_carrito").html(jQuery.parseJSON(r).length);
-			if(jQuery.parseJSON(r).length==0){
+			if(r==0){
 				$(".contenido_carrito").html("<div class='carrito_vacio'>Carrito vacío</div>");
 				$(".div_procesar_pedido").hide();
 			}else{	
