@@ -97,7 +97,7 @@
 .articulo{
 	border-radius: 0px;
 	border:solid 1px;
-	border-color: #909090;
+	border-color: #DEDEDE;
 	margin-bottom: 5px;
 	padding: 5px;
 }
@@ -238,7 +238,7 @@
 .articulo_carrito{
 	padding-top: 7px;
 	padding-bottom: 7px;
-	border-top: solid 1px gray;
+	border-top: solid 1px #DEDEDE;
 	font-size: 12px;
 	display: flex;
     align-items: center;
@@ -247,7 +247,7 @@
 .articulo_carrito_pedido{
 	padding-top: 7px;
 	padding-bottom: 7px;
-	border-top: solid 1px gray;
+	border-top: solid 1px #DEDEDE;
 	font-size: 12px;
 	display: flex;
     align-items: center;
@@ -278,11 +278,11 @@ button, a, .modal-content{
 	padding-top: 10px;
 }
 .pedido_row,.notificacion_row{
-	border: solid 1px gray;
+	border: solid 1px #DEDEDE;
 	display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 2px 5px 5px;
+    box-shadow: 1px 1px 1px;
     margin-bottom: 15px;
 }
 .small_pedido, 
