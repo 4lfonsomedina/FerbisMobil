@@ -132,7 +132,30 @@
 		<button class="btn btn-primary btn-lg btn_enviar_pedido">Enviar Pedido <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> </button>
 	</div>
 </div>
-
+<!-- MODAL PARA NOMBRE DEL CLIENTE -->
+<div id="modal_pedido_enviado" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><b>Pedido Enviado!</b></h4>
+      </div>
+      <div class="modal-body" style="text-align: center">
+        <img width="50%" src="img/logo.png" style="margin-top: 2px">
+        <h2>Gracias por tu pedido!</h2> <br>Puede monitorear el estatus de su pedido desde su Menú -> Mis Pedidos
+    </div>
+      <div class="modal-footer">
+        <div class="row">
+            <div class="col-xs-12">
+                <buttton class="btn btn-primary btn_aceptar">
+                    <h4> <i class="fa fa-reply" aria-hidden="true"></i> Aceptar</h4>
+                </buttton>
+                
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!--FIN MODAL-->
 <script>
 	$(document).ready(function() {
 		$(document).on("click",".btn_enviar_pedido",function(){
@@ -162,7 +185,7 @@
 				$(".li_paso1 > a").click();
 				return;
 			}
-			if($('input:radio[name=servicio]:checked').val()==1&&$(".cuenta_numero").val()==''){
+			if($('input:radio[name=servicio]:checked').val()==1&&$(".cuenta_num").val()==''){
 				alert('Es necesario capturar el numero de su domicilio');
 				$(".li_paso1 > a").click();
 				return;
@@ -172,9 +195,17 @@
 				$(".li_paso3 > a").click();
 				return;
 			}
-
-			console.log($("#pedido_form").serializeArray());
+			$.post(url_api+'alta_pedido',$("#pedido_form").serialize(),function(r){
+				console.log(r);
+				$("#modal_pedido_enviado").modal("show");
+			})
+			//console.log($("#pedido_form").serializeArray());
 		})
+		//envio finalizado
+		$(document).on("click",".btn_aceptar",function(){
+			closeBrowser();
+		})
+
 		$(document).on("click",".li_paso",function(){
 			$(".btn_paso").hide();
 			$(".btn_paso_"+$(this).attr('paso')).show();
@@ -254,6 +285,9 @@
 			$(".cuenta_num").val(cuenta.dir_numero1);
 			$(".cuenta_num2").val(cuenta.dir_numero2);
 			$(".cuenta_referencia").val(cuenta.referencia);
+			$("input:radio[name=servicio]").each(function(){if($(this).val()==cuenta.servicio){$(this).prop("checked", true);}});
+			$("input:radio[name=pago]").each(function(){if($(this).val()==cuenta.pago){$(this).prop("checked", true);}});
+			mostrar_tabla();
 		})
 
 

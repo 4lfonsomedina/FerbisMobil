@@ -34,14 +34,7 @@ $(document).ready(function() {
 		closeBrowser();
 	})
 
-	//funcion phonegap para cerrar ventanas
-	function closeBrowser(){
-	    if(history.length==1){
-	        window.open('mobile/close');
-	    }else{
-	        history.back();
-	    }
-	}
+	
 
 	//funcion que extrae variables get
 	function get_value(variable){ 
@@ -54,3 +47,12 @@ $(document).ready(function() {
 	  return ""; //not found 
 	}
 });
+
+//funcion phonegap para cerrar ventanas
+	function closeBrowser(){
+	    if(history.length==1){
+	        window.open('mobile/close');
+	    }else{
+	        history.back();
+	    }
+	}
