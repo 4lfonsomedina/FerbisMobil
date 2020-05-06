@@ -171,7 +171,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <buttton class="btn btn-primary btn_aceptar">
-                    <h4> <i class="fa fa-reply" aria-hidden="true"></i> Aceptar</h4>
+                    <h4>  Aceptar <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h4>
                 </buttton>
                 
             </div>
@@ -219,9 +219,10 @@
 				$(".li_paso3 > a").click();
 				return;
 			}
+			$( ".btn_enviar_pedido" ).prop( "disabled", true );
 			$.post(url_api+'alta_pedido',$("#pedido_form").serialize(),function(r){
 				console.log(r);
-				$("#modal_pedido_enviado").modal("show");
+				$('#modal_pedido_enviado').modal({backdrop: 'static', keyboard: false});
 			})
 			//console.log($("#pedido_form").serializeArray());
 		})
