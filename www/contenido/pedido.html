@@ -90,7 +90,7 @@
 		  			<td><b>Con cuanto va a pagar?</b></td>
 		  		</tr>
 		  		<tr style="text-align: center">
-		  			<td><input type="number" name="pago_cuanto"></td>
+		  			<td><input type="number" name="pago_cuanto" class="form-control pedido_pago_cuanto"></td>
 		  		</tr>
 		  	</table>
 		  </div>
@@ -136,11 +136,44 @@
 <script>
 	$(document).ready(function() {
 		$(document).on("click",".btn_enviar_pedido",function(){
-			/*validaciones:
-			nunca debe de faltar el nombre ni el telefono
-			que si es a domicilio no falten colonia, calle,numero1
+			/*
+			validaciones:
+			1 - Nunca debe de faltar el nombre ni el telefono
+			2 - Si es a domicilio no falten colonia, calle, numero1
 			*/
-			console.log($("#pedPido_form").serializeArray());
+			// 1 - Nunca debe de faltar el nombre ni el telefono
+			if($(".cuenta_nombre").val()==''){
+				alert('Es necesario capturar su nombre');
+				$(".li_paso2 > a").click();
+				return;
+			}
+			if($(".cuenta_telefono").val()==''){
+				alert('Es necesario capturar su telefono para comunicarnos con usted cuando su pedido este listo');
+				$(".li_paso2 > a").click();
+				return;
+			}
+			if($('input:radio[name=servicio]:checked').val()==1&&$(".cuenta_colonia").val()==''){
+				alert('Es necesario capturar su colonia');
+				$(".li_paso1 > a").click();
+				return;
+			}
+			if($('input:radio[name=servicio]:checked').val()==1&&$(".cuenta_calle").val()==''){
+				alert('Es necesario capturar la calle de su domicilio');
+				$(".li_paso1 > a").click();
+				return;
+			}
+			if($('input:radio[name=servicio]:checked').val()==1&&$(".cuenta_numero").val()==''){
+				alert('Es necesario capturar el numero de su domicilio');
+				$(".li_paso1 > a").click();
+				return;
+			}
+			if($('input:radio[name=servicio]:checked').val()==1&&$('input:radio[name=pago]:checked').val()==1&&$(".pedido_pago_cuanto").val()==''){
+				alert('Es necesario capturar on cuanto va a pagar para preparar su cambio');
+				$(".li_paso3 > a").click();
+				return;
+			}
+
+			console.log($("#pedido_form").serializeArray());
 		})
 		$(document).on("click",".li_paso",function(){
 			$(".btn_paso").hide();
