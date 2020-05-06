@@ -46,12 +46,26 @@ $(document).ready(function() {
 
 		//datos fara formulario 
 		$("#producto_modal_form").val($(this).attr('producto'));
+		$("#departamento_modal_form").val($(this).attr('departamento'));
 		$("#unidad_modal_form").val($(this).attr('unidad'));
 		$("#precio_modal_form").val($(this).attr('precio'));
 		$("#cliente_modal_form").val(sesion_local.getItem("FerbisAPP_id"));
 		$("#descripcion_modal_form").val($(this).attr('descripcion'));
+
 		$("#agregarArticuloModal").modal("show");
+
+		//ocultar o mostrar servicio de asado
+		if($(this).attr('departamento')=='002'||$(this).attr('departamento')=='005'){
+			$(".row_asado").show();
+		}else{
+			$(".row_asado").hide();
+		}
 	})
+	// al pesionar el texto del servicio_asado
+	$(document).on("click",".servicio_asado",function(){
+		$(this).parent('div').find('.div_check_asado').find('input').click();
+	})
+	//actualizacion de input de asado
 	$(document).on('click',".check_asado",function(){
 		if($(this).is(":checked")){$(".check_asado_input").val(1);}
 		else{$(".check_asado_input").val(0);}
@@ -124,12 +138,20 @@ $(document).on("click",".articulo_carrito",function(){
 	//datos fara formulario 
 	$("#producto_carrito_modal_form_e").val($(this).attr('id_carrito_det'));
 	$("#producto_modal_form_e").val($(this).attr('producto'));
+	$("#departamento_modal_form_e").val($(this).attr('departamento'));
 	$("#unidad_modal_form_e").val($(this).attr('unidad'));
 	$("#precio_modal_form_e").val($(this).attr('precio'));
 	$("#cliente_modal_form_e").val(sesion_local.getItem("FerbisAPP_id"));
 	$("#descripcion_modal_form_e").val($(this).attr('descripcion'));
 	$(".contenedor_menu_lateral_der").hide(300);
 	$("#editarArticuloModal").modal("show");
+
+	//ocultar o mostrar servicio de asado
+	if($(this).attr('departamento')=='002'||$(this).attr('departamento')=='005'){
+		$(".row_asado").show();
+	}else{
+		$(".row_asado").hide();
+	}
 })
 
 
@@ -162,6 +184,7 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 			
 			string_ret+="<div class='row row_articulo' "+
 							"producto='"+prod.producto+"' "+
+							"departamento='"+prod.departamento+"' "+
 							"descripcion='"+prod.descripcion+"' "+
 							"unidad='"+prod.unidad+"' "+
 							"precio='"+prod.precio+"' "+
@@ -187,6 +210,7 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 			string_ret+="<div class='articulo_carrito' "+
 							"id_carrito_det='"+prod.id_carrito_det+"' "+
 							"producto='"+prod.producto+"' "+
+							"departamento='"+prod.departamento+"' "+
 							"cantidad='"+prod.cantidad+"' "+
 							"asado='"+prod.asado+"' "+
 							"descripcion='"+prod.descripcion+"' "+
@@ -238,4 +262,10 @@ function actualizar_burbuja_notificaciones(){
 // loader global
 function loader(){
 		return '<div style="text-align:center;padding-top:100px;"><i class="fa fa-spinner fa-spin fa-5x fa-fw"></i><span class="sr-only"></span></div>';
-	}
+}
+
+function diaSemana(){
+	var diasSemana = new Array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
+	var f=new Date();
+	alert(diasSemana[f.getDay()]);   
+}

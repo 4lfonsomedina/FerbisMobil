@@ -25,7 +25,7 @@ $(document).ready(function() {
 	})
 
 	//cargar ventanas emergentes
-	$(document).on("click",".ventana_emergente",function(){
+	$(document).on("click",".ventana_emergente_especial",function(){
 		window.open('emergente.html?ruta='+$(this).attr('ruta')+".html");
 	})
 
