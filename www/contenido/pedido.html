@@ -270,6 +270,7 @@
 		          animation: google.maps.Animation.DROP,
 		          position: myLatLng,
 		          map: map,
+		          icon: 'img/map_icon.png',
 		          title: 'Ferbis Brasil'
 		        });
 		        marker.addListener("dragend", function(e) { 
@@ -426,6 +427,8 @@
 				});
 		}else{
 			navigator.geolocation.getCurrentPosition(function(e){
+				$(".cuenta_lat").val(e.coords.latitude);
+				$(".cuenta_lon").val(e.coords.longitude);
 				construir_mapa({lat: e.coords.latitude, lng: e.coords.longitude});
 			}, function(e){
 				console.log(e);
