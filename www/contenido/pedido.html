@@ -91,18 +91,23 @@
 		  		<input type="radio" class="form-control" name="pago" value="2">
 		  		Tarjeta
 		  	</label></div>
-		  	<!--
+		  	
 		  	<table class="table tabla_pago">
+		  		<!--
 		  		<tr style="text-align: center">
 		  			<td><b>Con cuanto va a pagar?</b></td>
 		  		</tr>
 		  		<tr style="text-align: center">
 		  			<td><input type="number" name="pago_cuanto" class="form-control pedido_pago_cuanto"></td>
 		  		</tr>
+		  		 -->
+		  		<tr>
+		  			<td><p class="aprox"><b>Cuando su pedido este listo recibirá una llamada para informarle el total exacto</b><br>*Debido a la presentación del producto, no es posible entregar exactamente 1 Kg. de manzana (ejemplo), por esta razón el precio es aproximado</p></td>
+		  		</tr>
 		  	</table>
-		  -->
+		 
 		  </div>
-		  	<p class="aprox"><b>Cuando su pedido este listo recibirá una llamada para informarle el total exacto</b><br>*Debido a la presentación del producto, no es posible entregar exactamente 1 Kg. de manzana (ejemplo), por esta razón el precio es aproximado</p>
+		  	
 	  </div>
 	   <div id="pedido_4" class="tab-pane fade">
 	  	<table class="table tabla_paso_3">
@@ -149,6 +154,7 @@
       <div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button>
       	<h4 class="modal-title"><b>Ubicación</b></h4></div>
       <div class="modal-body">
+      	*Presione el mapa o arrastre el marcador hasta la posición donde desea recibir su pedido.
       	<div id="map_cuenta" style="height: 300px;"></div>
       </div>
       <div class="modal-footer">
@@ -214,30 +220,17 @@
 			var lat = parseFloat($(".cuenta_lat").val());
 			var lon = parseFloat($(".cuenta_lon").val());
 			if(lat!=""&&lon!=""){
-				notificacion("1");
 				sucursal_cercana();
 			}
 			else if($(".cuenta_calle").val()!=""&&$(".cuenta_num").val()!=""&&$(".cuenta_colonia").val()!=""){
-				notificacion("2");
-				var direccion=	$(".cuenta_calle").val()+", "+
-								$(".cuenta_num").val()+", "+
-								$(".cuenta_colonia").val()+
-								", Mexicali, BC";
-				geocoder = new google.maps.Geocoder();
-				geocoder.geocode({ 'address': direccion}, function(results, status) {
-					$(".cuenta_lat").val(results[0].geometry.location.lat);
-					$(".cuenta_lon").val(results[0].geometry.location.lng);
-					sucursal_cercana();
-				});
+				geolacalizar_direccion();
 			}else{
-				notificacion("3");
 				navigator.geolocation.getCurrentPosition(function(e){
 					$(".cuenta_lat").val(e.coords.latitude);
 					$(".cuenta_lon").val(e.coords.longitude);
 					construir_mapa({lat: e.coords.latitude, lng: e.coords.longitude});
 				}, function(e){
-					console.log(e);
-					//notificacion(e.message);
+					geolacalizar_direccion();
 				});
 			}
 		}
@@ -445,10 +438,22 @@
 				$(".cuenta_lon").val(e.coords.longitude);
 				construir_mapa({lat: e.coords.latitude, lng: e.coords.longitude});
 			}, function(e){
-				console.log(e);
-				notificacion(e.message);
+				geolacalizar_direccion();
 			});
 		}
 		})
 	});
+
+function geolacalizar_direccion(){
+	var direccion=	$(".cuenta_calle").val()+", "+
+						$(".cuenta_num").val()+", "+
+						$(".cuenta_colonia").val()+
+						", Mexicali, BC";
+	geocoder = new google.maps.Geocoder();
+	geocoder.geocode({ 'address': direccion}, function(results, status) {
+		$(".cuenta_lat").val(results[0].geometry.location.lat);
+		$(".cuenta_lon").val(results[0].geometry.location.lng);
+		sucursal_cercana();
+	});
+}
 </script>
