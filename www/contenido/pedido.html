@@ -261,6 +261,10 @@
 		}
 
 		function construir_mapa(myLatLng){
+				$(".cuenta_lat").val(myLatLng.lat);
+				$(".cuenta_lon").val(myLatLng.lng);
+				sucursal_cercana();
+				
 				var map = new google.maps.Map(document.getElementById('map_cuenta'), {
 		          zoom: 17,
 		          center: myLatLng
