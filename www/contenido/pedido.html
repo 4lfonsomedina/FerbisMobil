@@ -1,4 +1,4 @@
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2dcvz8j9SEcEv9sYFNuO4iY-Z5-fqEf8"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2dcvz8j9SEcEv9sYFNuO4iY-Z5-fqEf8&callback=cargar_datos"></script>
 
 <div class="contenedor_pedido">
 
@@ -30,13 +30,7 @@
 		<input type="hidden" class="pedido_articulos_input" name="articulos">
 		<input type="hidden" class="pedido_total_input" name="total">
 	  	<table class="table tabla_cuenta">
-	  		<tr>
-				<td colspan="4">
-					<button type="button" class="btn btn-default btn_mapa_cuenta">
-						<i class="fa fa-map-marker" aria-hidden="true"></i> Ubicar en mapa
-					</button>
-				</td>
-			</tr>
+	  		
 			<tr>
 				<td class="tabla_cuenta_titulo">Colonia</td>
 				<td colspan="3"><input type="text" class="form-control cuenta_colonia" name="dir_colonia"></td>
@@ -54,6 +48,13 @@
 			<tr>
 				<td class="tabla_cuenta_titulo">Referencia</td>
 				<td colspan="3"><textarea rows="2" class="form-control cuenta_referencia" name="referencia"></textarea></td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<button type="button" class="btn btn-default btn_mapa_cuenta">
+						<i class="fa fa-map-marker" aria-hidden="true"></i> Mi Ubicación
+					</button>
+				</td>
 			</tr>
 			<tr>
 				<td>Sucursal</td><td class="sucursal_cercana"></td><td class="sucursal_distancia"></td>
@@ -90,6 +91,7 @@
 		  		<input type="radio" class="form-control" name="pago" value="2">
 		  		Tarjeta
 		  	</label></div>
+		  	<!--
 		  	<table class="table tabla_pago">
 		  		<tr style="text-align: center">
 		  			<td><b>Con cuanto va a pagar?</b></td>
@@ -98,6 +100,7 @@
 		  			<td><input type="number" name="pago_cuanto" class="form-control pedido_pago_cuanto"></td>
 		  		</tr>
 		  	</table>
+		  -->
 		  </div>
 		  	<p class="aprox"><b>Cuando su pedido este listo recibirá una llamada para informarle el total exacto</b><br>*Debido a la presentación del producto, no es posible entregar exactamente 1 Kg. de manzana (ejemplo), por esta razón el precio es aproximado</p>
 	  </div>
@@ -184,6 +187,105 @@
   </div>
 </div> <!--FIN MODAL-->
 <script>
+
+	function cargar_datos() {
+			$.post(url_api+'datos_cuenta',{id_cliente:sesion_local.getItem("FerbisAPP_id")},function(r){
+				var cuenta = jQuery.parseJSON(r);
+				$(".cuenta_id_cliente").val(cuenta.id_cliente);
+				$(".cuenta_lat").val(cuenta.lat);
+				$(".cuenta_lon").val(cuenta.lon);
+				$(".cuenta_nombre").val(cuenta.nombre);
+				$(".cuenta_telefono").val(cuenta.telefono);
+				$(".cuenta_correo").val(cuenta.correo);
+				$(".cuenta_numero").val(cuenta.numero);
+				$(".cuenta_colonia").val(cuenta.dir_colonia);
+				$(".cuenta_calle").val(cuenta.dir_calle);
+				$(".cuenta_num").val(cuenta.dir_numero1);
+				$(".cuenta_num2").val(cuenta.dir_numero2);
+				$(".cuenta_referencia").val(cuenta.referencia);
+				$("input:radio[name=servicio]").each(function(){if($(this).val()==cuenta.servicio){$(this).prop("checked", true);}});
+				$("input:radio[name=pago]").each(function(){if($(this).val()==cuenta.pago){$(this).prop("checked", true);}});
+				verificar_ubicacion();
+				mostrar_tabla();
+			})
+		}
+
+		function verificar_ubicacion(){
+			if($(".cuenta_calle").val()==""||$(".cuenta_num").val()==""||$(".cuenta_colonia").val()==""){
+				return;
+			}
+			var lat = parseFloat($(".cuenta_lat").val());
+			var lon = parseFloat($(".cuenta_lon").val());
+			if(lat==0&&lon==0){
+				var direccion=	$(".cuenta_calle").val()+", "+
+								$(".cuenta_num").val()+", "+
+								$(".cuenta_colonia").val()+
+								", Mexicali, BC";
+				geocoder = new google.maps.Geocoder();
+				geocoder.geocode({ 'address': direccion}, function(results, status) {
+					$(".cuenta_lat").val(results[0].geometry.location.lat);
+					$(".cuenta_lon").val(results[0].geometry.location.lng);
+					sucursal_cercana();
+				});
+			}else{
+				sucursal_cercana();
+			}
+		}
+		function sucursal_cercana(){
+			$.post(url_api+'sucursal_cercana',{lat:$(".cuenta_lat").val(),lon:$(".cuenta_lon").val()},function(r){
+				var sucursal = jQuery.parseJSON(r);
+				$(".sucursal_cercana").html(sucursal.sucursal);
+				$(".sucursal_distancia").html(sucursal.distancia+"km");
+			})
+		}
+
+		function mostrar_tabla(){
+			if($('input:radio[name=servicio]:checked').val()==1){
+				$(".tabla_cuenta").fadeIn(500);
+				$(".contenedor_tipo_pago").show();
+				$(".pedido_envio").show();
+			}else{
+				$(".tabla_cuenta").fadeOut(500);
+				$(".contenedor_tipo_pago").hide();
+				$(".pedido_envio").hide();
+			}
+			mostrar_tabla_pago();
+		}
+
+		function mostrar_tabla_pago(){
+			if($('input:radio[name=pago]:checked').val()==1){
+				$(".tabla_pago").fadeIn(500);
+			}else{
+				$(".tabla_pago").fadeOut(500);
+			}
+		}
+
+		function construir_mapa(myLatLng){
+				var map = new google.maps.Map(document.getElementById('map_cuenta'), {
+		          zoom: 17,
+		          center: myLatLng
+		        });
+		        var marker = new google.maps.Marker({
+		          draggable: true,
+		          animation: google.maps.Animation.DROP,
+		          position: myLatLng,
+		          map: map,
+		          title: 'Ferbis Brasil'
+		        });
+		        marker.addListener("dragend", function(e) { 
+		        	$(".cuenta_lat").val(e.latLng.lat);
+					$(".cuenta_lon").val(e.latLng.lng);
+					sucursal_cercana();
+		        }); 
+		        map.addListener('click', function(e) {
+					marker.setPosition(e.latLng);
+					$(".cuenta_lat").val(e.latLng.lat);
+					$(".cuenta_lon").val(e.latLng.lng);
+					sucursal_cercana();
+				});
+			}
+
+
 	$(document).ready(function() {
 		$(document).on("click",".btn_enviar_pedido",function(){
 			/*
@@ -215,11 +317,6 @@
 			if($('input:radio[name=servicio]:checked').val()==1&&$(".cuenta_num").val()==''){
 				alert('Es necesario capturar el numero de su domicilio');
 				$(".li_paso1 > a").click();
-				return;
-			}
-			if($('input:radio[name=servicio]:checked').val()==1&&$('input:radio[name=pago]:checked').val()==1&&$(".pedido_pago_cuanto").val()==''){
-				alert('Es necesario capturar on cuanto va a pagar para preparar su cambio');
-				$(".li_paso3 > a").click();
 				return;
 			}
 			$( ".btn_enviar_pedido" ).prop( "disabled", true );
@@ -277,49 +374,12 @@
 		  return returnArray;
 		}
 		$(document).on("click",".pedido_radio",function(){mostrar_tabla();})
-		function mostrar_tabla(){
-			if($('input:radio[name=servicio]:checked').val()==1){
-				$(".tabla_cuenta").fadeIn(500);
-				$(".contenedor_tipo_pago").show();
-				$(".pedido_envio").show();
-			}else{
-				$(".tabla_cuenta").fadeOut(500);
-				$(".contenedor_tipo_pago").hide();
-				$(".pedido_envio").hide();
-			}
-			mostrar_tabla_pago();
-		}
+		
 
 		mostrar_tabla();
 		$(document).on("click",".pedido_radio",function(){mostrar_tabla();})
-		function mostrar_tabla_pago(){
-			if($('input:radio[name=pago]:checked').val()==1){
-				$(".tabla_pago").fadeIn(500);
-			}else{
-				$(".tabla_pago").fadeOut(500);
-			}
-		}
-		setTimeout(function() {
-			$.post(url_api+'datos_cuenta',{id_cliente:sesion_local.getItem("FerbisAPP_id")},function(r){
-				var cuenta = jQuery.parseJSON(r);
-				$(".cuenta_id_cliente").val(cuenta.id_cliente);
-				$(".cuenta_lat").val(cuenta.lat);
-				$(".cuenta_lon").val(cuenta.lon);
-				$(".cuenta_nombre").val(cuenta.nombre);
-				$(".cuenta_telefono").val(cuenta.telefono);
-				$(".cuenta_correo").val(cuenta.correo);
-				$(".cuenta_numero").val(cuenta.numero);
-				$(".cuenta_colonia").val(cuenta.dir_colonia);
-				$(".cuenta_calle").val(cuenta.dir_calle);
-				$(".cuenta_num").val(cuenta.dir_numero1);
-				$(".cuenta_num2").val(cuenta.dir_numero2);
-				$(".cuenta_referencia").val(cuenta.referencia);
-				$("input:radio[name=servicio]").each(function(){if($(this).val()==cuenta.servicio){$(this).prop("checked", true);}});
-				$("input:radio[name=pago]").each(function(){if($(this).val()==cuenta.pago){$(this).prop("checked", true);}});
-				verificar_ubicacion();
-				mostrar_tabla();
-			})
-		}, 2000);
+		
+		
 		
 
 
@@ -343,42 +403,16 @@
 			});
 		return string_ret;
 		}
-		function verificar_ubicacion(){
-			if($(".cuenta_calle").val()==""||$(".cuenta_num").val()==""||$(".cuenta_colonia").val()==""){
-				return;
-			}
-			var lat = parseFloat($(".cuenta_lat").val());
-			var lon = parseFloat($(".cuenta_lon").val());
-			if(lat==0&&lon==0){
-				var direccion=	$(".cuenta_calle").val()+", "+
-								$(".cuenta_num").val()+", "+
-								$(".cuenta_colonia").val()+
-								", Mexicali, BC";
-				geocoder = new google.maps.Geocoder();
-				geocoder.geocode({ 'address': direccion}, function(results, status) {
-					$(".cuenta_lat").val(results[0].geometry.location.lat);
-					$(".cuenta_lon").val(results[0].geometry.location.lng);
-					sucursal_cercana();
-				});
-			}else{
-				sucursal_cercana();
-			}
-		}
-		function sucursal_cercana(){
-			$.post(url_api+'sucursal_cercana',{lat:$(".cuenta_lat").val(),lon:$(".cuenta_lon").val()},function(r){
-				var sucursal = jQuery.parseJSON(r);
-				$(".sucursal_cercana").html(sucursal.sucursal);
-				$(".sucursal_distancia").html(sucursal.distancia+"km");
-			})
-		}
+		
 
 		$(document).on("click",".btn_mapa_cuenta",function(){
 			$("#modal_mapa").modal("show");
 
 			//si existen las coordenadas no se hace geolocalizacion
+
 			if($(".cuenta_lat").val()!=0&&$(".cuenta_lon").val()!=0){
 				construir_mapa({lat: parseFloat($(".cuenta_lat").val()), lng: parseFloat($(".cuenta_lon").val())});
-			}else{
+			}else if($(".cuenta_calle").val()!=""&&$(".cuenta_num").val()!=""&&$(".cuenta_colonia").val()!=""){
 				var direccion=	$(".cuenta_calle").val()+", "+
 								$(".cuenta_num").val()+", "+
 								$(".cuenta_colonia").val()+
@@ -390,33 +424,14 @@
 					$(".cuenta_lon").val(results[0].geometry.location.lng);
 					construir_mapa(results[0].geometry.location);
 				});
+		}else{
+			navigator.geolocation.getCurrentPosition(function(e){
+				construir_mapa({lat: e.coords.latitude, lng: e.coords.longitude});
+			}, function(e){
+				console.log(e);
+				notificacion(e.message);
+			});
 		}
-		
-
-			function construir_mapa(myLatLng){
-				var map = new google.maps.Map(document.getElementById('map_cuenta'), {
-		          zoom: 17,
-		          center: myLatLng
-		        });
-		        var marker = new google.maps.Marker({
-		          draggable: true,
-		          animation: google.maps.Animation.DROP,
-		          position: myLatLng,
-		          map: map,
-		          title: 'Ferbis Brasil'
-		        });
-		        marker.addListener("dragend", function(e) { 
-		        	$(".cuenta_lat").val(e.latLng.lat);
-					$(".cuenta_lon").val(e.latLng.lng);
-					sucursal_cercana();
-		        }); 
-		        map.addListener('click', function(e) {
-					marker.setPosition(e.latLng);
-					$(".cuenta_lat").val(e.latLng.lat);
-					$(".cuenta_lon").val(e.latLng.lng);
-					sucursal_cercana();
-				});
-			}
 		})
 	});
 </script>
