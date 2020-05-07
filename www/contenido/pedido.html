@@ -216,7 +216,10 @@
 			}
 			var lat = parseFloat($(".cuenta_lat").val());
 			var lon = parseFloat($(".cuenta_lon").val());
-			if(lat==0&&lon==0){
+			if(lat!=""&&lon!=""){
+				sucursal_cercana();
+			}
+			else if($(".cuenta_calle").val()==""||$(".cuenta_num").val()==""||$(".cuenta_colonia").val()==""){
 				var direccion=	$(".cuenta_calle").val()+", "+
 								$(".cuenta_num").val()+", "+
 								$(".cuenta_colonia").val()+
@@ -228,7 +231,14 @@
 					sucursal_cercana();
 				});
 			}else{
-				sucursal_cercana();
+				navigator.geolocation.getCurrentPosition(function(e){
+					$(".cuenta_lat").val(e.coords.latitude);
+					$(".cuenta_lon").val(e.coords.longitude);
+					construir_mapa({lat: e.coords.latitude, lng: e.coords.longitude});
+				}, function(e){
+					console.log(e);
+					notificacion(e.message);
+				});				
 			}
 		}
 		function sucursal_cercana(){
