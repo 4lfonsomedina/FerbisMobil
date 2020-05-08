@@ -1,5 +1,5 @@
 //variables genericas en todos los scripts posteriores a funciones.js
-var url_api = "http://ferbis.com/domicilio/index.php/api_controller/";
+var url_api = "https://sd.ferbis.com/index.php/api_controller/";
 
 $(document).ready(function() {
 
