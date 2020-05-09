@@ -25,6 +25,8 @@
 <!-- en caso de que sea a domicilio pedir datos de la ubicacion-->
 		<input type="hidden" class="pedido_id_carrito" name="id_carrito">
 		<input type="hidden" class="cuenta_id_cliente" name="id_cliente">
+		<input type="hidden" class="pedido_id_sucursal" name="id_sucursal">
+		<input type="hidden" class="pedido_sucursal" name="sucursal">
 		<input type="hidden" class="cuenta_lat" name="lat">
 		<input type="hidden" class="cuenta_lon" name="lon">
 		<input type="hidden" class="pedido_articulos_input" name="articulos">
@@ -239,6 +241,8 @@
 				var sucursal = jQuery.parseJSON(r);
 				$(".sucursal_cercana").html(sucursal.sucursal);
 				$(".sucursal_distancia").html(sucursal.distancia+"km");
+				$(".pedido_id_sucursal").val(sucursal.id_sucursal);
+				$(".pedido_sucursal").val(sucursal.sucursal);
 			})
 		}
 
