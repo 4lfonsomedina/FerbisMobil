@@ -68,6 +68,10 @@
 	text-align:center;
 	padding: 5px;
 }
+.descripcion_modal{
+	padding-top: 10px;
+	font-weight: bold;
+}
 .img_dep{
 	border-radius:0px;
 	/*border:solid 3px;*/
@@ -110,6 +114,11 @@
 .img_art{
 	width: 60px;
 	height: 60px;
+	border-radius: 0px;
+}
+.img_art2{
+	width: 120px;
+	height: 120px;
 	border-radius: 0px;
 }
 .img_dep_001{background-color: red;}

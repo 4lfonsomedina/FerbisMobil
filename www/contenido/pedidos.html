@@ -46,7 +46,9 @@
 					var status_desc="";
 					if(estatus==0){estatus='info'; 		status_desc='Captura';}
 					if(estatus==1){estatus='primary'; 	status_desc='Procesando';}
-					if(estatus==2){estatus='success'; 	status_desc='Entregado';}
+					if(estatus==2){estatus='warning'; 	status_desc='Surtido';}
+					if(estatus==3){estatus='success'; 	status_desc='Enviado';}
+					if(estatus==3){estatus='danger'; 	status_desc='Cancelado';}
 					string_contenido+='<div class="pedido_row row" id_carrito="'+pedido.id_carrito+'" '+
 					'fecha="'+pedido.fecha+'" '+
 					'status="'+status_desc+'" '+

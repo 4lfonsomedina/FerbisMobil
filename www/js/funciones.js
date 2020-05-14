@@ -39,6 +39,7 @@ $(document).ready(function() {
 	$(document).on("click",".row_articulo",function(){
 		$(".descripcion_modal").html($(this).attr('descripcion'));
 		$(".unidad_modal").html($(this).attr('unidad'));
+		$(".img_prod_modal").attr('src',$(this).attr('imagen'));
 		$(".input_orden").val(1);
 		$(".check_asado").prop('checked',false);
 		$(".ord_detalles").val("");
@@ -181,16 +182,17 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 	function string_articulos(string_json){
 		var string_ret="";
 		$.each(jQuery.parseJSON(string_json), function( i, prod ) {
-			
+			// se utiliza puntuacion para la imagen
 			string_ret+="<div class='row row_articulo' "+
 							"producto='"+prod.producto+"' "+
 							"departamento='"+prod.departamento+"' "+
 							"descripcion='"+prod.descripcion+"' "+
 							"unidad='"+prod.unidad+"' "+
+							"imagen='"+prod.puntuacion+"' "+
 							"precio='"+prod.precio+"' "+
 							">"+
 			  				"<div class='col-xs-12 articulo'><div class='col-xs-2'>"+
-			  				"<div class='art_img'><img src='img/no_image.png' class='img_art'></div>"+
+			  				"<div class='art_img'><img src='"+prod.puntuacion+"' class='img_art'></div>"+
 			  				"</div><div class='col-xs-10'>"+
 			  				"<div class='col-xs-12'><div class='art_desc'>"+prod.descripcion+"</div></div>"+
 			  				"<div class='col-xs-6'><div class='art_um'>"+prod.unidad+"</div></div>"+
@@ -224,7 +226,6 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 		});
 		return string_ret;
 	}
-
 });//fin
 
 // alerta global
