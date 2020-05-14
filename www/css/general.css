@@ -114,12 +114,14 @@
 .img_art{
 	width: 60px;
 	height: 60px;
-	border-radius: 0px;
+	border-radius: 5px;
+	border: solid 1px white;
 }
 .img_art2{
 	width: 120px;
 	height: 120px;
-	border-radius: 0px;
+	border-radius: 5px;
+	border: solid 1px white;
 }
 .img_dep_001{background-color: red;}
 .input_orden{
