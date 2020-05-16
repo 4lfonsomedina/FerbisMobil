@@ -204,7 +204,19 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 		$("#contenedor_articulos").hide();
 		$("#contenedor_articulos").html(string_ret);
 		$("#contenedor_articulos").slideDown(200);
-		$(".art_img").hide();setTimeout(function() { $(".loader_img").hide();$(".art_img").show();}, 3000);
+
+		$(".art_img").hide();setTimeout(function() {
+
+			$(".loader_img").each(function(index, el) {
+
+				setTimeout(function() {
+					$(el).hide();
+					$(el).parent("div").find(".art_img").show();
+				},150*index);
+
+			});
+
+		}, 2000);
 	}
 	function string_carrito(string_json){
 		var string_ret="";
@@ -233,7 +245,7 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 function notificacion(mensaje){
 	$(".alerta_multiusos").html(mensaje);
 	$(".alerta_multiusos").show(100);
-	setTimeout(function() {$(".alerta_multiusos").hide(100);}, 1300);
+	setTimeout(function() {$(".alerta_multiusos").hide(100);}, 3000);
 }
 
 //funcion que actualiza la cantidad de productos en el carrito de compras
