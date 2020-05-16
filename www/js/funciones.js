@@ -233,7 +233,7 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 function notificacion(mensaje){
 	$(".alerta_multiusos").html(mensaje);
 	$(".alerta_multiusos").show(100);
-	setTimeout(function() {$(".alerta_multiusos").hide(100);}, 3000);
+	setTimeout(function() {$(".alerta_multiusos").hide(100);}, 2000);
 }
 
 //funcion que actualiza la cantidad de productos en el carrito de compras
@@ -266,7 +266,7 @@ function loader(){
 		return '<div style="text-align:center;padding-top:100px;"><i class="fa fa-spinner fa-spin fa-5x fa-fw"></i><span class="sr-only"></span></div>';
 }
 function loader_mini(){
-		return '<div style="text-align:center;padding-top:20px;"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i><span class="sr-only"></span></div>';
+		return '<div style="height: 60px;display: flex;align-items: center;justify-content: center;"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i><span class="sr-only"></span></div>';
 }
 
 function diaSemana(){
