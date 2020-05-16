@@ -233,7 +233,7 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 function notificacion(mensaje){
 	$(".alerta_multiusos").html(mensaje);
 	$(".alerta_multiusos").show(100);
-	setTimeout(function() {$(".alerta_multiusos").hide(100);}, 2000);
+	setTimeout(function() {$(".alerta_multiusos").hide(100);}, 1300);
 }
 
 //funcion que actualiza la cantidad de productos en el carrito de compras
