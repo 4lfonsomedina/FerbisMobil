@@ -242,7 +242,7 @@
 				var sucursal = jQuery.parseJSON(r);
 				$(".sucursal_cercana").html(sucursal.sucursal);
 				$(".sucursal_distancia").html(sucursal.distancia+"km");
-				$(".sucursal_distancia_input").html(sucursal.distancia);
+				$(".sucursal_distancia_input").val(sucursal.distancia);
 				$(".pedido_id_sucursal").val(sucursal.id_sucursal);
 				$(".pedido_sucursal").val(sucursal.sucursal);
 			})
