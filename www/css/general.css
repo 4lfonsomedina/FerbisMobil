@@ -19,8 +19,11 @@
     justify-content: center;
 }
 .tabla_paso_3 tr td{
-	font-size: 12px;
+	font-size: 16px;
 	padding: 0px !important;
+}
+.tabla_paso_3{
+	margin-bottom: 10px !important;
 }
 .titulo_emergente{
 	font-size: 20px;
@@ -112,14 +115,14 @@
 	font-weight: bold;
 }
 .img_art{
-	width: 60px;
-	height: 60px;
+	width: 80px;
+	height: 80px;
 	border-radius: 5px;
 	border: solid 1px white;
 }
 .img_art2{
-	width: 120px;
-	height: 120px;
+	width: 150px;
+	height: 150px;
 	border-radius: 5px;
 	border: solid 1px white;
 }
@@ -295,6 +298,8 @@ button, a, .modal-content{
     justify-content: center;
     box-shadow: 1px 1px 1px;
     margin-bottom: 15px;
+    padding-bottom: 15px;
+    padding-top: 15px;
 }
 .small_pedido, 
 .resumen_pedido,
@@ -343,12 +348,22 @@ button, a, .modal-content{
 }
 .contenedor_pedido_btn{
 	height: 5vh;
+	z-index: 100;
+}
+.contenedor_pedido_btn button{
+	opacity: 1;
 }
 .contenedor_pedido_btn button{
 	width: 100%;
 	height: 100%;
 }
 .aprox{
+	text-align: justify;
 	padding-top: 20px;
-	font-size: 10px;
+	font-size: 16px;
+}
+.contenedor_resumen_pedido{
+	height: 53vh; 
+	overflow-y: auto;
+	z-index: 1;
 }

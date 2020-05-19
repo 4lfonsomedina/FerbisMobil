@@ -191,10 +191,10 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 							"imagen='"+prod.puntuacion+"' "+
 							"precio='"+prod.precio+"' "+
 							">"+
-			  				"<div class='col-xs-12 articulo'><div class='col-xs-2'>"+
+			  				"<div class='col-xs-12 articulo'><div class='col-xs-3'>"+
 			  				"<div class='art_img'><img src='"+prod.puntuacion+"' class='img_art'></div>"+
 			  				"<div class='loader_img'>"+loader_mini()+"</div>"+
-			  				"</div><div class='col-xs-10'>"+
+			  				"</div><div class='col-xs-9'>"+
 			  				"<div class='col-xs-12'><div class='art_desc'>"+prod.descripcion+"</div></div>"+
 			  				"<div class='col-xs-6'><div class='art_um'>"+prod.unidad+"</div></div>"+
 			  				"<div class='col-xs-6'><div class='art_prec'>$"+parseFloat(prod.precio).toFixed(2)+"</div></div>"+
@@ -278,7 +278,7 @@ function loader(){
 		return '<div style="text-align:center;padding-top:100px;"><i class="fa fa-spinner fa-spin fa-5x fa-fw"></i><span class="sr-only"></span></div>';
 }
 function loader_mini(){
-		return '<div style="height: 60px;display: flex;align-items: center;justify-content: center;"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i><span class="sr-only"></span></div>';
+		return '<div style="height: 80px;display: flex;align-items: center;justify-content: center;"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i><span class="sr-only"></span></div>';
 }
 
 function diaSemana(){
