@@ -69,29 +69,34 @@
 .tabla_menu td{
 	width: 100%;
 	text-align:center;
-	padding: 5px;
+	padding-top: 0px;
+	padding-bottom: 0px;
 }
 .descripcion_modal{
 	padding-top: 10px;
 	font-weight: bold;
+	text-align: center;
 }
 .img_dep{
 	border-radius:0px;
 	/*border:solid 3px;*/
 	max-width: 100px;
-	padding: 3px;
+	padding-left: 5px;
+	padding-right: 5px;
+	color: gray;
+	font-size: 10px;
+	line-height:120%;
 }
 .img_dep img{
-	-webkit-filter: invert(100%);
-    filter: invert(100%);
-	height: 12vh;
+	height: 10vh;
 }
-
-.dep_001{background-color: #FF9700; /*naranja*/}
-.dep_002{background-color: #D00000 /*rojo*/}
-.dep_005{background-color: #209800; /*verde*/}
-.dep_01{background-color: #0049CA; /*amarillo*/}
-.dep_007{background-color: #000000; /*azul*/}
+/*
+.dep_001{background-color: #FF9700; }
+.dep_002{background-color: #D00000 }
+.dep_005{background-color: #209800; }
+.dep_01{background-color: #0049CA; }
+.dep_007{background-color: #000000; }
+*/
 .row_articulo{
 	padding-left: 6px;
 	padding-right: 6px;
@@ -112,13 +117,19 @@
 	text-align: right;
 }
 .art_desc{
-	font-weight: bold;
+	line-height:120%;
+	/*text-transform: lowercase;*/
 }
+
 .img_art{
-	width: 80px;
-	height: 80px;
+	width: 100px;
+	height: 100px;
 	border-radius: 5px;
 	border: solid 1px white;
+}
+.cont_imagen_articulo{
+	padding-left: 0px;
+	padding-right: 0px;
 }
 .img_art2{
 	width: 150px;
@@ -126,7 +137,7 @@
 	border-radius: 5px;
 	border: solid 1px white;
 }
-.img_dep_001{background-color: red;}
+
 .input_orden{
 	text-align: center; 
 	font-size: 20px;
@@ -142,14 +153,14 @@
 	top:-5px;
 	right:5px;
 	padding: 3px 8px 3px 8px;
-	background-color: blue;
+	background-color: #4762FB;
 	font-weight: bold;
 	color:white;
 	border-radius: 20px;
 }
 .mini_burbuja_notificaciones{
 	padding: 3px 8px 3px 8px !important;
-	background-color: blue;
+	background-color: #4762FB;
 	font-weight: bold;
 	color:white;
 	border-radius: 10px;
@@ -281,12 +292,16 @@
 	padding-right: 5px !important;
 	text-align: right;
 }
-button, a, .modal-content{
-	border-radius: 0px !important;
-}
 .nav-tabs a{
 	color: white;
 	background-color: #A60000;
+}
+.btn_agragar{
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+.art_um{
+	color: gray;
 }
 .tab-pane{
 	padding-top: 10px;

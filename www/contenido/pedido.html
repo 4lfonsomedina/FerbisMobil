@@ -406,12 +406,12 @@
 								"producto='"+prod.producto+"' "+
 								"cantidad='"+prod.cantidad+"' "+
 								"asado='"+prod.asado+"' "+
-								"descripcion='"+prod.descripcion+"' "+
+								"descripcion='"+capitalize(prod.descripcion)+"' "+
 								"unidad='"+prod.unidad+"' "+
 								"detalles='"+prod.detalles+"' "+
 								"precio='"+prod.precio+"' >"+
 				  				"<div class='col-xs-2 car_cantidad'>"+parseFloat(prod.cantidad).toFixed(2)+"<br><b>"+prod.unidad+"</b></div>"+
-				  				"<div class='col-xs-8 car_desc'>"+asado+" "+prod.descripcion+"</div>"+
+				  				"<div class='col-xs-8 car_desc'>"+asado+" "+capitalize(prod.descripcion)+"</div>"+
 				  				"<div class='col-xs-2 car_importe'>"+parseFloat(prod.cantidad*prod.precio).toFixed(2)+"</div>"+
 				  				"</div>";
 			});

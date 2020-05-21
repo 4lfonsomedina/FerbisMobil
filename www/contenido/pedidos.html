@@ -93,7 +93,7 @@
 			var asado=""; if(prod.asado=='1'){ asado='<i class="fa fa-fire ico_asado" aria-hidden="true"></i>';}
 			string_ret+="<div class='articulo_carrito_pedido row' >"+
 			  				"<div class='col-xs-2 car_cantidad'>"+parseFloat(prod.cantidad).toFixed(2)+"<br><b>"+prod.unidad+"</b></div>"+
-			  				"<div class='col-xs-7 car_desc'>"+asado+" "+prod.descripcion+"</div>"+icon+
+			  				"<div class='col-xs-7 car_desc'>"+asado+" "+capitalize(prod.descripcion)+"</div>"+icon+
 			  				"</div>";
 		});
 		return string_ret;

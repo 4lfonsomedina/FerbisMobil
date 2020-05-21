@@ -186,18 +186,18 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 			string_ret+="<div class='row row_articulo' "+
 							"producto='"+prod.producto+"' "+
 							"departamento='"+prod.departamento+"' "+
-							"descripcion='"+prod.descripcion+"' "+
+							"descripcion='"+capitalize(prod.descripcion)+"' "+
 							"unidad='"+prod.unidad+"' "+
 							"imagen='"+prod.puntuacion+"' "+
 							"precio='"+prod.precio+"' "+
 							">"+
-			  				"<div class='col-xs-12 articulo'><div class='col-xs-3'>"+
+			  				"<div class='col-xs-12 articulo'><div class='col-xs-3 cont_imagen_articulo'>"+
 			  				"<div class='art_img'><img src='"+prod.puntuacion+"' class='img_art'></div>"+
 			  				"<div class='loader_img'>"+loader_mini()+"</div>"+
-			  				"</div><div class='col-xs-9'>"+
-			  				"<div class='col-xs-12'><div class='art_desc'>"+prod.descripcion+"</div></div>"+
-			  				"<div class='col-xs-6'><div class='art_um'>"+prod.unidad+"</div></div>"+
-			  				"<div class='col-xs-6'><div class='art_prec'>$"+parseFloat(prod.precio).toFixed(2)+"</div></div>"+
+			  				"</div><div class='col-xs-9' style='padding-top:10px'>"+
+			  				"<div class='col-xs-12'><div class='art_desc'>"+capitalize(prod.descripcion)+"</div></div>"+
+			  				"<div class='col-xs-12'><div class='art_um'>$"+parseFloat(prod.precio).toFixed(2)+" "+prod.unidad+"</div></div>"+
+			  				"<div class='col-xs-7'><button class='btn btn-default btn-sm btn_agragar'>Agregar</button></div>"+
 			  				"</div></div></div>";
 		});
 		//agregamos al contenedor
@@ -228,12 +228,12 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 							"departamento='"+prod.departamento+"' "+
 							"cantidad='"+prod.cantidad+"' "+
 							"asado='"+prod.asado+"' "+
-							"descripcion='"+prod.descripcion+"' "+
+							"descripcion='"+capitalize(prod.descripcion)+"' "+
 							"unidad='"+prod.unidad+"' "+
 							"detalles='"+prod.detalles+"' "+
 							"precio='"+prod.precio+"' >"+
 			  				"<div class='col-xs-2 car_cantidad'>"+parseFloat(prod.cantidad).toFixed(2)+"<br><b>"+prod.unidad+"</b></div>"+
-			  				"<div class='col-xs-8 car_desc'>"+asado+" "+prod.descripcion+"</div>"+
+			  				"<div class='col-xs-8 car_desc'>"+asado+" "+capitalize(prod.descripcion)+"</div>"+
 			  				"<div class='col-xs-2 car_importe'>"+parseFloat(prod.cantidad*prod.precio).toFixed(2)+"</div>"+
 			  				"</div>";
 		});
@@ -278,11 +278,15 @@ function loader(){
 		return '<div style="text-align:center;padding-top:100px;"><i class="fa fa-spinner fa-spin fa-5x fa-fw"></i><span class="sr-only"></span></div>';
 }
 function loader_mini(){
-		return '<div style="height: 80px;display: flex;align-items: center;justify-content: center;"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i><span class="sr-only"></span></div>';
+		return '<div style="height: 100px;display: flex;align-items: center;justify-content: center;"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i><span class="sr-only"></span></div>';
 }
 
 function diaSemana(){
 	var diasSemana = new Array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
 	var f=new Date();
 	alert(diasSemana[f.getDay()]);   
+}
+function capitalize(texto) {
+	texto = texto.toLowerCase();
+  return texto[0].toUpperCase() + texto.slice(1);
 }
