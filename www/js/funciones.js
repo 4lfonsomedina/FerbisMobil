@@ -196,7 +196,7 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 			  				"<div class='loader_img'>"+loader_mini()+"</div>"+
 			  				"</div><div class='col-xs-9' style='padding-top:10px'>"+
 			  				"<div class='col-xs-12'><div class='art_desc'>"+capitalize(prod.descripcion)+"</div></div>"+
-			  				"<div class='col-xs-12'><div class='art_um'>$"+parseFloat(prod.precio).toFixed(2)+prod.unidad+"</div></div>"+
+			  				"<div class='col-xs-12'><div class='art_um'>$"+parseFloat(prod.precio).toFixed(2)+" "+prod.unidad+"</div></div>"+
 			  				"<div class='col-xs-7'><button class='btn btn-default btn-sm btn_agragar'>Agregar</button></div>"+
 			  				"</div></div></div>";
 		});
