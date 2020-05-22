@@ -66,8 +66,10 @@
 .input_search {
     padding-left: 34px;
 }
-.tabla_menu td{
+.tabla_menu{
 	width: 100%;
+}
+.tabla_menu td{
 	text-align:center;
 	padding-top: 0px;
 	padding-bottom: 0px;
@@ -107,10 +109,10 @@
 	overflow-y: auto;
 }
 .articulo{
-	border-radius: 0px;
-	border:solid 1px;
-	border-color: #DEDEDE;
-	margin-bottom: 5px;
+	border-radius: 5px;
+	border:solid 2px #DEDEDE;
+	/*border-color: #DEDEDE;*/
+	margin-bottom: 8px;
 	padding: 5px;
 }
 .art_prec{
