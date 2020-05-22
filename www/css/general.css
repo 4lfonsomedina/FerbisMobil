@@ -1,3 +1,6 @@
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+	border-color: transparent !important;
+}
 .slash{
 	position: absolute;
 	width: 100%;
@@ -99,11 +102,19 @@
 .dep_01{background-color: #0049CA; }
 .dep_007{background-color: #000000; }
 */
+.tabla_cuenta_sucursal{
+	text-align: center;
+	font-size: 10px;
+	font-weight: bold;
+	color:gray;
+}
 .row_articulo{
 	padding-left: 6px;
 	padding-right: 6px;
 }
 #contenedor_articulos{
+	border-top:solid 1px #DEDEDE;
+	border-bottom:solid 1px #DEDEDE;
 	height: 65vh; 
 	width: 100%; 
 	overflow-y: auto;
@@ -234,6 +245,7 @@
     justify-content: center;
 }
 .contenido_carrito{
+	border: solid 1px #DEDEDE;
 	height: 75vh;
 	overflow-y: auto;
 	padding-top: 10px;
@@ -382,7 +394,9 @@
 	font-size: 16px;
 }
 .contenedor_resumen_pedido{
-	height: 53vh; 
+	border-radius: 8px;
+	border:solid 1px #DEDEDE;
+	height: 50vh; 
 	overflow-y: auto;
 	z-index: 1;
 }
