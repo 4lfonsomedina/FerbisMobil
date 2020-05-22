@@ -114,7 +114,7 @@
 	/*border-color: #DEDEDE;*/
 	margin-bottom: 8px;
 	padding: 5px;
-	box-shadow: 1px 1px 3px 0px rgba(138,138,138,1);
+	box-shadow: 1px 1px 2px 0px rgba(138,138,138,1);
 }
 .art_prec{
 	text-align: right;
@@ -315,7 +315,7 @@
 	display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 1px 1px 3px 0px rgba(138,138,138,1);
+    box-shadow: 1px 1px 2px 0px rgba(138,138,138,1);
     margin-bottom: 15px;
     padding-bottom: 15px;
     padding-top: 15px;
