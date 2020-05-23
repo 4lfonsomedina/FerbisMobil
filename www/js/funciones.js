@@ -37,9 +37,17 @@ $(document).ready(function() {
 
 // Al presionar un articulo
 	$(document).on("click",".row_articulo",function(){
+		$("#agregarArticuloModal").modal("show");
 		$(".descripcion_modal").html($(this).attr('descripcion'));
 		$(".unidad_modal").html($(this).attr('unidad'));
+
+		//transicion de imagen
+		$(".img_modal_loader").html(loader_mini());
+		$(".img_modal_loader").show();
+		$(".img_prod_modal").hide();
 		$(".img_prod_modal").attr('src',$(this).attr('imagen'));
+		setTimeout(function() {$(".img_modal_loader").hide();$(".img_prod_modal").show();},1500)
+		
 		$(".input_orden").val(1);
 		$(".check_asado").prop('checked',false);
 		$(".ord_detalles").val("");
@@ -53,7 +61,7 @@ $(document).ready(function() {
 		$("#cliente_modal_form").val(sesion_local.getItem("FerbisAPP_id"));
 		$("#descripcion_modal_form").val($(this).attr('descripcion'));
 
-		$("#agregarArticuloModal").modal("show");
+		
 
 		//ocultar o mostrar servicio de asado
 		if($(this).attr('departamento')=='002'||$(this).attr('departamento')=='005'){
@@ -128,6 +136,15 @@ $(document).on("click",".agregar_al_carrito_btn",function(){
 
 //funcion para abrir modal de edicion deun pedido
 $(document).on("click",".articulo_carrito",function(){
+	$("#editarArticuloModal").modal("show");
+
+	//transicion de imagen
+	$(".img_modal_loader_e").html(loader_mini());
+	$(".img_modal_loader_e").show();
+	$(".img_prod_modal_e").hide();
+	$(".img_prod_modal_e").attr('src',$(this).attr('imagen'));
+	setTimeout(function() {$(".img_modal_loader_e").hide();$(".img_prod_modal_e").show();},1500)
+
 	$(".descripcion_modal_e").html($(this).attr('descripcion'));
 	$(".unidad_modal_e").html($(this).attr('unidad'));
 	$(".input_orden").val(parseFloat($(this).attr('cantidad')).toFixed(2));
@@ -145,7 +162,7 @@ $(document).on("click",".articulo_carrito",function(){
 	$("#cliente_modal_form_e").val(sesion_local.getItem("FerbisAPP_id"));
 	$("#descripcion_modal_form_e").val($(this).attr('descripcion'));
 	$(".contenedor_menu_lateral_der").hide(300);
-	$("#editarArticuloModal").modal("show");
+	
 
 	//ocultar o mostrar servicio de asado
 	if($(this).attr('departamento')=='002'||$(this).attr('departamento')=='005'){
@@ -221,6 +238,7 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 	function string_carrito(string_json){
 		var string_ret="";
 		$.each(jQuery.parseJSON(string_json), function( i, prod ) {
+			// se utiliza puntuacion para la imagen
 			var asado=""; if(prod.asado=='1'){ asado='<i class="fa fa-fire ico_asado" aria-hidden="true"></i>';}
 			string_ret+="<div class='articulo_carrito' "+
 							"id_carrito_det='"+prod.id_carrito_det+"' "+
@@ -231,6 +249,7 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 							"descripcion='"+capitalize(prod.descripcion)+"' "+
 							"unidad='"+prod.unidad+"' "+
 							"detalles='"+prod.detalles+"' "+
+							"imagen='"+prod.puntuacion+"' "+
 							"precio='"+prod.precio+"' >"+
 			  				"<div class='col-xs-2 car_cantidad'>"+parseFloat(prod.cantidad).toFixed(2)+"<br><b>"+prod.unidad+"</b></div>"+
 			  				"<div class='col-xs-8 car_desc'>"+asado+" "+capitalize(prod.descripcion)+"</div>"+
@@ -275,10 +294,10 @@ function actualizar_burbuja_notificaciones(){
 
 // loader global
 function loader(){
-		return '<div style="text-align:center;padding-top:100px;"><i class="fa fa-spinner fa-spin fa-5x fa-fw"></i><span class="sr-only"></span></div>';
+		return '<div style="text-align:center;padding-top:100px;color:gray;"><i class="fa fa-spinner fa-spin fa-5x fa-fw"></i><span class="sr-only"></span></div>';
 }
 function loader_mini(){
-		return '<div style="height: 100px;display: flex;align-items: center;justify-content: center;"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i><span class="sr-only"></span></div>';
+		return '<div style="height: 100px;display: flex;align-items: center;justify-content: center; color:gray;"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i><span class="sr-only"></span></div>';
 }
 
 function diaSemana(){
