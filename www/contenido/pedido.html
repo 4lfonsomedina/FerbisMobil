@@ -22,6 +22,20 @@
 	  		<input type="radio" class="form-control" name="servicio" value="2">
 	  		Paso por el
 	  	</label></div>
+<!-- en caso de que sea paso por el-->
+		<table class="table tabla_cuenta_recoger">
+			<tr>
+				<td align="center">Recoger en:</td>
+			</tr>
+			<tr>
+				<td>
+					<select class="form-control ">
+						<option value="Brasil">Sucursal Brasil</option>
+						<option value="San Marcos">Sucursal San Marcos</option>
+					</select>
+				</td>
+			</tr>
+		</table>
 
 <!-- en caso de que sea a domicilio pedir datos de la ubicacion-->
 		<input type="hidden" class="pedido_id_carrito" name="id_carrito">
@@ -257,16 +271,23 @@
 
 		function mostrar_tabla(){
 			if($('input:radio[name=servicio]:checked').val()==1){
+				$(".tabla_cuenta_recoger").fadeOut(500);
 				$(".tabla_cuenta").fadeIn(500);
 				$(".contenedor_tipo_pago").show();
 				$(".pedido_envio").show();
+				verificar_ubicacion();
 			}else{
 				$(".tabla_cuenta").fadeOut(500);
+				$(".tabla_cuenta_recoger").fadeIn(500);
 				$(".contenedor_tipo_pago").hide();
 				$(".pedido_envio").hide();
+				$(".pedido_sucursal").val($(".tabla_cuenta_recoger").val());
 			}
 			//mostrar_tabla_pago();
 		}
+		$(".tabla_cuenta_recoger").change(function() {
+			$(".pedido_sucursal").val($(this).val());
+		});
 
 		function mostrar_tabla_pago(){
 			if($('input:radio[name=pago]:checked').val()==1){

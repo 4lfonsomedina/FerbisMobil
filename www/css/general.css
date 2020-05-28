@@ -108,10 +108,12 @@
 	font-weight: bold;
 	color:gray;
 }
+/*
 .row_articulo{
 	padding-left: 6px;
 	padding-right: 6px;
 }
+*/
 #contenedor_articulos{
 	border-top:solid 1px #DEDEDE;
 	border-bottom:solid 1px #DEDEDE;
@@ -120,12 +122,12 @@
 	overflow-y: auto;
 }
 .articulo{
-	border-radius: 5px;
-	border:solid 1px #DEDEDE;
+	/*border-radius: 5px;*/
+	border-bottom:solid 1px #DEDEDE;
 	/*border-color: #DEDEDE;*/
 	margin-bottom: 8px;
 	padding: 5px;
-	box-shadow: 1px 1px 1px 0px rgba(138,138,138,1);
+	/*box-shadow: 1px 1px 1px 0px rgba(138,138,138,1);*/
 }
 .art_prec{
 	text-align: right;
