@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.phonegap.sd_ferbis" version="1.0.06" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>Ferbis</name>
+    <name>Ferbis a domicilio</name>
     <description>
         Ferbis a domicilio
     </description>
