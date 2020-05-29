@@ -13,7 +13,7 @@
 	width: 60%;
 }
 .menu_bar{
-	background-color: #A60000; 
+	background-color: #BA261A; 
 	padding: 10px;
 	height: 10vh;
 	color: white;
@@ -117,7 +117,7 @@
 #contenedor_articulos{
 	border-top:solid 1px #DEDEDE;
 	border-bottom:solid 1px #DEDEDE;
-	height: 65vh; 
+	height: 80vh; 
 	width: 100%; 
 	overflow-y: auto;
 }
@@ -153,7 +153,13 @@
 	border-radius: 5px;
 	border: solid 1px white;
 }
-
+.contenedor_banner{
+	background-color: #F7F7F7;
+}
+.img_banner{
+	padding-top:5px;
+	padding-bottom:5px;
+}
 .input_orden{
 	text-align: center; 
 	font-size: 20px;
@@ -169,14 +175,14 @@
 	top:-5px;
 	right:5px;
 	padding: 3px 8px 3px 8px;
-	background-color: #4762FB;
+	background-color: #84B51B;
 	font-weight: bold;
 	color:white;
 	border-radius: 20px;
 }
 .mini_burbuja_notificaciones{
 	padding: 3px 8px 3px 8px !important;
-	background-color: #4762FB;
+	background-color: #84B51B;
 	font-weight: bold;
 	color:white;
 	border-radius: 10px;

@@ -9,12 +9,18 @@ $(document).ready(function() {
 
 // funcion que se ejecuta al iniciar la aplicacion PRODUCTOS FERBIS
 	function iniciar_app(){
+		/*
+		$.post('contenido/banner.html', function(resp_json){
+			$("#contenedor_articulos").html(resp_json);
+		})
+		/*
 		$("#contenedor_articulos").html(loader());
 		$.post(url_api+'get_productos_dep',{dep:'007'}, function(resp_json){
 			string_articulos(resp_json);
 			actualizar_burbuja_carrito();
 			actualizar_burbuja_notificaciones();
 		});
+		*/
 	}
 
 // Al precionar el departamento
