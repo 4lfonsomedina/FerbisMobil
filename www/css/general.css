@@ -13,7 +13,7 @@
 	width: 60%;
 }
 .menu_bar{
-	background-color: #BA261A; 
+	background-color: #cc0000; 
 	padding: 10px;
 	height: 10vh;
 	color: white;
@@ -82,9 +82,9 @@
 	font-weight: bold;
 	text-align: center;
 }
+/*
 .img_dep{
 	border-radius:0px;
-	/*border:solid 3px;*/
 	max-width: 100px;
 	padding-left: 5px;
 	padding-right: 5px;
@@ -95,7 +95,6 @@
 .img_dep img{
 	height: 10vh;
 }
-/*
 .dep_001{background-color: #FF9700; }
 .dep_002{background-color: #D00000 }
 .dep_005{background-color: #209800; }
@@ -175,10 +174,16 @@
 	top:-5px;
 	right:5px;
 	padding: 3px 8px 3px 8px;
-	background-color: #84B51B;
+	background-color: #66cc00;
 	font-weight: bold;
 	color:white;
 	border-radius: 20px;
+}
+.regresar_banner{
+	color: #cc0000;
+	display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .mini_burbuja_notificaciones{
 	padding: 3px 8px 3px 8px !important;
