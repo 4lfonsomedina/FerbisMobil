@@ -40,7 +40,7 @@
 	overflow-y: auto;
 }
 .menu_buscar{
-	height: 10vh;
+	height: 8vh;
 	padding-top: 10px;
 }
 .menu_dep{
@@ -116,7 +116,7 @@
 #contenedor_articulos{
 	border-top:solid 1px #DEDEDE;
 	border-bottom:solid 1px #DEDEDE;
-	height: 80vh; 
+	height: 82vh; 
 	width: 100%; 
 	overflow-y: auto;
 }
@@ -180,10 +180,9 @@
 	border-radius: 20px;
 }
 .regresar_banner{
+	padding-right: 0px;
 	color: #cc0000;
-	display: flex;
-    align-items: center;
-    justify-content: center;
+	text-align: right;
 }
 .mini_burbuja_notificaciones{
 	padding: 3px 8px 3px 8px !important;

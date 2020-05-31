@@ -25,18 +25,27 @@ $(document).ready(function() {
 
 // Al precionar el departamento
 	$(document).on("click",".img_dep",function(){
-		reducir_buscador();
+		
 		$(".input_search").val("");
-		$("#contenedor_articulos").html(loader());
-		$.post(url_api+'get_productos_dep',{dep:$(this).attr('dep')}, function(resp_json){
-			string_articulos(resp_json);
-		});
+		var dep = $(this).attr('dep');
+		$("#contenedor_articulos").fadeOut(500,"swing",function(){	
+			$.post(url_api+'get_productos_dep',{dep:dep}, function(resp_json){
+				string_articulos(resp_json);
+				reducir_buscador();
+			});
+		})
+		
+		
 	})
 	$(document).on("click",".regresar_banner",function(){
-		crecer_buscador();
-		$.post('contenido/banner.html', function(resp_json){
-			$("#contenedor_articulos").html(resp_json);
-		})
+		$("#contenedor_articulos").fadeOut(500,"swing",function(){
+			$.post('contenido/banner.html', function(resp_json){
+				$("#contenedor_articulos").html(resp_json);
+				$("#contenedor_articulos").slideDown(500);
+				crecer_buscador();
+			})
+		});
+		
 	})
 // Al escribir en el filtro buscador
 	$(document).on("keyup",".input_search",function(){
@@ -232,7 +241,7 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 		//agregamos al contenedor
 		$("#contenedor_articulos").hide();
 		$("#contenedor_articulos").html(string_ret);
-		$("#contenedor_articulos").slideDown(200);
+		$("#contenedor_articulos").slideDown(500);
 
 		$(".art_img").hide();setTimeout(function() {
 
@@ -325,9 +334,11 @@ function crecer_buscador(){
 	$(".menu_buscar").find(".col-xs-2").hide();
 	$(".menu_buscar").find(".col-xs-10").addClass('col-xs-12');
 	$(".menu_buscar").find(".col-xs-10").removeClass('col-xs-10');
+	$('#contenedor_articulos').scrollTop(0)
 }
 function reducir_buscador(){
 	$(".menu_buscar").find(".col-xs-2").show();
 	$(".menu_buscar").find(".col-xs-12").addClass('col-xs-10');
 	$(".menu_buscar").find(".col-xs-12").removeClass('col-xs-12');
+	$('#contenedor_articulos').scrollTop(0);
 }
