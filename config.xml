@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="ferbis.com" version="1.0.16" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="ferbis.com" version="1.0.17" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Ferbis a domicilio </name>
     <description>
         Ferbis a domicilio
@@ -34,6 +34,10 @@
         <allow-intent href="itms-apps:*" />
 
         <preference name="WKWebViewOnly" value="true" />
+        <feature name="CDVWKWebViewEngine">
+            <param name="ios-package" value="CDVWKWebViewEngine" />
+        </feature>
+        <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
 
         <edit-config target="NSLocationAlwaysUsageDescription" file="*-Info.plist" mode="overwrite">
             <string>La Aplicación necesita permiso de ubicación para envio de pedido de compra.</string>
