@@ -19,13 +19,7 @@
     "cordova-plugin-globalization": {
       "PACKAGE_NAME": "com.phonegap.helloworld"
     },
-    "cordova-plugin-media-capture": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
-    },
     "cordova-plugin-network-information": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
-    },
-    "cordova-plugin-vibration": {
       "PACKAGE_NAME": "com.phonegap.helloworld"
     },
     "cordova-plugin-whitelist": {
@@ -35,9 +29,5 @@
       "PACKAGE_NAME": "com.phonegap.helloworld"
     }
   },
-  "dependent_plugins": {
-    "cordova-plugin-file": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
-    }
-  }
+  "dependent_plugins": {}
 }
