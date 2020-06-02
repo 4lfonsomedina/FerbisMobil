@@ -13,7 +13,8 @@
 	width: 60%;
 }
 .menu_bar{
-	background-color: #cc0000; 
+	/*background-color: #cc0000; */
+	background-color: #cc0000;
 	padding: 10px;
 	height: 10vh;
 	color: white;
