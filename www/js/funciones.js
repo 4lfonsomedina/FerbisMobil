@@ -25,7 +25,8 @@ $(document).ready(function() {
 
 // Al precionar el departamento
 	$(document).on("click",".img_dep",function(){
-		
+		vista_departamento();
+		/*
 		$(".input_search").val("");
 		var dep = $(this).attr('dep');
 		$("#contenedor_articulos").fadeOut(500,"swing",function(){	
@@ -34,9 +35,20 @@ $(document).ready(function() {
 				reducir_buscador();
 			});
 		})
-		
-		
+		*/
 	})
+
+	$(document).on("click",".img_subdep",function(){
+		$(".input_search").val("");
+		var dep = $(this).attr('dep');
+		$("#contenedor_articulos").fadeOut(500,"swing",function(){	
+			$.post(url_api+'get_productos_dep',{dep:dep}, function(resp_json){
+				string_articulos(resp_json);
+				reducir_buscador();
+			});
+		})
+	})
+
 	$(document).on("click",".regresar_banner",function(){
 		$("#contenedor_articulos").fadeOut(500,"swing",function(){
 			$.post('contenido/banner.html', function(resp_json){
@@ -341,4 +353,9 @@ function reducir_buscador(){
 	$(".menu_buscar").find(".col-xs-12").addClass('col-xs-10');
 	$(".menu_buscar").find(".col-xs-12").removeClass('col-xs-12');
 	$('#contenedor_articulos').scrollTop(0);
+}
+function vista_departamento(){
+	$("#contenedor_articulos").hide();
+	$("#contenedor_articulos").load('contenido/subbanner.html');
+	$("#contenedor_articulos").slideDown(500);
 }
