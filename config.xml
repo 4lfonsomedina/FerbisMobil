@@ -11,7 +11,7 @@
     <preference name="phonegap-version" value="cli-9.0.0" />
     <preference name="Orientation" value="portrait" />
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="android-minSdkVersion" value="16" />
+    <preference name="android-minSdkVersion" value="19" />
     <preference name="android-targetSdkVersion" value="28" />
     
     <plugin name="cordova-plugin-file" source="npm" spec="~4.3.3" value="Necesario para guardar la sesión del cliente"/>
