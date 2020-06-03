@@ -36,13 +36,13 @@ $(document).ready(function() {
 			$.each(jQuery.parseJSON(r), function( i, subdep ) {
 				subdeps+="<div class='col-xs-4 img_subdep' subdep='"+subdep.id_subdepartamento+"'><img src='img/"+subdep.id_departamento+subdep.id_subdepartamento+".png' width='100%'></div>";
 			})
+			$("#contenedor_articulos").slideDown(500);
 			$(".banner_dep").attr('src','img/banner'+temp_dep+'.png');
 			$(".contenedor_subdepartamentos").html(subdeps);
 			$(".img_dep").attr('dep',temp_dep);
 			$(".ver_todo_link").attr('dep',temp_dep);
 			crecer_buscador();
 		})
-		$("#contenedor_articulos").slideDown(500);
 		});
 		/*
 		$(".input_search").val("");
