@@ -384,11 +384,12 @@ function reducir_buscador(){
 	
 }
 function regresar_inicio(){
-	$(".back_click").attr('dep',0);
 	$("#contenedor_articulos").fadeOut(500,"swing",function(){
 		$.post('contenido/banner.html', function(resp_json){
 			$("#contenedor_articulos").html(resp_json);
-			$("#contenedor_articulos").slideDown(500);
+			$("#contenedor_articulos").slideDown(500,function(){
+
+			});
 			crecer_buscador();
 		})
 	});
@@ -398,12 +399,16 @@ function regresar_inicio(){
 /* inhabilitar boton de regreso */
 document.addEventListener("backbutton", onBackKeyDown, false);
 function onBackKeyDown(e) {
-  e.preventDefault();
-  if($(".regresar_banner").attr('dep')==0){
-  	if(confirm("Salir de la aplicación?")){
-  		navigator.app.exitApp();
-  	}
-  }
-  $(".back_click").click();
+  	e.preventDefault();
+  	var final=false;
+  	$( ".ini_" ).each(function( index ) {final=true;});
+  	if(final){cerrar_app();}
+  	else{$(".back_click").click();}
+}
+
+function cerrar_app(){
+	if (navigator.app) {navigator.app.exitApp();}
+	else if (navigator.device) { navigator.device.exitApp();}
+	else {window.close();}
 }
 
