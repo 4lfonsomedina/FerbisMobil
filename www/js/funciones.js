@@ -400,7 +400,7 @@ document.addEventListener("backbutton", onBackKeyDown, false);
 function onBackKeyDown(e) {
   e.preventDefault();
   if($(".regresar_banner").attr('dep')==0){
-  	if(confirm("Salir de la aplicacion?")){
+  	if(confirm("Salir de la aplicación?")){
   		navigator.app.exitApp();
   	}
   }
