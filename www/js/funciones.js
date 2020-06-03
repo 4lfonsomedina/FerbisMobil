@@ -384,6 +384,7 @@ function reducir_buscador(){
 	
 }
 function regresar_inicio(){
+	$(".back_click").attr('dep',0);
 	$("#contenedor_articulos").fadeOut(500,"swing",function(){
 		$.post('contenido/banner.html', function(resp_json){
 			$("#contenedor_articulos").html(resp_json);
@@ -398,6 +399,11 @@ function regresar_inicio(){
 document.addEventListener("backbutton", onBackKeyDown, false);
 function onBackKeyDown(e) {
   e.preventDefault();
+  if($(".regresar_banner").attr('dep')==0){
+  	if(confirm("Salir de la aplicacion?")){
+  		navigator.app.exitApp();
+  	}
+  }
   $(".back_click").click();
 }
 
