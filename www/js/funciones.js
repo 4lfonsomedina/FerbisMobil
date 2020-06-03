@@ -343,19 +343,21 @@ function capitalize(texto) {
   return texto[0].toUpperCase() + texto.slice(1);
 }
 function crecer_buscador(){
-	$(".menu_buscar").find(".col-xs-2").hide();
+	$(".menu_buscar").find(".col-xs-2").hide(500);
 	$(".menu_buscar").find(".col-xs-10").addClass('col-xs-12');
 	$(".menu_buscar").find(".col-xs-10").removeClass('col-xs-10');
 	$('#contenedor_articulos').scrollTop(0)
 }
 function reducir_buscador(){
-	$(".menu_buscar").find(".col-xs-2").show();
+	$(".menu_buscar").find(".col-xs-2").show(500);
 	$(".menu_buscar").find(".col-xs-12").addClass('col-xs-10');
 	$(".menu_buscar").find(".col-xs-12").removeClass('col-xs-12');
 	$('#contenedor_articulos').scrollTop(0);
 }
 function vista_departamento(){
-	$("#contenedor_articulos").hide();
-	$("#contenedor_articulos").load('contenido/subbanner.html');
-	$("#contenedor_articulos").slideDown(500);
+	$("#contenedor_articulos").fadeOut(500,"swing",function(){
+		$("#contenedor_articulos").load('contenido/subbanner.html');
+		$("#contenedor_articulos").slideDown(500);
+	});
+	
 }
