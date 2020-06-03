@@ -395,10 +395,9 @@ function regresar_inicio(){
 
 
 /* inhabilitar boton de regreso */
-document.addEventListener("deviceready", onDeviceReady, false);
-function onDeviceReady() {
-    document.addEventListener("backbutton", function (e) {
-    	$(".back_click").click();
-        e.preventDefault();
-    }, false );
+document.addEventListener("backbutton", onBackKeyDown, false);
+function onBackKeyDown(e) {
+  e.preventDefault();
+  $(".back_click").click();
 }
+
