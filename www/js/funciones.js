@@ -398,6 +398,7 @@ function regresar_inicio(){
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
     document.addEventListener("backbutton", function (e) {
+    	$(".back_click").click();
         e.preventDefault();
     }, false );
 }
