@@ -14,7 +14,7 @@
 }
 .menu_bar{
 	/*background-color: #cc0000; */
-	background-color: #cc0000;
+	background-color: #C7C7C7;
 	padding: 10px;
 	height: 10vh;
 	color: white;
@@ -42,7 +42,10 @@
 }
 .menu_buscar{
 	height: 8vh;
-	padding-top: 10px;
+	padding-top: 4px;
+	display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .menu_dep{
 	height: 15vh; 
@@ -129,6 +132,10 @@
 	padding: 5px;
 	/*box-shadow: 1px 1px 1px 0px rgba(138,138,138,1);*/
 }
+.articulo_desc{
+	padding-top: 10px;
+	padding-left: 5px;
+}
 .art_prec{
 	text-align: right;
 }
@@ -138,12 +145,13 @@
 }
 
 .img_art{
-	width: 100px;
-	height: 100px;
+	width: 120px;
+	height: 120px;
 	border-radius: 5px;
 	border: solid 1px white;
 }
 .cont_imagen_articulo{
+	text-align: right;
 	padding-left: 0px;
 	padding-right: 0px;
 }
@@ -175,7 +183,8 @@
 	top:-5px;
 	right:5px;
 	padding: 3px 8px 3px 8px;
-	background-color: #66cc00;
+	/*background-color: #66cc00;*/
+	background-color: red;
 	font-weight: bold;
 	color:white;
 	border-radius: 20px;
@@ -187,7 +196,8 @@
 }
 .mini_burbuja_notificaciones{
 	padding: 3px 8px 3px 8px !important;
-	background-color: #84B51B;
+	/*background-color: #84B51B;*/
+	background-color: red;
 	font-weight: bold;
 	color:white;
 	border-radius: 10px;

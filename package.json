@@ -1,7 +1,6 @@
 {
   "devDependencies": {
     "cordova-plugin-battery-status": "~1.2.4",
-    "cordova-plugin-device": "~1.1.6",
     "cordova-plugin-dialogs": "~1.3.3",
     "cordova-plugin-geolocation": "~2.4.3",
     "cordova-plugin-globalization": "~1.0.7",
@@ -10,7 +9,6 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-battery-status": {},
-      "cordova-plugin-device": {},
       "cordova-plugin-dialogs": {},
       "cordova-plugin-file": {},
       "cordova-plugin-geolocation": {},

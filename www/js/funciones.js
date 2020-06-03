@@ -9,6 +9,8 @@ $(document).ready(function() {
 
 // funcion que se ejecuta al iniciar la aplicacion PRODUCTOS FERBIS
 	function iniciar_app(){
+		actualizar_burbuja_carrito();
+		actualizar_burbuja_notificaciones();
 		/*
 		$.post('contenido/banner.html', function(resp_json){
 			$("#contenedor_articulos").html(resp_json);
@@ -25,7 +27,22 @@ $(document).ready(function() {
 
 // Al precionar el departamento
 	$(document).on("click",".img_dep",function(){
-		vista_departamento();
+		var temp_dep=$(this).attr('dep');
+		if(temp_dep==0){regresar_inicio(); return;}
+		$("#contenedor_articulos").fadeOut(500,"swing",function(){
+			$("#contenedor_articulos").load('contenido/subbanner.html');
+		$.post(url_api+'get_subdepartamentos',{dep:temp_dep}, function(r){
+			var subdeps = "";
+			$.each(jQuery.parseJSON(r), function( i, subdep ) {
+				subdeps+="<div class='col-xs-4 img_subdep' subdep='"+subdep.id_subdepartamento+"'><img src='img/"+subdep.id_departamento+subdep.orden+".png' width='100%'></div>";
+			})
+			$(".banner_dep").attr('src','img/banner'+temp_dep+'.png');
+			$(".contenedor_subdepartamentos").html(subdeps);
+			$(".img_dep").attr('dep',temp_dep);
+			crecer_buscador();
+		})
+		$("#contenedor_articulos").slideDown(500);
+		});
 		/*
 		$(".input_search").val("");
 		var dep = $(this).attr('dep');
@@ -40,6 +57,17 @@ $(document).ready(function() {
 
 	$(document).on("click",".img_subdep",function(){
 		$(".input_search").val("");
+		var subdep = $(this).attr('subdep');
+		$("#contenedor_articulos").fadeOut(500,"swing",function(){	
+			$.post(url_api+'get_productos_subdep',{subdep:subdep}, function(resp_json){
+				string_articulos(resp_json);
+				reducir_buscador();
+			});
+		})
+	})
+
+	$(document).on("click",".ver_todo_link",function(){
+		$(".input_search").val("");
 		var dep = $(this).attr('dep');
 		$("#contenedor_articulos").fadeOut(500,"swing",function(){	
 			$.post(url_api+'get_productos_dep',{dep:dep}, function(resp_json){
@@ -49,22 +77,18 @@ $(document).ready(function() {
 		})
 	})
 
-	$(document).on("click",".regresar_banner",function(){
-		$("#contenedor_articulos").fadeOut(500,"swing",function(){
-			$.post('contenido/banner.html', function(resp_json){
-				$("#contenedor_articulos").html(resp_json);
-				$("#contenedor_articulos").slideDown(500);
-				crecer_buscador();
-			})
-		});
-		
+	$(document).on("click",".regresar_link",function(){
+		regresar_inicio();
 	})
+
 // Al escribir en el filtro buscador
 	$(document).on("keyup",".input_search",function(){
 		if($(this).val()==""){return;}
 		$("#contenedor_articulos").html(loader());
 		$.post(url_api+'get_productos_filtro',{desc:$(this).val()}, function(resp_json){
+			reducir_buscador();
 			string_articulos(resp_json);
+			$(".img_dep").attr('dep',0);
 		});
 	})
 
@@ -241,10 +265,10 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 							"imagen='"+prod.puntuacion+"' "+
 							"precio='"+prod.precio+"' "+
 							">"+
-			  				"<div class='col-xs-12 articulo'><div class='col-xs-3 cont_imagen_articulo'>"+
+			  				"<div class='col-xs-12 articulo'><div class='col-xs-5 cont_imagen_articulo'>"+
 			  				"<div class='art_img'><img src='"+prod.puntuacion+"' class='img_art'></div>"+
 			  				"<div class='loader_img'>"+loader_mini()+"</div>"+
-			  				"</div><div class='col-xs-9' style='padding-top:10px'>"+
+			  				"</div><div class='col-xs-7 articulo_desc'>"+
 			  				"<div class='col-xs-12'><div class='art_desc'>"+capitalize(prod.descripcion)+"</div></div>"+
 			  				"<div class='col-xs-12'><div class='art_um'>$"+parseFloat(prod.precio).toFixed(2)+" "+prod.unidad+"</div></div>"+
 			  				"<div class='col-xs-7'><button class='btn btn-default btn-sm btn_agragar'>Agregar</button></div>"+
@@ -330,7 +354,7 @@ function loader(){
 		return '<div style="text-align:center;padding-top:100px;color:gray;"><i class="fa fa-spinner fa-spin fa-5x fa-fw"></i><span class="sr-only"></span></div>';
 }
 function loader_mini(){
-		return '<div style="height: 100px;display: flex;align-items: center;justify-content: center; color:gray;"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i><span class="sr-only"></span></div>';
+		return '<div style="height: 120px;display: flex;align-items: center;justify-content: center; color:gray;"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i><span class="sr-only"></span></div>';
 }
 
 function diaSemana(){
@@ -343,21 +367,27 @@ function capitalize(texto) {
   return texto[0].toUpperCase() + texto.slice(1);
 }
 function crecer_buscador(){
-	$(".menu_buscar").find(".col-xs-2").hide(500);
-	$(".menu_buscar").find(".col-xs-10").addClass('col-xs-12');
-	$(".menu_buscar").find(".col-xs-10").removeClass('col-xs-10');
-	$('#contenedor_articulos').scrollTop(0)
+	$(".menu_buscar").find(".col-xs-2").hide(500,function(){
+		$(".menu_buscar").find(".col-xs-10").addClass('col-xs-12');
+		$(".menu_buscar").find(".col-xs-10").removeClass('col-xs-10');
+		$('#contenedor_articulos').scrollTop(0);
+		$(".input_search").val("");
+	});
+	
 }
 function reducir_buscador(){
 	$(".menu_buscar").find(".col-xs-2").show(500);
 	$(".menu_buscar").find(".col-xs-12").addClass('col-xs-10');
 	$(".menu_buscar").find(".col-xs-12").removeClass('col-xs-12');
 	$('#contenedor_articulos').scrollTop(0);
-}
-function vista_departamento(){
-	$("#contenedor_articulos").fadeOut(500,"swing",function(){
-		$("#contenedor_articulos").load('contenido/subbanner.html');
-		$("#contenedor_articulos").slideDown(500);
-	});
 	
+}
+function regresar_inicio(){
+	$("#contenedor_articulos").fadeOut(500,"swing",function(){
+		$.post('contenido/banner.html', function(resp_json){
+			$("#contenedor_articulos").html(resp_json);
+			$("#contenedor_articulos").slideDown(500);
+			crecer_buscador();
+		})
+	});
 }
