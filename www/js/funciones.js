@@ -392,3 +392,12 @@ function regresar_inicio(){
 		})
 	});
 }
+
+
+/* inhabilitar boton de regreso */
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+    document.addEventListener("backbutton", function (e) {
+        e.preventDefault();
+    }, false );
+}
