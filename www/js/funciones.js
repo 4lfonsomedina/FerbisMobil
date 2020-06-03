@@ -411,6 +411,7 @@ function onBackKeyDown(e) {
   		}else{
   			$(".regresar_banner").click();
   		}
+  	}
 }
 
 function cerrar_app(){
