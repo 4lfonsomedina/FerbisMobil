@@ -407,6 +407,7 @@ function onBackKeyDown(e) {
 }
 
 function cerrar_app(){
+	if(!confirm("Salir de la aplicación?")){return;}
 	if (navigator.app) {navigator.app.exitApp();}
 	else if (navigator.device) { navigator.device.exitApp();}
 	else {window.close();}
