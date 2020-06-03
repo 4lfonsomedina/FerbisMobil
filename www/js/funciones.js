@@ -403,7 +403,14 @@ function onBackKeyDown(e) {
   	var final=false;
   	$( ".ini_" ).each(function( index ) {final=true;});
   	if(final){cerrar_app();}
-  	else{$(".back_click").click();}
+  	else{
+  		var existe_link=false;
+  		$( ".regresar_link" ).each(function( index ) {existe_link=true;});
+  		if(existe_link){
+  			$( ".regresar_link" ).click();
+  		}else{
+  			$(".regresar_banner").click();
+  		}
 }
 
 function cerrar_app(){
