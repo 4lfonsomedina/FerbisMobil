@@ -215,7 +215,7 @@
 	padding-top:20px;
 	padding-left: 10px; 
 	color:white;
-	background-color:#287A3B;
+	background-color:#5AAD63;
 }
 .menu_lateral_cliente i{
 	position:absolute;
@@ -261,7 +261,7 @@
 	height: 10vh;
 	padding:10px;
 	color:white;
-	background-color:#287A3B;
+	background-color:#5AAD63;
 	text-align: center;
 	display: flex;
     align-items: center;
@@ -370,7 +370,7 @@
 	overflow-y: auto;
 }
 .pedido_radio{
-	padding-top: 15px;
+	padding-top: 5px;
 	text-align: center
 }
 .pedido_radio input{
@@ -413,8 +413,8 @@
 }
 .aprox{
 	text-align: justify;
-	padding-top: 20px;
-	font-size: 16px;
+	padding-top: 5px;
+	font-size: 14px;
 }
 .contenedor_resumen_pedido{
 	border-radius: 8px;
@@ -422,4 +422,12 @@
 	height: 50vh; 
 	overflow-y: auto;
 	z-index: 1;
+}
+.li_paso{
+	width: 33%; 
+	text-align: center;
+}
+.li_paso a{
+	background-color: #5AAD63;
+	border-radius: 20px 20px 0 0 !important;
 }
