@@ -34,14 +34,15 @@ $(document).ready(function() {
 		$.post(url_api+'get_subdepartamentos',{dep:temp_dep}, function(r){
 			var subdeps = "";
 			$.each(jQuery.parseJSON(r), function( i, subdep ) {
-				subdeps+="<div class='col-xs-4 img_subdep' subdep='"+subdep.id_subdepartamento+"'><img src='img/"+subdep.id_departamento+subdep.orden+".png' width='100%'></div>";
+				subdeps+="<div class='col-xs-4 img_subdep' subdep='"+subdep.id_subdepartamento+"'><img src='img/"+subdep.id_departamento+subdep.id_subdepartamento+".png' width='100%'></div>";
 			})
+			$("#contenedor_articulos").slideDown(500);
 			$(".banner_dep").attr('src','img/banner'+temp_dep+'.png');
 			$(".contenedor_subdepartamentos").html(subdeps);
 			$(".img_dep").attr('dep',temp_dep);
+			$(".ver_todo_link").attr('dep',temp_dep);
 			crecer_buscador();
 		})
-		$("#contenedor_articulos").slideDown(500);
 		});
 		/*
 		$(".input_search").val("");
@@ -386,8 +387,37 @@ function regresar_inicio(){
 	$("#contenedor_articulos").fadeOut(500,"swing",function(){
 		$.post('contenido/banner.html', function(resp_json){
 			$("#contenedor_articulos").html(resp_json);
-			$("#contenedor_articulos").slideDown(500);
+			$("#contenedor_articulos").slideDown(500,function(){
+
+			});
 			crecer_buscador();
 		})
 	});
 }
+
+
+/* inhabilitar boton de regreso */
+document.addEventListener("backbutton", onBackKeyDown, false);
+function onBackKeyDown(e) {
+  	e.preventDefault();
+  	var final=false;
+  	$( ".ini_" ).each(function( index ) {final=true;});
+  	if(final){cerrar_app();}
+  	else{
+  		var existe_link=false;
+  		$( ".regresar_link" ).each(function( index ) {existe_link=true;});
+  		if(existe_link){
+  			$( ".regresar_link" ).click();
+  		}else{
+  			$(".regresar_banner").click();
+  		}
+  	}
+}
+
+function cerrar_app(){
+	if(!confirm("Salir de la aplicación?")){return;}
+	if (navigator.app) {navigator.app.exitApp();}
+	else if (navigator.device) { navigator.device.exitApp();}
+	else {window.close();}
+}
+
