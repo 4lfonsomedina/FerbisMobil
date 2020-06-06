@@ -1,12 +1,12 @@
 $(document).ready(function() {
-
+	var path_=getPhoneGapPath();
 	//carcar contenidos de los div_contenido
 	$(".div_contenido").each(function(index, el){
 		if($(this).attr("contenido")==""){
 			$(this).attr("contenido",get_value("ruta"));
 		}
-
-		$(this).load(cordova.file.applicationDirectory + 'www/contenido/'+$(this).attr("contenido"),function(){
+		alert(path_);
+		$(this).load('cdvfile://localhost/cache/www/contenido/'+$(this).attr("contenido"),function(){
 			$(".slash").fadeOut(500,"swing");
 			$(".titulo_emergente").each(function(index, el) {
 				$(this).html(get_value("ruta").toUpperCase().split(".")[0]);
@@ -57,3 +57,8 @@ $(document).ready(function() {
 	        history.back();
 	    }
 	}
+	function getPhoneGapPath() {
+	   var path = window.location.pathname;
+	   path = path.substr( path, path.length - 10 );
+	   return path;
+	};
