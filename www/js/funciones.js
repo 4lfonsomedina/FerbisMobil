@@ -384,6 +384,8 @@ function reducir_buscador(){
 	
 }
 function regresar_inicio(){
+	location.reload();
+	/*
 	$("#contenedor_articulos").fadeOut(500,"swing",function(){
 		$.post(path_+'/contenido/banner.html', function(resp_json){
 			$("#contenedor_articulos").html(resp_json);
@@ -393,6 +395,7 @@ function regresar_inicio(){
 			crecer_buscador();
 		})
 	});
+	*/
 }
 
 
