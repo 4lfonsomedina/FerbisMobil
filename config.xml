@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="ferbis.com" version="1.0.24" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>Ferbis a domicilio </name>
+<widget id="ferbis.com" version="1.0.25" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>Ferbis</name>
     <description>
-        Ferbis a domicilio
+        Ferbis
     </description>
     <author email="sistemas@ferbis.com" href="http://ferbis.com">
         Ing. Alfonso Medina Duran
