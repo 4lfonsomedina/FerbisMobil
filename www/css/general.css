@@ -31,9 +31,14 @@
 }
 .titulo_emergente{
 	font-size: 20px;
+}
+.emergente_a{
+	color: #333;
+	font-size: 14px;
 	display: flex;
     align-items: center;
     justify-content: center;
+    text-decoration: none;
 }
 .contenido_emergente{
 	height: 90vh;

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<!-- CABECERA -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="connect-src *;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="img/logo.png">
+    <title>Ferbis Movil</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/general.css">
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+</head>
+
+<!-- INICIO BODY -->
+<body>
+    <div class="row menu_bar">
+      <div class="col-xs-4 cerrar_ventana">
+        <i class="fa fa-arrow-left fa-3x" aria-hidden="true"></i>
+      </div>
+      <div class="col-xs-8 titulo_emergente" style="text-align: right;">
+      	Pedidos
+      </div>
+    </div>
+    <div class="contenido_emergente">
+
+<div class="contenedor_pedidos"></div>
+
+
+
+
+
+<!-- MODAL CON LOS PROCUCTOS DEL PEDIDO -->
+<div id="modal_pedido" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button>
+      	<h4 class="modal-title"><b>Contenido del pedido</b></h4></div>
+      <div class="modal-body" style="padding: 0px;">
+      	<div class="resumen_pedido row">
+      		<table style="width: 100%">
+      			<tr>
+      				<td><b>Productos:</b></td><td class="modal_pedido_productos" align="right"></td>
+      				<td><b>Fecha:</b></td><td class="modal_pedido_fecha" align="right"></td>
+      			</tr><tr>
+      				<td><b>Status:</b></td><td class="modal_pedido_status" align="right"></td>
+      				<td><b>*Total:</b></td><td class="modal_pedido_total" align="right"></td>
+      			</tr>
+      		</table>
+      	</div>
+      	<div class="contenido_pedido"></div>
+      </div>
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-default" data-dismiss="modal">
+            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Regresar
+        </button>
+      </div>
+    </div>
+  </div>
+</div> <!--FIN MODAL-->
+
+
+<div class="alerta_multiusos" hidden></div>
+    </div>
+    
+</body><!--FIN BODY-->
+
+<!--PIE -->
+<footer>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/rutas.js"></script>
+    <script type="text/javascript" src="js/funciones.js"></script>   
+    <script type="text/javascript" src="js/session.js"></script>
+    <script type="text/javascript" src="js/pedidos.js"></script>
+    
+</footer>
+</html>

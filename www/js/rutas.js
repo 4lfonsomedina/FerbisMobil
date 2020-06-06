@@ -27,9 +27,11 @@ $(document).ready(function() {
 	})
 
 	//cargar ventanas emergentes
+	/*
 	$(document).on("click",".ventana_emergente",function(){
 		window.open('emergente.html?ruta='+$(this).attr('ruta')+".html");
 	})
+	*/
 
 	//cerrar ventanas emergentes
 	$(document).on("click",".cerrar_ventana",function(){
