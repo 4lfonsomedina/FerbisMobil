@@ -15,14 +15,306 @@
 <!-- INICIO BODY -->
 <body>
     <div class="slash"><img src="img/icon/android/xxxhdpi.png"></div>
-    <div class="div_contenido" contenido="inicio.html"></div>
+    <!-- MENU -->
+    <div class="row menu_bar">
+        <div class="col-xs-3" id="abrir_menu_lateral">
+            <i class="fa fa-bars fa-3x" aria-hidden="true"></i>
+        </div>
+        <div class="col-xs-6" style="text-align: center">
+            <img width="80%" src="img/logo.png" style="margin-top: 2px">
+        </div>
+        <div class="col-xs-3" style="text-align: right;" id="abrir_menu_lateral_der">
+            <span class="mini_burbuja" hidden>1</span>
+            <i class="fa fa-shopping-cart fa-3x" aria-hidden="true"></i>
+        </div>
+    </div>
+
+
+
+<!-- BUSCAR -->
+    <div class="row menu_buscar">
+        <div class="col-xs-2 regresar_banner img_dep back_click" dep="" style="padding-bottom: 0px; display: none">
+            <img src="img/Flecha.png" width="100%">
+        </div>
+        <div class="col-xs-12" style="padding-bottom: 0px;">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <input type="text" class="form-control input_search input-lg" placeholder="Buscar">
+        </div>
+    </div>
     <!-- CONTENEDOR PRODUCTOS -->
-    <div class="div_contenido" id="contenedor_articulos" contenido="banner.html"></div>
-    <div class="div_contenido" contenido="menu_izquierdo.html"></div>
-    <div class="div_contenido" contenido="menu_derecho.html"></div>
-    <div class="div_contenido" contenido="modal_cantidad.html"></div>
-    <div class="div_contenido" contenido="modal_bienvenida.html"></div>
-    <div class="div_contenido" contenido="modal_editar_producto.html"></div>
+    <div id="contenedor_articulos">
+        <div class="contenedor_banner">
+            <div class="img_banner" style="padding-right: 15px; padding-left: 15px;">
+                <img src="img/Portada.png" width="100%">
+            </div>
+
+            <div class="img_banner img_dep ini_" dep="005">
+                <img src="img/2005.png" width="100%">
+            </div>
+            <div class="img_banner img_dep ini_" dep="002">
+                <img src="img/2002.png" width="100%">
+            </div>
+            <div class="img_banner img_dep ini_" dep="01">
+                <img src="img/201.png" width="100%">
+            </div>
+            <div class="img_banner img_dep ini_" dep="001">
+                <img src="img/2001.png" width="100%">
+            </div>
+            <div class="img_banner img_dep ini_" dep="008">
+                <img src="img/1008.png" width="100%">
+            </div>
+            <div class="img_banner img_dep ini_" dep="007">
+                <img src="img/2007.png" width="100%">
+            </div>
+        </div>
+    </div>
+    <!-- CONTENEDOR MENU IZQUIERDO -->
+<div class="contenedor_menu_lateral_izq" hidden>
+    <div class="sombra_menu"></div>
+    <div class="menu_lateral_izq">
+        <div class="menu_lateral_cliente">
+            <i class="fa fa-user-circle-o fa-3x" aria-hidden="true"></i>
+            <div class="datos_cliente">
+                <span id="nombre_usuario">Pendiente...</span>
+                <br><br>
+                <div hidden>Puntos: <span id="puntos_cliente">-</span></div>
+            </div>
+        </div>
+        <div class="opcion_menu menu_inicio">
+            <i class="fa fa-home fa-2x" aria-hidden="true"></i>
+            <span>Inicio</span>
+        </div>
+        <div class="opcion_menu ventana_emergente" ruta="pedidos">
+            <i class="fa fa-shopping-basket fa-2x" aria-hidden="true"></i>
+            <span>Mis Pedidos</span>
+        </div>
+        <div class="opcion_menu ventana_emergente" ruta="notificaciones">
+            <i class="fa fa-bell fa-2x" aria-hidden="true"></i>
+            <span>Notificaciones</span>
+            <span class="mini_burbuja_notificaciones">1</span>
+        </div> 
+        <div class="opcion_menu ventana_emergente" ruta="cuenta">
+            <i class="fa fa-cog fa-2x" aria-hidden="true"></i>
+            <span>Mi Cuenta</span>
+        </div>
+        <div class="opcion_menu ventana_emergente" ruta="tiendas">
+            <i class="fa fa-map-marker fa-2x" aria-hidden="true"></i>
+            <span>Tiendas</span>
+        </div>
+        <div class="opcion_menu ventana_emergente" ruta="ayuda">
+            <i class="fa fa-question-circle fa-2x" aria-hidden="true"></i>
+            <span>Ayuda</span>
+        </div>    
+    </div>
+</div>
+    
+
+
+
+    <!-- CONTENEDOR MENU DERECHO -->
+<div class="contenedor_menu_lateral_der" hidden>
+    <div class="sombra_menu"></div>
+    <div class="menu_lateral_der">
+        <div class="menu_lateral_carrito">
+            <h3><i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrito ( <span class="cant_carrito">0</span> )</h3>
+        </div>
+        <div class="contenido_carrito">
+            contenido en lista
+        </div>
+        <div class="div_procesar_pedido">
+            Total (aprox) $<span class="total_pedido">0.00</span>
+            <button class="btn btn-primary btn-lg ventana_emergente" ruta="pedido">Realizar Pedido <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- MODAL PARA INDICAR LA CANTIDAD -->
+<div id="agregarArticuloModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><b>Agregar al Carrito</b></h4>
+      </div>
+      <form id="form_alta_carrito">
+      <div class="modal-body">
+        <div class="row imagen_modal" style="text-align: center">
+            <div class="img_modal_loader" style="height: 150px;"></div>
+            <img src='img/no_image.png' class='img_art2 img_prod_modal'>
+        </div>
+        <div class="row descripcion_modal" style="text-align: center">
+                DESCRIPCION
+        </div>
+        <BR>
+        <div class="row" style="text-align: center">
+            <div class="col col-xs-4" style="padding: 0px">
+                <a class="btn btn-danger btn-sm ord_menos" style="color: white">
+                    <i class="fa fa-minus-circle fa-2x" aria-hidden="true"></i>
+                </a>
+            </div>
+            <div class="col col-xs-4" style="padding: 0px">
+                <input type="hidden" name='asado' class="check_asado_input">
+                <input type="hidden" name="unidad" id="unidad_modal_form">
+                <input type="hidden" name="id_cliente" id="cliente_modal_form">
+                <input type="hidden" name="producto" id="producto_modal_form">
+                <input type="hidden" name="departamento" id="departamento_modal_form">
+                <input type="hidden" name="precio" id="precio_modal_form">
+                <input type="hidden" name="descripcion" id="descripcion_modal_form">
+                <input type="number" class="form-control input_orden" value="1" name="cantidad">
+            </div>
+            <div class="col col-xs-4" style="padding: 0px">
+                <a class="btn btn-success btn-sm ord_mas" style="color: white">
+                    <i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+        <div class="row unidad_modal" style="text-align: center;font-weight: bold;"></div>
+        <div class="row row_asado" >
+                <div class="col-xs-9 servicio_asado" style="text-align: right; padding-top: 10px">Servicio de Asado <i class="fa fa-fire" aria-hidden="true"></i><i class="fa fa-fire" aria-hidden="true"></i><i class="fa fa-fire" aria-hidden="true"></i>
+                </div>
+                <div class="col-xs-2 div_check_asado"><input type="checkbox" class="form-control check_asado"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <textarea name="detalles" class="form-control ord_detalles" rows="2" placeholder="Detalles del producto"></textarea>
+            </div>
+        </div>
+    </div>
+      
+      <div class="modal-footer">
+        <div class="row">
+            <div class="col-xs-6">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">
+                    <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>  Regresar
+                </button>
+            </div>
+            <div class="col-xs-6">
+                <button type="button" class="btn btn-success agregar_al_carrito_btn">
+                    <i class="fa fa-cart-plus" aria-hidden="true"></i> Agregar
+                </button>
+            </div>
+        </div>
+      </div>
+    </form>
+
+    </div>
+  </div>
+</div> <!--FIN MODAL-->
+
+
+
+<!-- MODAL PARA NOMBRE DEL CLIENTE -->
+<div id="modal_bienvenida" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><b>Bienvenido!</b></h4>
+      </div>
+      <form id="form_alta_carrito">
+      <div class="modal-body modal_bienvenida_body" style="text-align: center">
+        <img width="50%" src="img/logo.png" style="margin-top: 2px">
+        <h4>Gracias por tu preferencia! <br>Para brindarte un mejor servicio apoyanos con los siguientes datos:</h4>
+        Nombre Completo:
+        <input type="text" class="form-control modal_bienvenida_nombre">
+    </div>
+      <div class="modal-footer">
+        <div class="row">
+            <div class="col-xs-12">
+                <buttton class="btn btn-danger btn_bienvenida">
+                    <h4> Iniciar <i class="fa fa-shopping-cart" aria-hidden="true"></i></h4>
+                </buttton>
+                
+            </div>
+        </div>
+      </div>
+    </form>
+
+    </div>
+  </div>
+</div> <!--FIN MODAL-->
+
+
+<!-- MODAL PARA INDICAR LA CANTIDAD -->
+<div id="editarArticuloModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><b>Editar pedido</b></h4>
+      </div>
+      <form id="form_editar_carrito">
+      <div class="modal-body">
+        <div class="row imagen_modal" style="text-align: center">
+            <div class="img_modal_loader_e" style="height: 150px;"></div>
+            <img src='img/no_image.png' class='img_art2 img_prod_modal_e'>
+        </div>
+        <div class="row descripcion_modal_e" style="text-align: center">
+                DESCRIPCION
+        </div>
+        <BR>
+        <div class="row" style="text-align: center">
+            <div class="col col-xs-4" style="padding: 0px">
+                <a class="btn btn-danger btn-sm ord_menos" style="color: white">
+                    <i class="fa fa-minus-circle fa-2x" aria-hidden="true"></i>
+                </a>
+            </div>
+            <div class="col col-xs-4" style="padding: 0px">
+                <input type="hidden" name="id_carrito_det" id="producto_carrito_modal_form_e">
+                <input type="hidden" name='asado' class="check_asado_input">
+                <input type="hidden" name="unidad" id="unidad_modal_form_e">
+                <input type="hidden" name="id_cliente" id="cliente_modal_form_e">
+                <input type="hidden" name="producto" id="producto_modal_form_e">
+                <input type="hidden" name="departamento" id="departamento_modal_form_e">
+                <input type="hidden" name="precio" id="precio_modal_form_e">
+                <input type="hidden" name="descripcion" id="descripcion_modal_form_e">
+                <input type="number" class="form-control input_orden" value="1" name="cantidad">
+            </div>
+            <div class="col col-xs-4" style="padding: 0px">
+                <a class="btn btn-success btn-sm ord_mas" style="color: white">
+                    <i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+        <div class="row unidad_modal_e" style="text-align: center;font-weight: bold;"></div>
+        <div class="row row_asado" >
+                <div class="col-xs-9 servicio_asado" style="text-align: right; padding-top: 10px">Servicio de Asado <i class="fa fa-fire" aria-hidden="true"></i><i class="fa fa-fire" aria-hidden="true"></i><i class="fa fa-fire" aria-hidden="true"></i></div>
+                <div class="col-xs-2 div_check_asado"><input type="checkbox" class="form-control check_asado"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <textarea name="detalles" class="form-control ord_detalles" rows="2" placeholder="Detalles del producto"></textarea>
+            </div>
+        </div>
+    </div>
+      
+      <div class="modal-footer">
+        <div class="row">
+            <div class="col-xs-4">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">
+                    <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="col-xs-4">
+                <button type="button" class="btn btn-danger btn_modal_borrar_e">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="col-xs-4">
+                <button type="button" class="btn btn-success btn_modal_guardar_e">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+      </div>
+    </form>
+
+    </div>
+  </div>
+</div> <!--FIN MODAL-->
+
+
 <!-- Alerta Multiusos -->
     <div class="alerta_multiusos" hidden></div>
 
