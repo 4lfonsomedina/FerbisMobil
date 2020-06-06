@@ -5,7 +5,6 @@ $(document).ready(function() {
 		if($(this).attr("contenido")==""){
 			$(this).attr("contenido",get_value("ruta"));
 		}
-		alert(path_);
 		$(this).load(path_+'/contenido/'+$(this).attr("contenido"),function(){
 			$(".slash").fadeOut(500,"swing");
 			$(".titulo_emergente").each(function(index, el) {

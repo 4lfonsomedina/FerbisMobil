@@ -385,7 +385,7 @@ function reducir_buscador(){
 }
 function regresar_inicio(){
 	$("#contenedor_articulos").fadeOut(500,"swing",function(){
-		$.post('contenido/banner.html', function(resp_json){
+		$.post(path_+'/contenido/banner.html', function(resp_json){
 			$("#contenedor_articulos").html(resp_json);
 			$("#contenedor_articulos").slideDown(500,function(){
 
