@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 	var path_=getPhoneGapPath();
-	alert(path_);
+	//alert(path_);
 	//carcar contenidos de los div_contenido
 	$(".div_contenido").each(function(index, el){
 		if($(this).attr("contenido")==""){
