@@ -27,7 +27,7 @@ $(document).ready(function() {
 					var label = "success";
 					var status_desc="Nuevo";
 					if(notificacion.leido==1){estatus='-open'; status_desc='Leído'; label="default"}
-					string_contenido+='<a class="notificacion_row_a" id_notificacion="'+
+					string_contenido+='<a href="#" class="notificacion_row_a" id_notificacion="'+
 					notificacion.id_notificacion+'">'+
 					'<div class="notificacion_row row" >'+
 		'<div class="col-xs-3"><span class="label label-'+label+'">'+
