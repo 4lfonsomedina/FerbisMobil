@@ -1,3 +1,8 @@
+jQuery(document).ready(function($) {
+  $(document).on("clcik",".recargar_mapa",function(){
+    cargar_mapas();
+  })
+});
 function cargar_mapas(){
 	//mapa brasil 32.666983, -115.437199
 	myLatLng = { lat: 32.666983 , lng: -115.437199 };

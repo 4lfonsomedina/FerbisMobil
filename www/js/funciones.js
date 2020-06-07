@@ -317,7 +317,7 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 		$.each(jQuery.parseJSON(string_json), function( i, prod ) {
 			// se utiliza puntuacion para la imagen
 			var asado=""; if(prod.asado=='1'){ asado='<i class="fa fa-fire ico_asado" aria-hidden="true"></i>';}
-			string_ret+="<div class='articulo_carrito' "+
+			string_ret+="<a class='articulo_carrito' "+
 							"id_carrito_det='"+prod.id_carrito_det+"' "+
 							"producto='"+prod.producto+"' "+
 							"departamento='"+prod.departamento+"' "+
@@ -331,7 +331,7 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 			  				"<div class='col-xs-2 car_cantidad'>"+parseFloat(prod.cantidad).toFixed(2)+"<br><b>"+prod.unidad+"</b></div>"+
 			  				"<div class='col-xs-8 car_desc'>"+asado+" "+capitalize(prod.descripcion)+"</div>"+
 			  				"<div class='col-xs-2 car_importe'>"+parseFloat(prod.cantidad*prod.precio).toFixed(2)+"</div>"+
-			  				"</div>";
+			  				"</a>";
 		});
 		return string_ret;
 	}
