@@ -2,7 +2,9 @@
 var url_api = "https://sd.ferbis.com/index.php/api_controller/";
 
 $(document).ready(function() {
-
+//deshabilitar zoom
+// stop ios bounce and zoom 
+document.ontouchmove = event => {event.preventDefault();}; 
 //variables de inicio para las funciones
 	iniciar_app();
 
