@@ -2,7 +2,7 @@ $(document).ready(function() {
 		$(".contenedor_notificaciones").html(loader());
 		cargar_notificaciones();
 
-		$(document).on("click",".notificacion_row",function(){
+		$(document).on("click",".notificacion_row_a",function(){
 			$("#modal_notificacion").modal("show");
 			$(".contenido_notificacion").html(loader());
 			cargar_notificacion($(this).attr('id_notificacion'));
@@ -27,13 +27,14 @@ $(document).ready(function() {
 					var label = "success";
 					var status_desc="Nuevo";
 					if(notificacion.leido==1){estatus='-open'; status_desc='Leído'; label="default"}
-					string_contenido+='<div class="notificacion_row row" id_notificacion="'+
+					string_contenido+='<a href="#" class="notificacion_row_a" id_notificacion="'+
 					notificacion.id_notificacion+'">'+
+					'<div class="notificacion_row row" >'+
 		'<div class="col-xs-3"><span class="label label-'+label+'">'+
 			'<i class="fa fa-envelope'+estatus+'" aria-hidden="true"></i> '+status_desc+'</span></div>'+
 		'<div class="col-xs-9"><b>'+notificacion.asunto+'</b><br>'+
 		'<span class="small_notificacion">'+notificacion.fecha+'</span></div>'+
-	'</div>';
+	'</div></a>';
 				})
 
 				$(".contenedor_notificaciones").html(string_contenido);

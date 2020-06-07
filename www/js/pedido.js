@@ -228,10 +228,10 @@ function cargar_datos() {
 		
 
 		$(document).on("click",".btn_mapa_cuenta",function(){
-			$("#modal_mapa").modal("show");
+			$("#modal_mapa").modal("show").on('shown.bs.modal', function () {
+
 
 			//si existen las coordenadas no se hace geolocalizacion
-
 			if($(".cuenta_lat").val()!=0&&$(".cuenta_lon").val()!=0){
 				construir_mapa({lat: parseFloat($(".cuenta_lat").val()), lng: parseFloat($(".cuenta_lon").val())});
 			}else if($(".cuenta_calle").val()!=""&&$(".cuenta_num").val()!=""&&$(".cuenta_colonia").val()!=""){
@@ -255,7 +255,12 @@ function cargar_datos() {
 				geolacalizar_direccion();
 			});
 		}
-		})
+
+		});
+	})
+
+
+
 	});
 
 function geolacalizar_direccion(){

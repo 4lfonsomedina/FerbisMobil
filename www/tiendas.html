@@ -4,20 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy" content="connect-src *;">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <link rel="img/logo.png">
     <title>Ferbis Movil</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/general.css">
     <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+
 </head>
 
 <!-- INICIO BODY -->
 <body>
-    <div class="row menu_bar .ini_">
-      <div class="col-xs-4 cerrar_ventana">
+    <div class="row menu_bar">
+    	<a class="cerrar_ventana regresar_link">
+      <div class="col-xs-4">
         <i class="fa fa-arrow-left fa-3x" aria-hidden="true"></i>
       </div>
+  </a>
       <div class="col-xs-8 titulo_emergente" style="text-align: right;">
       	Tiendas
       </div>
@@ -31,14 +34,14 @@
 
 	<ul class="nav nav-tabs">
 	  <li class="active li_paso"><a data-toggle="tab" href="#brasil">Brasil</a></li>
-	  <li class="li_paso"><a data-toggle="tab" href="#sanmarcos">San Marcos</a></li>
+	  <li class="li_paso"><a data-toggle="tab" href="#sanmarcos">SanMarcos</a></li>
 	  <li class="li_paso"><a data-toggle="tab" href="#gastroshop">GastroShop</a></li>
 	</ul>
 
 	<div class="tab-content">
 	  <div id="brasil" class="tab-pane fade in active">
 	    <div class="col-xs-12">
-			<div style="width: 100%"><iframe width="100%" height="200" src="https://maps.google.com/maps?width=100%&height=200&hl=es&q=ferbis%20brasil+(Mi%20nombre%20de%20egocios)&ie=UTF8&t=&z=13&iwloc=B&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.mapsdirections.info/marcar-radio-circulo-mapa/">Calculadora de radio del mapa</a></iframe></div><br />
+			<div style="width: 100%; height: 300px" id="map_brasil"></div><br />
 		</div>
 		<div class="col-xs-12">
 			<p>
@@ -54,7 +57,7 @@
 	  </div>
 	  <div id="sanmarcos" class="tab-pane fade">
 	    <div class="col-xs-12">
-			<div style="width: 100%"><iframe width="100%" height="200" src="https://maps.google.com/maps?width=100%&height=200&hl=es&q=ferbis%20san%20marcos+(Mi%20nombre%20de%20egocios)&ie=UTF8&t=&z=13&iwloc=B&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.mapsdirections.info/marcar-radio-circulo-mapa/">Radio en el mapa</a></iframe></div><br />
+			<div style="width: 100%; height: 300px" id="map_san_marcos"></div><br />
 		</div>
 		<div class="col-xs-12">
 			<p>
@@ -69,7 +72,7 @@
 	  </div>
 	  <div id="gastroshop" class="tab-pane fade">
 	    <div class="col-xs-12">
-			<div style="width: 100%"><iframe width="100%" height="200" src="https://maps.google.com/maps?width=100%&height=200&hl=es&q=ferbis%20gastroshop+(Mi%20nombre%20de%20egocios)&ie=UTF8&t=&z=13&iwloc=B&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.mapsdirections.info/marcar-radio-circulo-mapa/">Dibujar radio en el mapa</a></iframe></div><br />
+			<div style="width: 100%; height: 300px" id="map_gastro"></div><br />
 		</div>
 		<div class="col-xs-12">
 			<p>
@@ -98,6 +101,7 @@
     <script type="text/javascript" src="js/rutas.js"></script>
     <script type="text/javascript" src="js/funciones.js"></script>   
     <script type="text/javascript" src="js/session.js"></script>
-    
+    <script type="text/javascript" src="js/tiendas.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNd6OjtDMttSHWKocaLW24wkAg6bp0peA&callback=cargar_mapas"></script>
 </footer>
 </html>

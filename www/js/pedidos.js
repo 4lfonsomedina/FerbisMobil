@@ -11,16 +11,17 @@
 					if(estatus==2){estatus='warning'; 	status_desc='Surtido';}
 					if(estatus==3){estatus='success'; 	status_desc='Enviado';}
 					if(estatus==3){estatus='danger'; 	status_desc='Cancelado';}
-					string_contenido+='<div class="pedido_row row" id_carrito="'+pedido.id_carrito+'" '+
+					string_contenido+='<a href="#" class="pedido_row_a" id_carrito="'+pedido.id_carrito+'" '+
 					'fecha="'+pedido.fecha+'" '+
 					'status="'+status_desc+'" '+
 					'productos="'+pedido.cantidad+'" '+
 					'total="'+parseFloat(pedido.total).toFixed(2)+'" '+
 					'">'+
+					'<div class="pedido_row row" >'+	
 		'<div class="col-xs-4"><span class="label label-'+estatus+'">'+status_desc+'</span></div>'+
 		'<div class="col-xs-5"><b>'+pedido.cantidad+' Productos</b><br><span class="small_pedido">'+pedido.fecha+'</span></div>'+
 		'<div class="col-xs-3 pedido_tot"><span class="small_pedido"><b>Aprox</b></span><br>'+parseFloat(pedido.total).toFixed(2)+'</div>'+
-	'</div>';
+	'</div></a>';
 				})
 
 				$(".contenedor_pedidos").html(string_contenido);
@@ -30,7 +31,7 @@
 			console.log(r);
 		})
 
-		$(document).on("click",".pedido_row",function(){
+		$(document).on("click",".pedido_row_a",function(){
 			$(".modal_pedido_fecha").html($(this).attr('fecha'));
 			$(".modal_pedido_status").html($(this).attr('status'));
 			$(".modal_pedido_productos").html($(this).attr('productos'));

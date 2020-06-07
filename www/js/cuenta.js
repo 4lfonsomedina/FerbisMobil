@@ -104,7 +104,9 @@
 			$(".cuenta_referencia").val(cuenta.referencia);
 		})
 		$(document).on("click",".btn_mapa_cuenta",function(){
-			$("#modal_mapa").modal("show");
+			$("#modal_mapa").modal("show").on('shown.bs.modal', function () {
+  			verificar_ubicacion();
+		});
 
 			//si existen las coordenadas no se hace geolocalizacion
 			if($(".cuenta_lat").val()!=0&&$(".cuenta_lon").val()!=0){
