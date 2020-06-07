@@ -12,6 +12,21 @@
 .slash img{
 	width: 60%;
 }
+.btns_navegacion{
+	padding-top: 10px;
+}
+.btns_navegacion a{
+	color:gray; 
+	font-size: 14px; 
+	padding-bottom: 5px;
+	text-decoration: none;
+}
+.abrir_menu_lateral{
+	color: white;
+}
+.abrir_menu_lateral_der{
+	color: white;
+}
 .menu_bar{
 	/*background-color: #cc0000; */
 	background-color: #C7C7C7;

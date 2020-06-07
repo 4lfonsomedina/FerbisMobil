@@ -31,20 +31,28 @@ document.ontouchmove = event => {event.preventDefault();};
 	$(document).on("click",".img_dep",function(){
 		var temp_dep=$(this).attr('dep');
 		if(temp_dep==0){regresar_inicio(); return;}
-		$("#contenedor_articulos").fadeOut(500,"swing",function(){
-			$("#contenedor_articulos").load('contenido/subbanner.html');
+
+		$("#contenedor_articulos").html(loader());
 		$.post(url_api+'get_subdepartamentos',{dep:temp_dep}, function(r){
-			var subdeps = "";
+			
+			var string="<div class='contenedor_banner'>";
+			string+="<div class='img_banner'><img src='img/banner"+temp_dep+".png' width='100%' class='banner_dep'></div>";
+			string+="<div class='col-xs-12 btns_navegacion'><div class='col-xs-6'><a class='regresar_link back_click'>< Regresar</a></div>";
+			string+="<div class='col-xs-6' style='text-align:right'><a class='ver_todo_link' dep='"+temp_dep+"'>Ver todo</a></div></div>";
+			string+="<div class='contenedor_subdepartamentos'>"
 			$.each(jQuery.parseJSON(r), function( i, subdep ) {
-				subdeps+="<div class='col-xs-4 img_subdep' subdep='"+subdep.id_subdepartamento+"'><img src='img/"+subdep.id_departamento+subdep.id_subdepartamento+".png' width='100%'></div>";
+				string+="<div class='col-xs-4 img_subdep' dep='"+subdep.id_departamento+"' subdep='"+subdep.id_subdepartamento+"'><img src='img/"+subdep.id_departamento+subdep.id_subdepartamento+".png' width='100%'></div>";
 			})
-			$("#contenedor_articulos").slideDown(500);
-			$(".banner_dep").attr('src','img/banner'+temp_dep+'.png');
-			$(".contenedor_subdepartamentos").html(subdeps);
-			$(".img_dep").attr('dep',temp_dep);
-			$(".ver_todo_link").attr('dep',temp_dep);
+			string+="</div></div>";
 			crecer_buscador();
-		})
+			$("#contenedor_articulos").hide();
+			$("#contenedor_articulos").html(string);
+			$("#contenedor_articulos").slideDown(1000);
+			$(".contenedor_subdepartamentos").html(subdeps);
+			
+
+			$(".banner_dep").attr('src','img/banner'+temp_dep+'.png');
+			
 		});
 		/*
 		$(".input_search").val("");
@@ -61,10 +69,12 @@ document.ontouchmove = event => {event.preventDefault();};
 	$(document).on("click",".img_subdep",function(){
 		$(".input_search").val("");
 		var subdep = $(this).attr('subdep');
+		var temp_dep=$(this).attr('dep');
 		$("#contenedor_articulos").fadeOut(500,"swing",function(){	
 			$.post(url_api+'get_productos_subdep',{subdep:subdep}, function(resp_json){
 				string_articulos(resp_json);
 				reducir_buscador();
+				$(".img_dep").attr('dep',temp_dep);
 			});
 		})
 	})
@@ -76,6 +86,7 @@ document.ontouchmove = event => {event.preventDefault();};
 			$.post(url_api+'get_productos_dep',{dep:dep}, function(resp_json){
 				string_articulos(resp_json);
 				reducir_buscador();
+				$(".img_dep").attr('dep',dep);
 			});
 		})
 	})
@@ -86,7 +97,7 @@ document.ontouchmove = event => {event.preventDefault();};
 
 // Al escribir en el filtro buscador
 	$(document).on("keyup",".input_search",function(){
-		if($(this).val()==""){return;}
+		if($(this).val()==""||$(this).val().length<4){return;}
 		$("#contenedor_articulos").html(loader());
 		$.post(url_api+'get_productos_filtro',{desc:$(this).val()}, function(resp_json){
 			reducir_buscador();
@@ -155,10 +166,10 @@ document.ontouchmove = event => {event.preventDefault();};
 	})
 
 //functiones para abrir menu lateral
-	$(document).on("click","#abrir_menu_lateral",function(){
+	$(document).on("click",".abrir_menu_lateral",function(){
 		$(".contenedor_menu_lateral_izq").show(300);
 	})
-	$(document).on("click","#abrir_menu_lateral_der",function(){
+	$(document).on("click",".abrir_menu_lateral_der",function(){
 		$(".contenedor_menu_lateral_der").show(300);
 		$(".contenido_carrito").html(loader());
 		$.post(url_api+'get_carrito_activo',{id_cliente:sesion_local.getItem("FerbisAPP_id")},function(r){
@@ -269,7 +280,7 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 							"precio='"+prod.precio+"' "+
 							">"+
 			  				"<div class='col-xs-12 articulo'><div class='col-xs-5 cont_imagen_articulo'>"+
-			  				"<div class='art_img'><img src='"+prod.puntuacion+"' class='img_art'></div>"+
+			  				"<div class='art_img'><img src='' class='img_art'></div>"+
 			  				"<div class='loader_img'>"+loader_mini()+"</div>"+
 			  				"</div><div class='col-xs-7 articulo_desc'>"+
 			  				"<div class='col-xs-12'><div class='art_desc'>"+capitalize(prod.descripcion)+"</div></div>"+
@@ -288,8 +299,10 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 
 				setTimeout(function() {
 					$(el).hide();
+					//alert($(el).parent("div").parent("div").parent("div").attr('imagen'));
+					$(el).parent("div").find(".art_img").find('img').attr('src',$(el).parent("div").parent("div").parent("div").attr('imagen'));
 					$(el).parent("div").find(".art_img").show();
-				},150*index);
+				},300*index);
 
 			});
 
