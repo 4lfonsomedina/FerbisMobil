@@ -302,11 +302,11 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 					//alert($(el).parent("div").parent("div").parent("div").attr('imagen'));
 					$(el).parent("div").find(".art_img").find('img').attr('src',$(el).parent("div").parent("div").parent("div").attr('imagen'));
 					$(el).parent("div").find(".art_img").show();
-				},300*index);
+				},600*index);
 
 			});
 
-		}, 2000);
+		}, 1000);
 	}
 	function string_carrito(string_json){
 		var string_ret="";
