@@ -27,6 +27,13 @@ document.ontouchmove = event => {event.preventDefault();};
 		*/
 	}
 
+	//funcion de cargar emergente para IOS
+	$(document).on("click",".blank_a",function(x){
+		x.preventDefault();
+	    var url = $(this).attr('href');
+		launchUrl(url); // where launchUrl is your function that calls window.open, etc
+	});	
+
 // Al precionar el departamento
 	$(document).on("click",".img_dep",function(){
 		var temp_dep=$(this).attr('dep');

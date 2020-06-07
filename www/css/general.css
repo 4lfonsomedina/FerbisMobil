@@ -47,7 +47,7 @@
 .titulo_emergente{
 	font-size: 20px;
 }
-.emergente_a{
+.emergente_a,.menu_inicio{
 	color: #333;
 	font-size: 14px;
 	display: flex;
