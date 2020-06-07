@@ -18,6 +18,9 @@
 .cerrar_ventana{
 	color: white;
 }
+.cerrar_ventana div{
+	text-align: left;
+}
 .notificacion_row_a,.pedido_row_a{
 	text-decoration: no
 }
