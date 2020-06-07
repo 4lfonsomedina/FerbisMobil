@@ -1,6 +1,5 @@
 //variables genericas en todos los scripts posteriores a funciones.js
 var url_api = "https://sd.ferbis.com/index.php/api_controller/";
-
 $(document).ready(function() {
 //deshabilitar zoom
 // stop ios bounce and zoom 
@@ -30,8 +29,7 @@ document.ontouchmove = event => {event.preventDefault();};
 	//funcion de cargar emergente para IOS
 	$(document).on("click",".blank_a",function(x){
 		x.preventDefault();
-	    var url = $(this).attr('href');
-		launchUrl(url); // where launchUrl is your function that calls window.open, etc
+	    window.open($(this).attr('href'));
 	});	
 
 // Al precionar el departamento

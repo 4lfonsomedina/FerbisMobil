@@ -13,7 +13,9 @@
       "cordova-plugin-file": {},
       "cordova-plugin-geolocation": {},
       "cordova-plugin-globalization": {},
-      "cordova-plugin-network-information": {}
+      "cordova-plugin-network-information": {},
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-statusbar": {}
     },
     "platforms": [
       "android"
@@ -21,6 +23,8 @@
   },
   "dependencies": {
     "cordova-android": "^8.1.0",
+    "cordova-plugin-inappbrowser": "^3.2.0",
+    "cordova-plugin-statusbar": "^2.4.3",
     "cordova-plugin-wkwebview-engine": "^1.2.1"
   }
 }
