@@ -296,11 +296,10 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 		$(".art_img").hide();setTimeout(function() {
 
 			$(".loader_img").each(function(index, el) {
-
+				$(el).parent("div").find(".art_img").find('img').attr('src',$(el).parent("div").parent("div").parent("div").attr('imagen'));
 				setTimeout(function() {
 					$(el).hide();
 					//alert($(el).parent("div").parent("div").parent("div").attr('imagen'));
-					$(el).parent("div").find(".art_img").find('img').attr('src',$(el).parent("div").parent("div").parent("div").attr('imagen'));
 					$(el).parent("div").find(".art_img").show();
 				},600*index);
 
