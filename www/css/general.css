@@ -19,13 +19,13 @@
 	color: white;
 }
 .notificacion_row_a,.pedido_row_a{
-	text-decoration: none;
+	text-decoration: no
 }
 .btns_navegacion a{
 	color:gray; 
 	font-size: 14px; 
 	padding-bottom: 5px;
-	text-decoration: none;
+	text-decoration: no
 }
 .abrir_menu_lateral{
 	color: white;
