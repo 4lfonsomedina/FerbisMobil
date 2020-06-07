@@ -11,7 +11,7 @@
 					if(estatus==2){estatus='warning'; 	status_desc='Surtido';}
 					if(estatus==3){estatus='success'; 	status_desc='Enviado';}
 					if(estatus==3){estatus='danger'; 	status_desc='Cancelado';}
-					string_contenido+='<a href="#" class="pedido_row_a" id_carrito="'+pedido.id_carrito+'" '+
+					string_contenido+='<a class="pedido_row_a" id_carrito="'+pedido.id_carrito+'" '+
 					'fecha="'+pedido.fecha+'" '+
 					'status="'+status_desc+'" '+
 					'productos="'+pedido.cantidad+'" '+
