@@ -54,7 +54,11 @@ $(document).ready(function() {
 
 //funcion phonegap para cerrar ventanas
 	function closeBrowser(){
-		window.history.go(-1);
+		if(window.location.href.split(".html")[1]=='#')
+			window.history.go(-2);
+		else{
+			window.history.go(-1);
+		}
        	return false;
 	}
 	function getPhoneGapPath() {
