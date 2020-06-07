@@ -422,11 +422,11 @@ function regresar_inicio(){
 document.addEventListener("backbutton", onBackKeyDown, false);
 function onBackKeyDown(e) {
   	e.preventDefault();
+  	$( ".regresar_link_e" ).click();
   	var final=false;
   	$( ".ini_" ).each(function( index ) {final=true;});
   	if(final){cerrar_app();}
   	else{
-  		$( ".regresar_link_e" ).click();
   		var existe_link=false;
   		$( ".regresar_link" ).each(function( index ) {existe_link=true;});
   		if(existe_link){
