@@ -1,27 +1,44 @@
 	$(document).ready(function() {
 		$(".contenedor_pedidos").html(loader());
+		
 		$.post(url_api+"get_carritos",{id:sesion_local.getItem("FerbisAPP_id")},function(r){
 			var string_contenido="";
 			if(jQuery.parseJSON(r).length>0){
 				$.each(jQuery.parseJSON(r), function( i, pedido ) {
 					var estatus = pedido.status;
-					var status_desc="";
-					if(estatus==0){estatus='info'; 		status_desc='Captura';}
-					if(estatus==1){estatus='primary'; 	status_desc='Procesando';}
-					if(estatus==2){estatus='warning'; 	status_desc='Surtido';}
-					if(estatus==3){estatus='success'; 	status_desc='Enviado';}
-					if(estatus==3){estatus='danger'; 	status_desc='Cancelado';}
+					var status_desc = "";
+					var estatusB = ["","","",""];
+					var estatusA = ["default","default","default","default"];
+					if(estatus>=0){estatusA[0]='info'; }
+					if(estatus>=1){estatusA[1]='primary';}
+					if(estatus>=2){estatusA[2]='warning';}
+					if(estatus>=3){estatusA[3]='success';}
+					if(estatus>=4){estatusA[4]='danger';}
+					if(estatus==0){estatusB[0]='Captura'; status_desc="Captura";}
+					if(estatus==1){estatusB[1]='Surtiendo'; status_desc="Surtiendo";}
+					if(estatus==2){estatusB[2]='Preparado'; status_desc="Preparado";}
+					if(estatus==3){estatusB[3]='Entregado'; status_desc="Entregado";}
+					if(estatus==4){estatusB[4]='Cancelado'; status_desc="Cancelado";}
+
 					string_contenido+='<a href="#" class="pedido_row_a" id_carrito="'+pedido.id_carrito+'" '+
 					'fecha="'+pedido.fecha+'" '+
 					'status="'+status_desc+'" '+
 					'productos="'+pedido.cantidad+'" '+
 					'total="'+parseFloat(pedido.total).toFixed(2)+'" '+
 					'">'+
-					'<div class="pedido_row row" >'+	
-		'<div class="col-xs-4"><span class="label label-'+estatus+'">'+status_desc+'</span></div>'+
-		'<div class="col-xs-5"><b>'+pedido.cantidad+' Productos</b><br><span class="small_pedido">'+pedido.fecha+'</span></div>'+
-		'<div class="col-xs-3 pedido_tot"><span class="small_pedido"><b>Aprox</b></span><br>'+parseFloat(pedido.total).toFixed(2)+'</div>'+
-	'</div></a>';
+					'<div class="pedido_row">'+
+  					'<div class="row">'+
+    				'<div class="col-xs-4"><b>'+pedido.cantidad+' Productos</b><br><span class="small_pedido">'+pedido.fecha+'</span></div>'+
+    '<div class="col-xs-4 pedido_tot"><span class="small_pedido"><b>Total Aprox.</b></span><br>'+parseFloat(pedido.total).toFixed(2)+'</div>'+
+    '<div class="col-xs-4 pedido_tot"><span class="small_pedido"><b>Entrega</b></span><br>00:00:00</div>'+
+  '</div>'+
+  '<div class="row status_pedido_row">'+
+    '<div class="col-xs-3">'+estatusB[0]+'<br><div class="label-'+estatusA[0]+'"></div></div>'+
+    '<div class="col-xs-3">'+estatusB[1]+'<br><div class="label-'+estatusA[1]+'"></div></div>'+
+    '<div class="col-xs-3">'+estatusB[2]+'<br><div class="label-'+estatusA[2]+'"></div></div>'+
+    '<div class="col-xs-3">'+estatusB[3]+'<br><div class="label-'+estatusA[3]+'"></div></div>'+
+  '</div>'+
+'</div>';
 				})
 
 				$(".contenedor_pedidos").html(string_contenido);

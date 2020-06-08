@@ -1,6 +1,9 @@
 jQuery(document).ready(function($) {
   $(document).on("click",".recargar_mapa",function(){
-    cargar_mapas();
+    setTimeout(function() {
+      cargar_mapas();
+    }, 300);
+    
   })
 });
 function cargar_mapas(){
