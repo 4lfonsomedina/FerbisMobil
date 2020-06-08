@@ -22,6 +22,7 @@
 		var lon = parseFloat($(".cuenta_lon").val());
 		if(lat!=""&&lon!=""){
 			sucursal_cercana();
+			construir_mapa({lat: lat, lng: lon});
 		}
 		else if($(".cuenta_calle").val()!=""&&$(".cuenta_num").val()!=""&&$(".cuenta_colonia").val()!=""){
 			geolacalizar_direccion();
@@ -53,6 +54,7 @@
 			$(".cuenta_lat").val(results[0].geometry.location.lat);
 			$(".cuenta_lon").val(results[0].geometry.location.lng);
 			sucursal_cercana();
+			construir_mapa({lat: results[0].geometry.location.lat, lng: results[0].geometry.location.lng});
 		});
 	}
 
@@ -105,10 +107,7 @@
 		})
 		$(document).on("click",".btn_mapa_cuenta",function(){
 			$("#modal_mapa").modal("show").on('shown.bs.modal', function () {
-  			verificar_ubicacion();
-		});
-
-			//si existen las coordenadas no se hace geolocalizacion
+  			//si existen las coordenadas no se hace geolocalizacion
 			if($(".cuenta_lat").val()!=0&&$(".cuenta_lon").val()!=0){
 				construir_mapa({lat: parseFloat($(".cuenta_lat").val()), lng: parseFloat($(".cuenta_lon").val())});
 			}else{
@@ -123,6 +122,9 @@
 					construir_mapa(results[0].geometry.location);
 				});
 			}
+		});
+
+			
 		})
 
 	});

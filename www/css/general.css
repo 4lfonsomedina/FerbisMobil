@@ -15,30 +15,59 @@
 .btns_navegacion{
 	padding-top: 10px;
 }
-.cerrar_ventana{
+.cerrar_ventana,
+.cerrar_ventana:hover,
+.cerrar_ventana:active{
 	color: white;
 }
 .cerrar_ventana div{
 	text-align: left;
 }
-.notificacion_row_a,.pedido_row_a{
-	text-decoration: no
+.notificacion_row_a,
+.notificacion_row_a:hover,
+.notificacion_row_a:active,
+.pedido_row_a,
+.pedido_row_a:hover,
+.pedido_row_a:active{
+	color:black;
+	text-decoration: none;
 }
-.btns_navegacion a{
+.btns_navegacion a,
+.btns_navegacion a:active,
+.btns_navegacion a:hover
+.menu_inicio,
+.menu_inicio:active,
+.menu_inicio:hover,
+.emergente_a:active,
+.emergente_a:hover,
+.articulo_carrito:hover,
+.articulo_carrito:active{
 	color:gray; 
 	font-size: 14px; 
 	padding-bottom: 5px;
-	text-decoration: no
+	text-decoration: none;
 }
-.abrir_menu_lateral{
+.abrir_menu_lateral,
+.abrir_menu_lateral:active,
+.abrir_menu_lateral_der,
+.abrir_menu_lateral_der:active
+{
 	color: white;
 }
-.abrir_menu_lateral_der{
-	color: white;
-}
+
 .menu_bar{
 	/*background-color: #cc0000; */
 	background-color: #C7C7C7;
+	padding: 10px;
+	height: 10vh;
+	color: white;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.menu_bar2{
+	/*background-color: #cc0000; */
+	background-color: #5aad63;
 	padding: 10px;
 	height: 10vh;
 	color: white;
@@ -54,6 +83,7 @@
 	margin-bottom: 10px !important;
 }
 .titulo_emergente{
+	font-weight: bold;
 	font-size: 20px;
 }
 .emergente_a,.menu_inicio{
@@ -332,7 +362,7 @@
 	padding-top: 7px;
 	padding-bottom: 7px;
 	border-top: solid 1px #DEDEDE;
-	font-size: 12px;
+	font-size: 14px;
 	display: flex;
     align-items: center;
     justify-content: center;
@@ -458,6 +488,17 @@
 	text-align: center;
 }
 .li_paso a{
-	background-color: #5AAD63;
-	border-radius: 20px 20px 0 0 !important;
+	font-weight: bold;
+	background-color: #5a86ad;
+	border-radius: 25px 25px 0px 0px !important;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #5a86ad;
+    border-bottom-color: transparent;
+}
+.nav-tabs {
+    border-bottom: 1px solid #5a86ad !important;
 }

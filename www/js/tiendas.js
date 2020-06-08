@@ -1,5 +1,5 @@
 jQuery(document).ready(function($) {
-  $(document).on("clcik",".recargar_mapa",function(){
+  $(document).on("click",".recargar_mapa",function(){
     cargar_mapas();
   })
 });

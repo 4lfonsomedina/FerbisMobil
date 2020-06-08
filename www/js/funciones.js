@@ -29,6 +29,7 @@ document.ontouchmove = event => {event.preventDefault();};
 	//funcion de cargar emergente para IOS
 	$(document).on("click",".blank_a",function(x){
 		x.preventDefault();
+		$(".sombra_menu").click();
 	    window.open($(this).attr('href'));
 	});	
 
@@ -317,7 +318,7 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 		$.each(jQuery.parseJSON(string_json), function( i, prod ) {
 			// se utiliza puntuacion para la imagen
 			var asado=""; if(prod.asado=='1'){ asado='<i class="fa fa-fire ico_asado" aria-hidden="true"></i>';}
-			string_ret+="<a class='articulo_carrito' "+
+			string_ret+="<a href='#' class='articulo_carrito' "+
 							"id_carrito_det='"+prod.id_carrito_det+"' "+
 							"producto='"+prod.producto+"' "+
 							"departamento='"+prod.departamento+"' "+
