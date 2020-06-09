@@ -20,6 +20,16 @@ $(document).ready(function() {
 		})
 		//$(this).show('10000');
 	});
+
+	//funcion de cargar emergente para IOS
+	$(document).on("click",".blank_a",function(x){
+		x.preventDefault();
+		var el = $(this);
+		$(".splash").fadeIn(500,function(){
+			$(".sombra_menu").click();
+	    	window.open(el.attr('href'));
+	    });
+	});	
 	
 	// desaparecer splash
 	setTimeout(function(){$(".splash").fadeOut(500);},500);

@@ -29,12 +29,7 @@ document.ontouchmove = event => {event.preventDefault();};
 		*/
 	}
 
-	//funcion de cargar emergente para IOS
-	$(document).on("click",".blank_a",function(x){
-		x.preventDefault();
-		$(".sombra_menu").click();
-	    window.open($(this).attr('href'));
-	});	
+	
 
 // Al precionar el departamento
 	$(document).on("click",".img_dep",function(){
