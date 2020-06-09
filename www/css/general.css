@@ -28,7 +28,7 @@
 .pedido_row_a,
 .pedido_row_a:hover,
 .pedido_row_a:active{
-	color:black;
+	color:#222;
 	text-decoration: none;
 }
 .btns_navegacion a,
@@ -126,7 +126,7 @@
 	margin-left: 26px;
     right: initial;
     left: 0;
-    color: black;
+    color: #222;
 }
 .fa-pencil{
 	position: absolute;
@@ -362,7 +362,7 @@
 	padding:10px;
 	bottom: 10px;
 	border-radius: 5px;
-	background-color: black;
+	background-color: #222;
 	color:white;
 	text-align: center;
 }
@@ -376,7 +376,7 @@
 	padding-top: 40px;
 }
 .articulo_carrito{
-	color: black;
+	color: #222;
 	padding-top: 7px;
 	padding-bottom: 7px;
 	border-top: solid 1px #DEDEDE;
