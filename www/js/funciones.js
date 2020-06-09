@@ -41,27 +41,25 @@ document.ontouchmove = event => {event.preventDefault();};
 		var temp_dep=$(this).attr('dep');
 		if(temp_dep==0){regresar_inicio(); return;}
 
-		$("#contenedor_articulos").html(loader());
-		$.post(url_api+'get_subdepartamentos',{dep:temp_dep}, function(r){
+		$("#contenedor_articulos").fadeOut(500,"swing",function(){	
+			$.post(url_api+'get_subdepartamentos',{dep:temp_dep}, function(r){
 			
-			var string="<div class='contenedor_banner'>";
-			string+="<div class='img_banner'><img src='img/banner"+temp_dep+".png' width='100%' class='banner_dep'></div>";
-			string+="<div class='col-xs-12 btns_navegacion'><div class='col-xs-6'><a href='#' class='regresar_link back_click'>< Regresar</a></div>";
-			string+="<div class='col-xs-6' style='text-align:right'><a href='#' class='ver_todo_link' dep='"+temp_dep+"'>Ver todo</a></div></div>";
-			string+="<div class='contenedor_subdepartamentos'>"
-			$.each(jQuery.parseJSON(r), function( i, subdep ) {
-				string+="<div class='col-xs-4 img_subdep' dep='"+subdep.id_departamento+"' subdep='"+subdep.id_subdepartamento+"'><img src='img/"+subdep.id_departamento+subdep.id_subdepartamento+".png' width='100%'></div>";
-			})
-			string+="</div></div>";
-			crecer_buscador();
-			$("#contenedor_articulos").hide();
-			$("#contenedor_articulos").html(string);
-			$("#contenedor_articulos").slideDown(1000);
-			$(".contenedor_subdepartamentos").html(subdeps);
-			
-
-			$(".banner_dep").attr('src','img/banner'+temp_dep+'.png');
-			
+				var string="<div class='contenedor_banner'>";
+				string+="<div class='img_banner'><img src='img/banner"+temp_dep+".png' width='100%' class='banner_dep'></div>";
+				string+="<div class='col-xs-12 btns_navegacion'><div class='col-xs-6'><a href='#' class='regresar_link back_click'>< Regresar</a></div>";
+				string+="<div class='col-xs-6' style='text-align:right'><a href='#' class='ver_todo_link' dep='"+temp_dep+"'>Ver todo</a></div></div>";
+				string+="<div class='contenedor_subdepartamentos'>"
+				$.each(jQuery.parseJSON(r), function( i, subdep ) {
+					string+="<div class='col-xs-4 img_subdep' dep='"+subdep.id_departamento+"' subdep='"+subdep.id_subdepartamento+"'><img src='img/"+subdep.id_departamento+subdep.id_subdepartamento+".png' width='100%'></div>";
+				})
+				string+="</div></div>";
+				crecer_buscador();
+				
+				$("#contenedor_articulos").html(string);
+				$("#contenedor_articulos").slideDown(1000);
+				$(".contenedor_subdepartamentos").html(subdeps);
+				$(".banner_dep").attr('src','img/banner'+temp_dep+'.png');
+		});
 		});
 		/*
 		$(".input_search").val("");
