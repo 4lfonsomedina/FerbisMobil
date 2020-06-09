@@ -287,8 +287,7 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 							"precio='"+prod.precio+"' "+
 							">"+
 			  				"<div class='col-xs-12 articulo'><div class='col-xs-5 cont_imagen_articulo'>"+
-			  				"<div class='art_img'><img src='' class='img_art'></div>"+
-			  				"<div class='loader_img'>"+loader_mini()+"</div>"+
+			  				"<div class='art_img' style='height:120px;'></div>"+
 			  				"</div><div class='col-xs-7 articulo_desc'>"+
 			  				"<div class='col-xs-12'><div class='art_desc'>"+capitalize(prod.descripcion)+"</div></div>"+
 			  				"<div class='col-xs-12'><div class='art_um'>$"+parseFloat(prod.precio).toFixed(2)+" "+prod.unidad+"</div></div>"+
@@ -300,19 +299,28 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 		$("#contenedor_articulos").html(string_ret);
 		$("#contenedor_articulos").slideDown(500);
 
+		$(".art_img").html(loader_mini());
+		$(".art_img").each(function(index, el) {
+			setTimeout(function() {
+					$(el).fadeOut(500,function(){
+						$(el).html("<img src='"+$(el).parent("div").parent("div").parent("div").attr('imagen')+"' class='img_art'>");
+						$(el).fadeIn(700);
+					});
+				},600*index);
+		})
+/*
 		$(".art_img").hide();setTimeout(function() {
-
 			$(".loader_img").each(function(index, el) {
 				$(el).parent("div").find(".art_img").find('img').attr('src',$(el).parent("div").parent("div").parent("div").attr('imagen'));
 				setTimeout(function() {
-					$(el).hide();
-					//alert($(el).parent("div").parent("div").parent("div").attr('imagen'));
-					$(el).parent("div").find(".art_img").show();
+					$(el).fadeOut();
+					$(el).parent("div").find(".art_img").fadeIn(500);
 				},600*index);
 
 			});
 
 		}, 1000);
+*/
 	}
 	function string_carrito(string_json){
 		var string_ret="";
