@@ -3,7 +3,7 @@ var url_api = "https://sd.ferbis.com/index.php/api_controller/";
 $(document).ready(function() {
 
 //quitar slash
-setTimeout(function(){$(".splash").fadeOut(500);},500);
+
 //deshabilitar zoom
 // stop ios bounce and zoom 
 document.ontouchmove = event => {event.preventDefault();}; 

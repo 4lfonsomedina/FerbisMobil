@@ -21,9 +21,14 @@ $(document).ready(function() {
 		//$(this).show('10000');
 	});
 	
+	// desaparecer splash
+	setTimeout(function(){$(".splash").fadeOut(500);},500);
 	//regresar a inicio
 	$(document).on("click",".menu_inicio",function(){
-		window.location.href = "index.html";
+		$(".splash").fadeIn(500,function(){
+			window.location.href = "index.html";
+		});
+		
 	})
 
 	//cargar ventanas emergentes
@@ -35,7 +40,9 @@ $(document).ready(function() {
 
 	//cerrar ventanas emergentes
 	$(document).on("click",".cerrar_ventana",function(){
-		closeBrowser();
+		$(".splash").fadeIn(500,function(){
+			closeBrowser();
+		})
 	})
 
 	
@@ -55,13 +62,6 @@ $(document).ready(function() {
 //funcion phonegap para cerrar ventanas
 	function closeBrowser(){
 		window.history.go(-2);
-		/*
-		if(window.location.href.split(".html")[1]=='#')
-			window.history.go(-2);
-		else{
-			window.history.go(-1);
-		}
-       	return false;*/
 	}
 	function getPhoneGapPath() {
 	   var path = window.location.pathname;

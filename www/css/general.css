@@ -6,7 +6,7 @@
 	width: 100%;
 	height: 100%;
 	background-color: white;
-	z-index: 1;
+	z-index: 5;
 }
 .slash img{
 	width: 60%;
@@ -477,7 +477,7 @@
 }
 .contenedor_pedido_btn{
 	height: 5vh;
-	z-index: 100;
+	z-index: 4;
 }
 .contenedor_pedido_btn button{
 	opacity: 1;
