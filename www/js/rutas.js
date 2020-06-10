@@ -27,6 +27,7 @@ $(document).ready(function() {
 		var el = $(this);
 		$(".splash").fadeIn(500,function(){
 			$(".sombra_menu").click();
+			$(".splash").fadeOut(2000);
 	    	window.open(el.attr('href'));
 	    });
 	});	
