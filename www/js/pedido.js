@@ -20,6 +20,11 @@ function cargar_datos() {
 			})
 		}
 
+		//al cambiar la fecha de entrega
+		$("#fecha_pedido").change(function(){
+			calcular_envio($(".pedido_id_sucursal").val());
+		})
+
 		function verificar_ubicacion(){
 			var lat = parseFloat($(".cuenta_lat").val());
 			var lon = parseFloat($(".cuenta_lon").val());
@@ -39,14 +44,16 @@ function cargar_datos() {
 			}
 		}
 		function sucursal_cercana(){
-			$.post(url_api+'sucursal_cercana',{lat:$(".cuenta_lat").val(),lon:$(".cuenta_lon").val()},function(r){
-				var sucursal = jQuery.parseJSON(r);
-				$(".sucursal_cercana").html(sucursal.sucursal);
-				$(".sucursal_distancia").html(sucursal.distancia+"km");
-				$(".sucursal_distancia_input").val(sucursal.distancia);
-				$(".pedido_id_sucursal").val(sucursal.id_sucursal);
-				$(".pedido_sucursal").val(sucursal.sucursal);
-			})
+			if($(".cuenta_lat").val()!=""&&$(".cuenta_lon").val()!="")
+				$.post(url_api+'sucursal_cercana',{lat:$(".cuenta_lat").val(),lon:$(".cuenta_lon").val()},function(r){
+					var sucursal = jQuery.parseJSON(r);
+					$(".sucursal_cercana").html(sucursal.sucursal);
+					$(".sucursal_distancia").html(sucursal.distancia+"km");
+					$(".sucursal_distancia_input").val(sucursal.distancia);
+					$(".pedido_id_sucursal").val(sucursal.id_sucursal);
+					$(".pedido_sucursal").val(sucursal.sucursal);
+					calcular_envio(sucursal.id_sucursal);
+				})
 		}
 
 		function mostrar_tabla(){
@@ -144,6 +151,7 @@ function cargar_datos() {
 			$( ".btn_enviar_pedido" ).prop( "disabled", true );
 			$.post(url_api+'alta_pedido',$("#pedido_form").serialize(),function(r){
 				console.log(r);
+				$(".entrega_pedido_mensaje").html($("#fecha_pedido").val()+" "+formato_12hrs($("#select_horas_disponibles").val().split(":")[0]));
 				$('#modal_pedido_enviado').modal({backdrop: 'static', keyboard: false});
 			})
 			//console.log($("#pedido_form").serializeArray());
@@ -274,4 +282,40 @@ function geolacalizar_direccion(){
 		$(".cuenta_lon").val(results[0].geometry.location.lng);
 		sucursal_cercana();
 	});
+}
+
+function calcular_envio(id_sucursal){
+	//contamos los asados
+	var asados = 0;
+	$(".articulo_carrito").each(function(index, el) {if($(this).attr('asado')==1){asados++;}});
+	//verificar el horario disponible
+	$.post(url_api+"calcular_hora_entrega",{dia:$("#fecha_pedido").val(),id_sucursal:id_sucursal,asado:asados},function(r){
+		//verificamos si es un json
+		$("#select_horas_disponibles").html("");
+		try{var horarios = jQuery.parseJSON(r);}
+       	catch(err){alert(r); return;}
+		//llenamos el select
+		
+		$.each(horarios, function( i, pedido ){
+			if(pedido.disponible=='s'){
+				$("#select_horas_disponibles").append("<option value='"+pedido.hora+":00:00'>"+formato_12hrs(pedido.hora)+"</option>");
+			}
+		})
+		$.each(horarios, function( i, pedido ){
+			if(pedido.disponible=='s'){
+				$("#fecha_pedido").val(pedido.fecha);
+				$("#select_horas_disponibles").val(pedido.hora+":00:00");
+				return false;
+			}
+		})
+	})
+}
+function formato_12hrs(hora){
+	var ampm='am';
+	if(hora>11){
+		ampm='pm';
+		hora=hora-12;
+	}
+	if(hora==0){hora=12;}
+	return hora+ampm;
 }

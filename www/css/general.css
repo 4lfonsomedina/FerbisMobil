@@ -75,7 +75,7 @@
     justify-content: center;
 }
 .tabla_paso_3 tr td{
-	font-size: 16px;
+	font-size: 14px;
 	padding: 0px !important;
 }
 .tabla_paso_3{
@@ -280,7 +280,7 @@
 	padding-top:20px;
 	padding-left: 10px; 
 	color:white;
-	background-color:#5AAD63;
+	background-color:#2196f3;
 }
 .menu_lateral_cliente i{
 	position:absolute;
@@ -326,7 +326,7 @@
 	height: 10vh;
 	padding:10px;
 	color:white;
-	background-color:#5AAD63;
+	background-color:#2196f3;
 	text-align: center;
 	display: flex;
     align-items: center;
@@ -358,9 +358,10 @@
 }
 .alerta_multiusos{
 	position: absolute;
-	width: 95%;
+	width: 100%;
 	padding:10px;
 	bottom: 10px;
+	left: 0px;
 	border-radius: 5px;
 	background-color: #222;
 	color:white;
@@ -445,11 +446,22 @@
 	overflow-y: auto;
 }
 .pedido_radio{
-	padding-top: 5px;
-	text-align: center
+	padding-bottom: 0px;
+	text-align: center;
+	height: 30px;
 }
 .pedido_radio input{
+	padding-bottom: 0px;
+}
+.pedido_radio input{
+	width: 10%;
 	box-shadow:none;
+}
+.pedido_radio div{
+	padding: 0px 15px 0px 0px;
+}
+.pedido_radio label{
+	width: 100%;
 }
 .car_desc{
 	padding-right: 5px;
@@ -488,13 +500,22 @@
 }
 .aprox{
 	text-align: justify;
-	padding-top: 5px;
-	font-size: 14px;
+	font-size: 12px;
 }
+.tabla_cuenta tr td{
+	padding: 6px !important;
+}
+.tabla_cuenta_titulo{
+	padding-top: 15px !important;
+}
+.tabla_cuenta_paso2 tr td{
+	padding bottom: 3px !important;
+}
+
 .contenedor_resumen_pedido{
 	border-radius: 8px;
 	border:solid 1px #DEDEDE;
-	height: 50vh; 
+	height: 49vh; 
 	overflow-y: auto;
 	z-index: 1;
 }

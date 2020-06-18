@@ -44,13 +44,26 @@
 	  	<div class="articulo row">
 <!--seleccion de servicio-->
 	  	<div class="col-xs-6 pedido_radio"><label>
-	  		<input type="radio" class="form-control" name="servicio" checked value="1">
-	  		A domicilio
+	  		<div class="col-xs-3">
+	  			<input type="radio" class="form-control" name="servicio" checked value="1">
+	  		</div>
+	  		<div class="col-xs-9">
+	  			A domicilio
+	  		</div>
 	  	</label></div>
 	  	<div class="col-xs-6 pedido_radio"><label>
-	  		<input type="radio" class="form-control" name="servicio" value="2">
-	  		Paso por el
+	  		<div class="col-xs-3">
+	  			<input type="radio" class="form-control" name="servicio" value="2">
+	  		</div>
+	  		<div class="col-xs-9">
+	  			Paso por el
+	  		</div>
 	  	</label></div>
+
+		<div class="col-xs-12" style="text-align: center; font-weight: bold;">Programar Entrega</div>
+		<div class="col-xs-8 fecha_entrega"><input type="date" id="fecha_pedido" class="form-control" name="fecha_entrega"></div>
+		<div class="col-xs-4 hora_entrega"><select id="select_horas_disponibles" class="form-control" name="hora_entrega"></select></div>
+
 <!-- en caso de que sea paso por el-->
 		<table class="table tabla_cuenta_recoger">
 			<tr>
@@ -78,6 +91,7 @@
 		<input type="hidden" class="pedido_total_input" name="total">
 	  	
 	  	<table class="table tabla_cuenta">
+
 			<tr>
 				<td class="tabla_cuenta_titulo">Colonia</td>
 				<td colspan="3"><input type="text" class="form-control cuenta_colonia" name="dir_colonia"></td>
@@ -133,14 +147,15 @@
 	  		<p></p>
 	  		<div class="contenedor_tipo_pago">
 		  	<div class="col-xs-6 pedido_radio"><label>
-		  		<input type="radio" class="form-control" name="pago" checked value="1">
-			  		Efectivo
+		  		<div class="col-xs-2"><input type="radio" class="form-control" name="pago" checked value="1"></div>
+			  		<div class="col-xs-10">Efectivo</div>
 			  	</label></div>
+
 			  	<div class="col-xs-6 pedido_radio"><label>
-			  		<input type="radio" class="form-control" name="pago" value="2">
-			  		Tarjeta
+			  		<div class="col-xs-2"><input type="radio" class="form-control" name="pago" value="2"></div>
+			  		<div class="col-xs-10">Tarjeta</div>
 			  	</label></div>
-			  	
+			  		
 			  	<table class="table tabla_pago">
 			  		<!--
 			  		<tr style="text-align: center">
@@ -151,7 +166,7 @@
 			  		</tr>
 			  		 -->
 			  		<tr>
-			  			<td><p class="aprox"><b>Cuando su pedido este listo, recibirá una llamada para informarle el total exacto</b><br>*Debido a la presentación del producto, no es posible entregar exactamente 1 Kg. de manzana (ejemplo)</p></td>
+			  			<td><p class="aprox"><b>Cuando su pedido este listo, recibirá una llamada para informarle el total exacto</b></p></td>
 			  		</tr>
 			  	</table>
 			 
@@ -168,10 +183,10 @@
 		  			<td><b>Servicio:</b></td><td class="p3_servicio"></td>
 		  		</tr>
 		  		<tr>
-		  			<td><b>Articulos:</b></td><td class="pedido_articulos" ></td>
+		  			<td><b>Total (aprox):</b></td><td><span class="pedido_total"></span> <span class="pedido_envio">+ 30.00 x envio</span></td>
 		  		</tr>
 		  		<tr>
-		  			<td><b>Total (aprox):</b></td><td><span class="pedido_total"></span> <span class="pedido_envio">+ 30.00 x envio</span></td>
+		  			<td><b>Articulos:</b></td><td class="pedido_articulos" ></td>
 		  		</tr>
 		  	</table>
 	  	</div>
@@ -225,13 +240,15 @@
       </div>
       <div class="modal-body" style="text-align: center">
         <img width="50%" src="img/logo.png" style="margin-top: 2px">
-        <h2>Gracias por tu pedido!</h2> <br>Puede monitorear el estatus de su pedido desde su Menú -> Mis Pedidos
+        <h2>Gracias por tu pedido!</h2> <br>Entrega Programada: <span class="entrega_pedido_mensaje"></span>
+        <br>Puede monitorear el estatus de su pedido desde su Menú -> Mis Pedidos
+        
     </div>
       <div class="modal-footer">
         <div class="row">
             <div class="col-xs-12">
                 <buttton class="btn btn-primary btn_aceptar">
-                    <h4>  Aceptar <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h4>
+                    <h4 class="modal-title">  Aceptar <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h4>
                 </buttton>
                 
             </div>

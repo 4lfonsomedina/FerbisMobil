@@ -25,10 +25,8 @@ $(document).ready(function() {
 	$(document).on("click",".blank_a",function(x){
 		x.preventDefault();
 		var el = $(this);
-		$(".splash").fadeIn(500,function(){
-			$(".sombra_menu").click();
-	    	window.open(el.attr('href'));
-	    });
+		$(".sombra_menu").click();
+	    window.open(el.attr('href'));
 	});	
 	
 	// desaparecer splash
