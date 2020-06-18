@@ -24,9 +24,14 @@ $(document).ready(function() {
 	//funcion de cargar emergente para IOS
 	$(document).on("click",".blank_a",function(x){
 		x.preventDefault();
-		var el = $(this);
-		$(".sombra_menu").click();
-	    window.open(el.attr('href'));
+		if(!$(this).attr("disabled")){
+			var el = $(this);
+			$(".sombra_menu").click();
+	   		window.open(el.attr('href'));
+		}else{
+			alert($(this).attr("mensaje"));
+		}
+		
 	});	
 	
 	// desaparecer splash
