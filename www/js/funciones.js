@@ -186,7 +186,8 @@ document.ontouchmove = event => {event.preventDefault();};
 			var total_aprox=0;
 			$(".car_importe").each(function() {total_aprox+=parseFloat($(this).html());});
 			$(".total_pedido").html(parseFloat(total_aprox).toFixed(2));
-			if(parseFloat(total_aprox)<200){$(".btn_realizar_pedido").attr("disabled",true)}
+			if(parseFloat(total_aprox)<200){$(".btn_realizar_pedido").attr("disabled",true);}
+			else{$(".btn_realizar_pedido").removeAttr('disabled');}
 		})
 	})
 	$(document).on("click",".sombra_menu",function(){
