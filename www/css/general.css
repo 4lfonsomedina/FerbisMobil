@@ -502,12 +502,13 @@
 	text-align: justify;
 	font-size: 12px;
 }
-.tabla_cuenta tr td{
-	padding: 6px !important;
-}
 .tabla_cuenta_titulo{
-	padding-top: 15px !important;
+	padding-top: 20px !important;
 }
+.tabla_cuenta tr td{
+	padding: 6px ;
+}
+
 .tabla_cuenta_paso2 tr td{
 	padding bottom: 3px !important;
 }
