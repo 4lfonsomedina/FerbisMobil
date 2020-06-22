@@ -28,9 +28,9 @@
 					'">'+
 					'<div class="pedido_row">'+
   					'<div class="row">'+
-    				'<div class="col-xs-4"><b>'+pedido.cantidad+' Productos</b><br><span class="small_pedido">'+pedido.fecha+'</span></div>'+
+    				'<div class="col-xs-4"><b>'+pedido.cantidad+'.Articulos</b><br><span class="small_pedido">'+pedido.fecha_entrega+'</span></div>'+
     '<div class="col-xs-4 pedido_tot"><span class="small_pedido"><b>Total Aprox.</b></span><br>'+parseFloat(pedido.total).toFixed(2)+'</div>'+
-    '<div class="col-xs-4 pedido_tot"><span class="small_pedido"><b>Entrega</b></span><br>00:00:00</div>'+
+    '<div class="col-xs-4 pedido_tot"><span class="small_pedido"><b>Entrega</b></span><br>'+formato_12hrs(pedido.hora_entrega.split(':')[0])+'</div>'+
   '</div>'+
   '<div class="row status_pedido_row">'+
     '<div class="col-xs-3">'+estatusB[0]+'<br><div class="label-'+estatusA[0]+'"></div></div>'+
@@ -78,4 +78,15 @@
 		});
 		return string_ret;
 	}
+
+
+	function formato_12hrs(hora){
+	var ampm='am';
+	if(hora>11){
+		ampm='pm';
+		hora=hora-12;
+	}
+	if(hora==0){hora=12;}
+	return hora+ampm;
+}
 	});
