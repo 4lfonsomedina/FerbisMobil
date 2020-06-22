@@ -27,17 +27,11 @@ $(document).ready(function() {
 		if(!$(this).attr("disabled")){
 			var el = $(this);
 			$(".sombra_menu").click();
-<<<<<<< HEAD
-			$(".splash").fadeOut(2000);
-	    	window.open(el.attr('href'));
-	    });
-=======
 	   		window.open(el.attr('href'));
 		}else{
 			alert($(this).attr("mensaje"));
 		}
 		
->>>>>>> 7af0ff0463580dc5d85f0100193d7657fcc75763
 	});	
 	
 	// desaparecer splash
