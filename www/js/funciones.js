@@ -52,9 +52,9 @@ document.ontouchmove = event => {event.preventDefault();};
 				
 				$("#contenedor_articulos").html(string);
 				$("#contenedor_articulos").slideDown(1000);
-				$(".contenedor_subdepartamentos").html(subdeps);
+				//$(".contenedor_subdepartamentos").html(subdeps);
 				$(".banner_dep").attr('src','img/banner'+temp_dep+'.png');
-		});
+		}).fail(function(error) { alert("Error de conexión..."); console.log(error.responseJSON); });
 		});
 		/*
 		$(".input_search").val("");
@@ -77,7 +77,7 @@ document.ontouchmove = event => {event.preventDefault();};
 				string_articulos(resp_json);
 				reducir_buscador();
 				$(".img_dep").attr('dep',temp_dep);
-			});
+			}).fail(function(error) { alert("Error de conexión...");  console.log(error.responseJSON); });
 		})
 	})
 
@@ -89,7 +89,7 @@ document.ontouchmove = event => {event.preventDefault();};
 				string_articulos(resp_json);
 				reducir_buscador();
 				$(".img_dep").attr('dep',dep);
-			});
+			}).fail(function(error) { alert("Error de conexión...");  console.log(error.responseJSON); });
 		})
 	})
 
@@ -99,13 +99,13 @@ document.ontouchmove = event => {event.preventDefault();};
 
 // Al escribir en el filtro buscador
 	$(document).on("keyup",".input_search",function(){
-		if($(this).val()==""||$(this).val().length<4){return;}
+		if($(this).val()==""||$(this).val().length<2){return;}
 		$("#contenedor_articulos").html(loader());
 		$.post(url_api+'get_productos_filtro',{desc:$(this).val()}, function(resp_json){
 			reducir_buscador();
 			string_articulos(resp_json);
 			$(".img_dep").attr('dep',0);
-		});
+		}).fail(function(error) { alert("Error de conexión...");  console.log(error.responseJSON); });
 	})
 
 // Al presionar un articulo
@@ -134,6 +134,10 @@ document.ontouchmove = event => {event.preventDefault();};
 		$("#cliente_modal_form").val(sesion_local.getItem("FerbisAPP_id"));
 		$("#descripcion_modal_form").val($(this).attr('descripcion'));
 
+		//etiquetas
+		if($(this).attr('departamento')=='005'||$(this).attr('departamento')=='002'){$(".fyv_pieza").show(500);}else{$(".fyv_pieza").hide();}
+		$(".fyv_asado").hide();
+
 		
 
 		//ocultar o mostrar servicio de asado
@@ -149,8 +153,8 @@ document.ontouchmove = event => {event.preventDefault();};
 	})
 	//actualizacion de input de asado
 	$(document).on('click',".check_asado",function(){
-		if($(this).is(":checked")){$(".check_asado_input").val(1);}
-		else{$(".check_asado_input").val(0);}
+		if($(this).is(":checked")){$(".check_asado_input").val(1);$(".fyv_asado").show(500);}
+		else{$(".check_asado_input").val(0); $(".fyv_asado").hide(500);}
 	})
 	
 // Al precional el boton de mas producto
@@ -188,7 +192,7 @@ document.ontouchmove = event => {event.preventDefault();};
 			$(".total_pedido").html(parseFloat(total_aprox).toFixed(2));
 			if(parseFloat(total_aprox)<200){$(".btn_realizar_pedido").attr("disabled",true);}
 			else{$(".btn_realizar_pedido").removeAttr('disabled');}
-		})
+		}).fail(function(error) { alert("Error de conexión...");  console.log(error.responseJSON); });
 	})
 	$(document).on("click",".sombra_menu",function(){
 		$(".contenedor_menu_lateral_izq").hide(300);
@@ -206,7 +210,7 @@ $(document).on("click",".agregar_al_carrito_btn",function(){
 		}else{
 			notificacion("Error!");
 		}
-	})
+	}).fail(function(error) { alert("Error de conexión...");  console.log(error.responseJSON); });
 })
 
 //funcion para abrir modal de edicion deun pedido
@@ -258,7 +262,7 @@ $(document).on("click",".btn_modal_borrar_e", function(){
 			actualizar_burbuja_carrito();
 			actualizar_burbuja_notificaciones();
 			notificacion("Articulo removido del carrito");
-		})
+		}).fail(function(error) { alert("Error de conexión...");  console.log(error.responseJSON); });
 	}
 })
 
@@ -267,7 +271,7 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 	$("#editarArticuloModal").modal("hide");
 	$.post(url_api+'editar_carrito',$("#form_editar_carrito").serialize(),function(r){
 		notificacion("Articulo del pedido actualizado");
-	})
+	}).fail(function(error) { alert("Error de conexión...");  console.log(error.responseJSON); });
 })
 
 // Funcion para mostrar los articulos de la busqueda
@@ -361,7 +365,7 @@ function actualizar_burbuja_carrito(){
 		}else{
 			$(".mini_burbuja").hide(100);
 		}
-	})
+	}).fail(function(error) { alert("Error de conexión...");  console.log(error.responseJSON); });
 }
 
 //funcion que actualiza la burbuja de notificaciones
@@ -373,7 +377,7 @@ function actualizar_burbuja_notificaciones(){
 		}else{
 			$(".mini_burbuja_notificaciones").hide(100);
 		}
-	})
+	}).fail(function(error) { alert("Error de conexión...");  console.log(error.responseJSON); });
 }
 
 // loader global
