@@ -144,15 +144,17 @@
             contenido en lista
         </div>
         <div class="div_procesar_pedido">
+             <a href="#" class="btn btn-default btn-sm btn_otro_pedido row_articulo"
+             producto="01010101" departamento="000" descripcion="Otro producto" unidad="NA" imagen="https://sd.ferbis.com/assets/img/productos/01010101.png" precio="0.0000">
+                Producto no encontrado <i class="fa fa-file-text-o" aria-hidden="true"></i></i>
+            </a>
             Total (aprox) $<span class="total_pedido">0.00</span>
             <a href="pedido.html" class="btn btn-success btn-lg blank_a btn_realizar_pedido" mensaje="El consumo mínimo es de $200.00">
-            Realizar Pedido <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                Realizar Pedido <i class="fa fa-arrow-right" aria-hidden="true"></i>
             </a>
         </div>
     </div>
 </div>
-
-
 
 <!-- MODAL PARA INDICAR LA CANTIDAD -->
 <div id="agregarArticuloModal" class="modal fade" role="dialog">
@@ -164,6 +166,9 @@
       </div>
       <form id="form_alta_carrito">
       <div class="modal-body">
+
+        <div class="ocultar_contenido_producto">
+
         <div class="row imagen_modal" style="text-align: center">
             <div class="img_modal_loader" style="height: 150px;"></div>
             <img src='img/no_image.png' class='img_art2 img_prod_modal'>
@@ -179,6 +184,7 @@
                 </a>
             </div>
             <div class="col col-xs-4" style="padding: 0px">
+                <input type="hidden" name='preparado' class="check_preparado_input">
                 <input type="hidden" name='asado' class="check_asado_input">
                 <input type="hidden" name="unidad" id="unidad_modal_form">
                 <input type="hidden" name="id_cliente" id="cliente_modal_form">
@@ -195,21 +201,35 @@
                 </a>
             </div>
         </div>
-        <div class="row fyv_pieza" style="text-align: center" hidden>
-            <span class="label label-warning">Para especificar piezas utilice el campo de detalles</span>
-        </div>
         <div class="row unidad_modal" style="text-align: center;font-weight: bold;"></div>
+        <div class="row fyv_pieza" style="text-align: center" hidden>
+             Para especificar en PIEZAS utilice el campo de detalles<br><br>
+        </div>
         <div class="row row_asado" >
-                <div class="col-xs-9 servicio_asado" style="text-align: right; padding-top: 5px">Servicio de Asado <i class="fa fa-fire" aria-hidden="true"></i><i class="fa fa-fire" aria-hidden="true"></i><i class="fa fa-fire" aria-hidden="true"></i>
-                </div>
-                <div class="col-xs-2 div_check_asado"><input type="checkbox" class="form-control check_asado"></div>
+            <div class="col-xs-4 servicio_preparado" style="text-align: right; padding-top: 5px">Preparado</div>
+            <div class="col-xs-2 div_check_preparado"><input type="checkbox" class="form-control check_preparado"></div>
+            <div class="col-xs-4 servicio_asado" style="text-align: right; padding-top: 5px">Asado <i class="fa fa-fire" aria-hidden="true"></i></div>
+            <div class="col-xs-2 div_check_asado"><input type="checkbox" class="form-control check_asado"></div>
         </div>
         <div class="row fyv_asado" style="text-align: center" hidden>
-            <span class="label label-primary">Especifique las indicaciones del asado en el campo de detalles</span>
+            <div class="row row_asado" >
+            <div class="col-xs-6" style="text-align: right; padding-top: 10px">Término</div>
+            <div class="col-xs-6" style="">
+                <select class="form-control select_termino" name="termino">
+                    <option value="B/A">Bien Asado</option>
+                    <option value="3/4">Tres Cuartos</option>
+                    <option value="1/2">Término Medio</option>
+                </select>
+            </div>
+            </div>
+            Indicaciones del asado en el campo de detalles
         </div>
+
+        </div>
+        <div class="ocultar_contenido_producto_mensaje" hidden>Describa a detalle los productos que desea agregar a su pedido</div>
         <div class="row">
             <div class="col-xs-12" style="padding-top: 10px;">
-                <textarea name="detalles" class="form-control ord_detalles" rows="2" placeholder="Detalles, presentación o termino del pedido"></textarea>
+                <textarea name="detalles" class="form-control ord_detalles" rows="2" placeholder="Detalles del pedido"></textarea>
             </div>
         </div>
     </div>
@@ -218,7 +238,7 @@
         <div class="row">
             <div class="col-xs-6">
                 <button type="button" class="btn btn-warning" data-dismiss="modal">
-                    <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>  Regresar
+                    <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Regresar
                 </button>
             </div>
             <div class="col-xs-6">
@@ -246,7 +266,7 @@
       <form id="form_alta_carrito">
       <div class="modal-body modal_bienvenida_body" style="text-align: center">
         <img width="50%" src="img/logo.png" style="margin-top: 2px">
-        <h4>Gracias por tu preferencia!</h4>Para brindarte un mejor servicio apoyanos con los siguientes datos.<br><br>
+        <h4>Gracias por tu preferencia.</h4>Para brindarte un mejor servicio apoyanos con los siguientes datos.<br><br>
         
         <input type="text" class="form-control modal_bienvenida_nombre" id="cliente_nombre">
         Nombre Completo
@@ -277,6 +297,7 @@
       </div>
       <form id="form_editar_carrito">
       <div class="modal-body">
+        <div class="ocultar_contenido_producto">
         <div class="row imagen_modal" style="text-align: center">
             <div class="img_modal_loader_e" style="height: 150px;"></div>
             <img src='img/no_image.png' class='img_art2 img_prod_modal_e'>
@@ -294,6 +315,7 @@
             <div class="col col-xs-4" style="padding: 0px">
                 <input type="hidden" name="id_carrito_det" id="producto_carrito_modal_form_e">
                 <input type="hidden" name='asado' class="check_asado_input">
+                <input type="hidden" name='preparado' class="check_preparado_input">
                 <input type="hidden" name="unidad" id="unidad_modal_form_e">
                 <input type="hidden" name="id_cliente" id="cliente_modal_form_e">
                 <input type="hidden" name="producto" id="producto_modal_form_e">
@@ -310,19 +332,33 @@
             </div>
         </div>
         <div class="row fyv_pieza" style="text-align: center" hidden>
-            <span class="label label-warning">Para especificar piezas utilice el campo de detalles</span>
+            Para especificar en PIEZAS utilice el campo de detalles<br><br>
         </div>
         <div class="row unidad_modal_e" style="text-align: center;font-weight: bold;"></div>
         <div class="row row_asado" >
-                <div class="col-xs-9 servicio_asado" style="text-align: right; padding-top: 5px">Servicio de Asado <i class="fa fa-fire" aria-hidden="true"></i><i class="fa fa-fire" aria-hidden="true"></i><i class="fa fa-fire" aria-hidden="true"></i></div>
-                <div class="col-xs-2 div_check_asado"><input type="checkbox" class="form-control check_asado"></div>
+            <div class="col-xs-4 servicio_preparado" style="text-align: right; padding-top: 5px">Preparado</div>
+            <div class="col-xs-2 div_check_preparado"><input type="checkbox" class="form-control check_preparado"></div>
+            <div class="col-xs-4 servicio_asado" style="text-align: right; padding-top: 5px">Asado <i class="fa fa-fire" aria-hidden="true"></i></div>
+            <div class="col-xs-2 div_check_asado"><input type="checkbox" class="form-control check_asado"></div>
         </div>
         <div class="row fyv_asado" style="text-align: center" hidden>
-            <span class="label label-primary">Especifique las indicaciones del asado en el campo de detalles</span>
+            <div class="row row_asado" >
+            <div class="col-xs-6" style="text-align: right; padding-top: 10px">Término</div>
+            <div class="col-xs-6" style="">
+                <select class="form-control select_termino" name="termino">
+                    <option value="B/A">Bien Asado</option>
+                    <option value="3/4">Tres Cuartos</option>
+                    <option value="1/2">Término Medio</option>
+                </select>
+            </div>
+            </div>
+            Indicaciones del asado en el campo de detalles
         </div>
+        </div>
+        <div class="ocultar_contenido_producto_mensaje" hidden>Describa a detalle los productos que desea agregar a su pedido</div>
         <div class="row">
             <div class="col-xs-12" style="padding-top: 10px">
-                <textarea name="detalles" class="form-control ord_detalles" rows="2" placeholder="Detalles, presentación o termino del pedido"></textarea>
+                <textarea name="detalles" class="form-control ord_detalles" rows="2" placeholder="Detalles del pedido"></textarea>
             </div>
         </div>
     </div>
@@ -368,6 +404,5 @@
     <script type="text/javascript" src="js/rutas.js"></script>
     <script type="text/javascript" src="js/funciones.js"></script>   
     <script type="text/javascript" src="js/session.js"></script>
-    
 </footer>
 </html>

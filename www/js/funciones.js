@@ -111,6 +111,15 @@ document.ontouchmove = event => {event.preventDefault();};
 // Al presionar un articulo
 	$(document).on("click",".row_articulo",function(){
 		$("#agregarArticuloModal").modal("show");
+		if($(this).attr('producto')=="01010101"){
+			$(".ocultar_contenido_producto").hide();
+			$(".ocultar_contenido_producto_mensaje").show();
+			$(".ord_detalles").attr("rows",4);
+		}else{
+			$(".ocultar_contenido_producto").show();
+			$(".ocultar_contenido_producto_mensaje").hide();
+			$(".ord_detalles").attr("rows",2);
+		}
 		$(".descripcion_modal").html($(this).attr('descripcion'));
 		$(".unidad_modal").html($(this).attr('unidad'));
 
@@ -123,6 +132,7 @@ document.ontouchmove = event => {event.preventDefault();};
 		
 		$(".input_orden").val(1);
 		$(".check_asado").prop('checked',false);
+		$(".check_preparado_input").prop('checked',false);
 		$(".ord_detalles").val("");
 		$(".check_asado_input").val(0);
 
@@ -135,7 +145,11 @@ document.ontouchmove = event => {event.preventDefault();};
 		$("#descripcion_modal_form").val($(this).attr('descripcion'));
 
 		//etiquetas
-		if($(this).attr('departamento')=='005'||$(this).attr('departamento')=='002'){$(".fyv_pieza").show(500);}else{$(".fyv_pieza").hide();}
+		if($(this).attr('departamento')=='005'||$(this).attr('departamento')=='002'){
+			$(".fyv_pieza").show(500);
+		}
+		else{$(".fyv_pieza").hide();
+		}
 		$(".fyv_asado").hide();
 
 		
@@ -151,10 +165,19 @@ document.ontouchmove = event => {event.preventDefault();};
 	$(document).on("click",".servicio_asado",function(){
 		$(this).parent('div').find('.div_check_asado').find('input').click();
 	})
+	// al pesionar el texto del servicio_asado
+	$(document).on("click",".servicio_preparado",function(){
+		$(this).parent('div').find('.div_check_preparado').find('input').click();
+	})
 	//actualizacion de input de asado
 	$(document).on('click',".check_asado",function(){
-		if($(this).is(":checked")){$(".check_asado_input").val(1);$(".fyv_asado").show(500);}
+		if($(this).is(":checked")){$(".check_asado_input").val(1);$(".fyv_asado").show(500); $(".select_termino").val('B/A');}
 		else{$(".check_asado_input").val(0); $(".fyv_asado").hide(500);}
+	})
+	//actualizacion de input de asado
+	$(document).on('click',".check_preparado",function(){
+		if($(this).is(":checked")){$(".check_preparado_input").val(1);}
+		else{$(".check_preparado_input").val(0);}
 	})
 	
 // Al precional el boton de mas producto
@@ -204,11 +227,11 @@ $(document).on("click",".agregar_al_carrito_btn",function(){
 	$("#agregarArticuloModal").modal("hide");
 	$.post(url_api+'agregar_producto_pedido_activo',$("#form_alta_carrito").serialize(),function(r){
 		if(r>0){
-			notificacion("Producto agregado a su carrito!");
+			notificacion("Producto agregado a su carrito");
 			actualizar_burbuja_carrito();
 			actualizar_burbuja_notificaciones();
 		}else{
-			notificacion("Error!");
+			notificacion("Error");
 		}
 	}).fail(function(error) { alert("Error de conexión...");  console.log(error.responseJSON); });
 })
@@ -228,9 +251,10 @@ $(document).on("click",".articulo_carrito",function(){
 	$(".unidad_modal_e").html($(this).attr('unidad'));
 	$(".input_orden").val(parseFloat($(this).attr('cantidad')).toFixed(2));
 	$(".check_asado").prop('checked',false);
-	if($(this).attr('asado')=='1'){$(".check_asado").prop('checked',true);}
+	if($(this).attr('asado')=='1'){$(".fyv_asado").show();$(".check_asado").prop('checked',true);}
 	$(".ord_detalles").val($(this).attr('detalles'));
 	$(".check_asado_input").val($(this).attr('asado'));
+	$(".select_termino").val($(this).attr('termino'));
 
 	//datos fara formulario 
 	$("#producto_carrito_modal_form_e").val($(this).attr('id_carrito_det'));
@@ -251,6 +275,10 @@ $(document).on("click",".articulo_carrito",function(){
 	}
 })
 
+//funcion para agregar otro producto que no se encontro en el catalogo
+$(document).on("click",".btn_otro_pedido", function(){
+	$("#otroArticuloModal").modal("show");
+})
 
 
 //funcion para eliminar producto del carrito
@@ -261,7 +289,7 @@ $(document).on("click",".btn_modal_borrar_e", function(){
 		$.post(url_api+'remover_carrito',{id_carrito_det:id_carrito_det},function(r){
 			actualizar_burbuja_carrito();
 			actualizar_burbuja_notificaciones();
-			notificacion("Articulo removido del carrito");
+			notificacion("Artículo removido del carrito");
 		}).fail(function(error) { alert("Error de conexión...");  console.log(error.responseJSON); });
 	}
 })
@@ -270,7 +298,7 @@ $(document).on("click",".btn_modal_borrar_e", function(){
 $(document).on("click",".btn_modal_guardar_e", function(){
 	$("#editarArticuloModal").modal("hide");
 	$.post(url_api+'editar_carrito',$("#form_editar_carrito").serialize(),function(r){
-		notificacion("Articulo del pedido actualizado");
+		notificacion("Artículo del pedido actualizado");
 	}).fail(function(error) { alert("Error de conexión...");  console.log(error.responseJSON); });
 })
 
@@ -334,6 +362,7 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 							"departamento='"+prod.departamento+"' "+
 							"cantidad='"+prod.cantidad+"' "+
 							"asado='"+prod.asado+"' "+
+							"termino='"+prod.termino+"' "+
 							"descripcion='"+capitalize(prod.descripcion)+"' "+
 							"unidad='"+prod.unidad+"' "+
 							"detalles='"+prod.detalles+"' "+

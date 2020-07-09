@@ -87,7 +87,7 @@
 	$(document).ready(function() {
 		$(document).on("click",".btn_guardar_cuenta",function(){
 			$.post(url_api+'actualizar_cuenta',$("#form_datos_cuenta").serialize(),function(r){
-				notificacion("Datos Guardados con exito!");
+				notificacion("Datos guardados con éxito");
 			})
 		})
 		$.post(url_api+'datos_cuenta',{id_cliente:sesion_local.getItem("FerbisAPP_id")},function(r){
