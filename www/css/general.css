@@ -346,14 +346,14 @@
 }
 .contenido_carrito{
 	border: solid 1px #DEDEDE;
-	height: 73vh;
+	height: 70vh;
 	overflow-y: auto;
 	padding-top: 10px;
 }
 .div_procesar_pedido{
 	text-align: center;
 	font-weight: bold;
-	height: 17vh;
+	height: 20vh;
 	padding: 10px;
 }
 .alerta_multiusos{

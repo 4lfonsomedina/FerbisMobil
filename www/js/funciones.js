@@ -331,11 +331,11 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 		$(".art_img").html(loader_mini());
 		$(".art_img").each(function(index, el) {
 			setTimeout(function() {
-					$(el).fadeOut(500,function(){
+					$(el).fadeOut(250,function(){
 						$(el).html("<img src='"+$(el).parent("div").parent("div").parent("div").attr('imagen')+"' class='img_art'>");
-						$(el).fadeIn(700);
+						$(el).fadeIn(250);
 					});
-				},600*index);
+				},500*index);
 		})
 /*
 		$(".art_img").hide();setTimeout(function() {
