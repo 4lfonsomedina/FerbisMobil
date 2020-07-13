@@ -298,13 +298,13 @@ function calcular_envio(id_sucursal){
 		
 		$.each(horarios, function( i, pedido ){
 			if(pedido.disponible=='s'){
-				$("#select_horas_disponibles").append("<option value='"+pedido.hora+":00:00'>"+formato_12hrs(pedido.hora)+"</option>");
+				$("#select_horas_disponibles").append("<option value='"+pedido.hora+":00'>"+pedido.hora_nice+"</option>");
 			}
 		})
 		$.each(horarios, function( i, pedido ){
 			if(pedido.disponible=='s'){
 				$("#fecha_pedido").val(pedido.fecha);
-				$("#select_horas_disponibles").val(pedido.hora+":00:00");
+				$("#select_horas_disponibles").val(pedido.hora+":00");
 				return false;
 			}
 		})
