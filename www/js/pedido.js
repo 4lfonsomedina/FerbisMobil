@@ -133,6 +133,11 @@ function cargar_datos() {
 				$(".li_paso2 > a").click();
 				return;
 			}
+			if($('input:radio[name=servicio]:checked').val()==1&&$("#fecha_pedido").val()==''){
+				alert('Es necesario capturar la fecha del pedido');
+				$(".li_paso1 > a").click();
+				return;
+			}
 			if($('input:radio[name=servicio]:checked').val()==1&&$(".cuenta_colonia").val()==''){
 				alert('Es necesario capturar su colonia');
 				$(".li_paso1 > a").click();
@@ -285,15 +290,19 @@ function geolacalizar_direccion(){
 }
 
 function calcular_envio(id_sucursal){
+	if($("#fecha_pedido").val()==""){return;}
 	//contamos los asados
 	var asados = 0;
 	$(".articulo_carrito").each(function(index, el) {if($(this).attr('asado')==1){asados++;}});
 	//verificar el horario disponible
-	$.post(url_api+"calcular_hora_entrega",{dia:$("#fecha_pedido").val(),id_sucursal:id_sucursal,asado:asados},function(r){
+	$.post(url_api+"calcular_hora_entrega2",{dia:$("#fecha_pedido").val(),id_sucursal:id_sucursal,asado:asados},function(r){
 		//verificamos si es un json
 		$("#select_horas_disponibles").html("");
 		try{var horarios = jQuery.parseJSON(r);}
-       	catch(err){alert(r); return;}
+       	catch(err){
+       		$("#fecha_pedido").val("");
+       		alert(r); 
+       		return;}
 		//llenamos el select
 		
 		$.each(horarios, function( i, pedido ){

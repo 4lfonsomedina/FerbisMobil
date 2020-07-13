@@ -121,7 +121,9 @@ document.ontouchmove = event => {event.preventDefault();};
 			$(".ord_detalles").attr("rows",2);
 		}
 		$(".descripcion_modal").html($(this).attr('descripcion'));
+
 		$(".unidad_modal").html($(this).attr('unidad'));
+		
 
 		//transicion de imagen
 		$(".img_modal_loader").html(loader_mini());
@@ -132,6 +134,7 @@ document.ontouchmove = event => {event.preventDefault();};
 		
 		$(".input_orden").val(1);
 		$(".check_asado").prop('checked',false);
+		$(".check_asado").attr('departamento',$(this).attr('departamento'));
 		$(".check_preparado_input").prop('checked',false);
 		$(".ord_detalles").val("");
 		$(".check_asado_input").val(0);
@@ -146,18 +149,16 @@ document.ontouchmove = event => {event.preventDefault();};
 
 		//etiquetas
 		if($(this).attr('departamento')=='005'||$(this).attr('departamento')=='002'){
-			$(".fyv_pieza").show(500);
-		}
-		else{$(".fyv_pieza").hide();
-		}
-		$(".fyv_asado").hide();
-
-		
-
-		//ocultar o mostrar servicio de asado
-		if($(this).attr('departamento')=='002'||$(this).attr('departamento')=='005'){
 			$(".row_asado").show();
-		}else{
+			if($(this).attr('unidad')=='KG'){
+				$(".unidad_modal").html("<div class='col-xs-4'></div><div class='col-xs-4'>"+
+				"<select name='unidad' class='form-control cambio_unidad' style='text-align-last:center;' precio='"+$(this).attr('precio')+"'>"+
+				"<option value='KG'>KG</option>"+
+				"<option value='PZA'>PZA</option>"+
+				"</select></div><div class='col-xs-4'></div>");
+			}
+		}
+		else{
 			$(".row_asado").hide();
 		}
 	})
@@ -165,14 +166,35 @@ document.ontouchmove = event => {event.preventDefault();};
 	$(document).on("click",".servicio_asado",function(){
 		$(this).parent('div').find('.div_check_asado').find('input').click();
 	})
+	$(document).on("change",".cambio_unidad",function(){
+		$("#unidad_modal_form_e").val($(this).val());
+		$("#unidad_modal_form").val($(this).val());
+		if($(this).val()=="PZA"){
+			$("#precio_modal_form").val(0);
+			$("#precio_modal_form_e").val(0);
+		}else{
+			$("#precio_modal_form").val($(this).attr('precio'));
+			$("#precio_modal_form_e").val($(this).attr('precio'));
+		}
+		
+	})
 	// al pesionar el texto del servicio_asado
 	$(document).on("click",".servicio_preparado",function(){
 		$(this).parent('div').find('.div_check_preparado').find('input').click();
 	})
 	//actualizacion de input de asado
 	$(document).on('click',".check_asado",function(){
-		if($(this).is(":checked")){$(".check_asado_input").val(1);$(".fyv_asado").show(500); $(".select_termino").val('B/A');}
-		else{$(".check_asado_input").val(0); $(".fyv_asado").hide(500);}
+		if($(this).is(":checked")){
+			$(".check_asado_input").val(1);
+			$(".select_termino").val('B/A');
+			if($(this).attr("departamento")=='002'){
+				$(".fyv_asado").show(500);
+			}
+		}
+		else{
+			$(".check_asado_input").val(0); 
+			$(".fyv_asado").hide(500);
+		}
 	})
 	//actualizacion de input de asado
 	$(document).on('click',".check_preparado",function(){
@@ -211,7 +233,7 @@ document.ontouchmove = event => {event.preventDefault();};
 				$(".contenido_carrito").html(string_carrito(r));
 			}
 			var total_aprox=0;
-			$(".car_importe").each(function() {total_aprox+=parseFloat($(this).html());});
+			$(".articulo_carrito").each(function() {total_aprox+=parseFloat($(this).attr('cantidad'))*parseFloat($(this).attr('precio'));});
 			$(".total_pedido").html(parseFloat(total_aprox).toFixed(2));
 			if(parseFloat(total_aprox)<200){$(".btn_realizar_pedido").attr("disabled",true);}
 			else{$(".btn_realizar_pedido").removeAttr('disabled');}
@@ -251,6 +273,7 @@ $(document).on("click",".articulo_carrito",function(){
 	$(".unidad_modal_e").html($(this).attr('unidad'));
 	$(".input_orden").val(parseFloat($(this).attr('cantidad')).toFixed(2));
 	$(".check_asado").prop('checked',false);
+	$(".check_asado").attr('departamento',$(this).attr('departamento'));
 	if($(this).attr('asado')=='1'){$(".fyv_asado").show();$(".check_asado").prop('checked',true);}
 	$(".ord_detalles").val($(this).attr('detalles'));
 	$(".check_asado_input").val($(this).attr('asado'));
@@ -267,9 +290,17 @@ $(document).on("click",".articulo_carrito",function(){
 	$(".contenedor_menu_lateral_der").hide(300);
 	
 
-	//ocultar o mostrar servicio de asado
-	if($(this).attr('departamento')=='002'||$(this).attr('departamento')=='005'){
+	if($(this).attr('departamento')=='005'||$(this).attr('departamento')=='002'){
 		$(".row_asado").show();
+
+		if($(this).attr('unidad')=='KG'){
+			$(".unidad_modal_e").html("<div class='col-xs-4'></div><div class='col-xs-4'>"+
+			"<select name='unidad' class='form-control cambio_unidad' style='text-align-last:center;' precio='"+$(this).attr('precio')+"'>"+
+			"<option value='KG'>KG</option>"+
+			"<option value='PZA'>PZA</option>"+
+			"</select></div><div class='col-xs-4'></div>");
+		}
+			
 	}else{
 		$(".row_asado").hide();
 	}
@@ -355,7 +386,19 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 		var string_ret="";
 		$.each(jQuery.parseJSON(string_json), function( i, prod ) {
 			// se utiliza puntuacion para la imagen
+			var total=0;
+			var descripcion=prod.descripcion; if(prod.producto=="01010101"){ 
+				descripcion=prod.detalles;
+				prod.unidad="-";
+				prod.precio="0";
+				total="";
+			}else{
+				prod.unidad=parseFloat(prod.cantidad).toFixed(2)+"<br><b>"+prod.unidad;
+				total=parseFloat(prod.cantidad*prod.precio).toFixed(2);
+			}
+			if(total=="0.00"){total="";}
 			var asado=""; if(prod.asado=='1'){ asado='<i class="fa fa-fire ico_asado" aria-hidden="true"></i>';}
+
 			string_ret+="<a href='#' class='articulo_carrito' "+
 							"id_carrito_det='"+prod.id_carrito_det+"' "+
 							"producto='"+prod.producto+"' "+
@@ -367,10 +410,11 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 							"unidad='"+prod.unidad+"' "+
 							"detalles='"+prod.detalles+"' "+
 							"imagen='"+prod.puntuacion+"' "+
-							"precio='"+prod.precio+"' >"+
-			  				"<div class='col-xs-2 car_cantidad'>"+parseFloat(prod.cantidad).toFixed(2)+"<br><b>"+prod.unidad+"</b></div>"+
-			  				"<div class='col-xs-8 car_desc'>"+asado+" "+capitalize(prod.descripcion)+"</div>"+
-			  				"<div class='col-xs-2 car_importe'>"+parseFloat(prod.cantidad*prod.precio).toFixed(2)+"</div>"+
+							"precio='"+prod.precio+"' >";
+
+			  	string_ret+="<div class='col-xs-2 car_cantidad'>"+prod.unidad+"</b></div>"+
+			  				"<div class='col-xs-8 car_desc'>"+asado+" "+capitalize(descripcion)+"</div>"+
+			  				"<div class='col-xs-2 car_importe'>"+total+"</div>"+
 			  				"</a>";
 		});
 		return string_ret;
