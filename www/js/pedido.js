@@ -183,7 +183,7 @@ function cargar_datos() {
 			$(".p3_nombre").html(pedido.nombre);
 			$(".p3_telefono").html(pedido.telefono);
 			$(".p3_frecuente").html(pedido.numero);
-			var servicio = "A domicilio (+$30)"; if(pedido.servicio!=1){ servicio = "Paso por el"; }
+			var servicio = "A domicilio"; if(pedido.servicio!=1){ servicio = "Paso por el"; }
 			$(".p3_servicio").html(servicio);
 			$(".p3_direccion").html(pedido.dir_calle+" "+pedido.dir_numero1+" "+pedido.dir_numero1+","+pedido.dir_colonia);
 			$(".p3_referencia").html(pedido.referencia);
@@ -221,20 +221,36 @@ function cargar_datos() {
 		function string_carrito(string_json){
 			var string_ret="";
 			$.each(jQuery.parseJSON(string_json), function( i, prod ) {
+
+				var total=0;
+				var descripcion=prod.descripcion; if(prod.producto=="01010101"){ 
+					descripcion=prod.detalles;
+					prod.unidad="-";
+					prod.precio="0";
+					total="";
+				}else{
+					prod.unidad=parseFloat(prod.cantidad).toFixed(2)+"<br><b>"+prod.unidad;
+					total=parseFloat(prod.cantidad*prod.precio).toFixed(2);
+				}
+				if(total=="0.00"){total="";}
 				var asado=""; if(prod.asado=='1'){ asado='<i class="fa fa-fire ico_asado" aria-hidden="true"></i>';}
-				string_ret+="<div class='articulo_carrito' "+
-								"id_carrito_det='"+prod.id_carrito_det+"' "+
-								"producto='"+prod.producto+"' "+
-								"cantidad='"+prod.cantidad+"' "+
-								"asado='"+prod.asado+"' "+
-								"descripcion='"+capitalize(prod.descripcion)+"' "+
-								"unidad='"+prod.unidad+"' "+
-								"detalles='"+prod.detalles+"' "+
-								"precio='"+prod.precio+"' >"+
-				  				"<div class='col-xs-2 car_cantidad'>"+parseFloat(prod.cantidad).toFixed(2)+"<br><b>"+prod.unidad+"</b></div>"+
-				  				"<div class='col-xs-8 car_desc'>"+asado+" "+capitalize(prod.descripcion)+"</div>"+
-				  				"<div class='col-xs-2 car_importe'>"+parseFloat(prod.cantidad*prod.precio).toFixed(2)+"</div>"+
-				  				"</div>";
+				string_ret+="<a href='#' class='articulo_carrito' "+
+							"id_carrito_det='"+prod.id_carrito_det+"' "+
+							"producto='"+prod.producto+"' "+
+							"departamento='"+prod.departamento+"' "+
+							"cantidad='"+prod.cantidad+"' "+
+							"asado='"+prod.asado+"' "+
+							"termino='"+prod.termino+"' "+
+							"descripcion='"+capitalize(prod.descripcion)+"' "+
+							"unidad='"+prod.unidad+"' "+
+							"detalles='"+prod.detalles+"' "+
+							"imagen='"+prod.puntuacion+"' "+
+							"precio='"+prod.precio+"' >";
+
+			  	string_ret+="<div class='col-xs-2 car_cantidad'>"+prod.unidad+"</b></div>"+
+			  				"<div class='col-xs-8 car_desc'>"+asado+" "+capitalize(descripcion)+"</div>"+
+			  				"<div class='col-xs-2 car_importe'>"+total+"</div>"+
+			  				"</a>";
 			});
 		return string_ret;
 		}

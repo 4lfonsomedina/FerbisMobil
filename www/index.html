@@ -145,7 +145,7 @@
             contenido en lista
         </div>
         <div class="div_procesar_pedido">
-             <a href="#" class="btn btn-default btn-sm btn_otro_pedido row_articulo"
+             <a href="#" class="btn btn-primary btn-sm btn_otro_pedido row_articulo"
              producto="01010101" departamento="000" descripcion="Otro producto" unidad="NA" imagen="https://sd.ferbis.com/assets/img/productos/01010101.png" precio="0.0000">
                 ¿Encontraste todo lo que buscabas?</i>
             </a>
@@ -206,15 +206,30 @@
         <div class="row fyv_pieza" style="text-align: center" hidden>
              Para especificar en PIEZAS utilice el campo de detalles<br><br>
         </div>
-        <div class="row row_asado" >
-            <div class="col-xs-4 servicio_preparado" style="text-align: right; padding-top: 5px">Preparado</div>
-            <div class="col-xs-2 div_check_preparado"><input type="checkbox" class="form-control check_preparado"></div>
-            <div class="col-xs-4 servicio_asado" style="text-align: right; padding-top: 5px">Asado <i class="fa fa-fire" aria-hidden="true"></i></div>
-            <div class="col-xs-2 div_check_asado"><input type="checkbox" class="form-control check_asado"></div>
+        <div class="row row_asado" style="padding-top:15px">
+            <div class="row_preparado col-xs-6">
+                <div class="col-xs-8 servicio_preparado" style="text-align: right; padding-top: 5px">Preparado</div>
+                <div class="col-xs-4 div_check_preparado"><input type="checkbox" class="form-control check_preparado"></div>
+            </div><div class="col-xs-6 row_preparado2" hidden></div>
+            <div class="contenedor_asado col-xs-6">
+                <div class="col-xs-8 servicio_asado" style="text-align: right; padding-top: 5px">Asado <i class="fa fa-fire" aria-hidden="true"></i></div>
+                <div class="col-xs-4 div_check_asado"><input type="checkbox" class="form-control check_asado"></div>
+            </div>
+            <div class="contenedor_corte col-xs-12">
+                    <div class="col-xs-4" style="text-align: right; padding-top: 10px">Corte</div>
+                    <div class="col-xs-6" style="">
+                        <select class="form-control select_corte" name="corte">
+                            <option value="N">No Aplica</option>
+                            <option value="1/2">Delgado 3/4"</option>
+                            <option value="1/2">Medio 1/2"</option>
+                            <option value="1">Grueso 1"</option>
+                        </select>
+                    </div>
+                </div>
         </div>
         <div class="row fyv_asado" style="text-align: center" hidden>
             <div class="row row_asado" >
-            <div class="col-xs-6" style="text-align: right; padding-top: 10px">Término</div>
+            <div class="col-xs-4" style="text-align: right; padding-top: 10px">Término</div>
             <div class="col-xs-6" style="">
                 <select class="form-control select_termino" name="termino">
                     <option value="B/A">Bien Asado</option>
@@ -223,11 +238,10 @@
                 </select>
             </div>
             </div>
-            Indicaciones del asado en el campo de detalles
         </div>
 
         </div>
-        <div class="ocultar_contenido_producto_mensaje" hidden>Describa a detalle los productos que desea agregar a su pedido</div>
+        <div class="ocultar_contenido_producto_mensaje" hidden>Describa a detalle el producto que desea agregar a su pedido</div>
         <div class="row">
             <div class="col-xs-12" style="padding-top: 10px;">
                 <textarea name="detalles" class="form-control ord_detalles" rows="2" placeholder="Detalles del pedido"></textarea>
@@ -336,15 +350,31 @@
             Para especificar en PIEZAS utilice el campo de detalles<br><br>
         </div>
         <div class="row unidad_modal_e" style="text-align: center;font-weight: bold;"></div>
-        <div class="row row_asado" >
-            <div class="col-xs-4 servicio_preparado" style="text-align: right; padding-top: 5px">Preparado</div>
-            <div class="col-xs-2 div_check_preparado"><input type="checkbox" class="form-control check_preparado"></div>
-            <div class="col-xs-4 servicio_asado" style="text-align: right; padding-top: 5px">Asado <i class="fa fa-fire" aria-hidden="true"></i></div>
-            <div class="col-xs-2 div_check_asado"><input type="checkbox" class="form-control check_asado"></div>
+        <div class="row row_asado" style="padding-top:15px">
+            <div class="row_preparado col-xs-6">
+                <div class="col-xs-8 servicio_preparado" style="text-align: right; padding-top: 5px">Preparado</div>
+                <div class="col-xs-4 div_check_preparado"><input type="checkbox" class="form-control check_preparado"></div>
+            </div>
+            <div class="col-xs-6 row_preparado2" hidden></div>
+            <div class="contenedor_asado col-xs-6">
+                <div class="col-xs-8 servicio_asado" style="text-align: right; padding-top: 5px">Asado <i class="fa fa-fire" aria-hidden="true"></i></div>
+                <div class="col-xs-4 div_check_asado"><input type="checkbox" class="form-control check_asado"></div>
+            </div>
+            <div class="contenedor_corte col-xs-12">
+                    <div class="col-xs-4" style="text-align: right; padding-top: 10px">Corte</div>
+                    <div class="col-xs-6" style="">
+                        <select class="form-control select_corte" name="corte">
+                            <option value="N">No Aplica</option>
+                            <option value="1/2">Delgado 3/4"</option>
+                            <option value="1/2">Medio 1/2"</option>
+                            <option value="1">Grueso 1"</option>
+                        </select>
+                    </div>
+                </div>
         </div>
         <div class="row fyv_asado" style="text-align: center" hidden>
             <div class="row row_asado" >
-            <div class="col-xs-6" style="text-align: right; padding-top: 10px">Término</div>
+            <div class="col-xs-4" style="text-align: right; padding-top: 10px">Término</div>
             <div class="col-xs-6" style="">
                 <select class="form-control select_termino" name="termino">
                     <option value="B/A">Bien Asado</option>
@@ -353,7 +383,6 @@
                 </select>
             </div>
             </div>
-            Indicaciones del asado en el campo de detalles
         </div>
         </div>
         <div class="ocultar_contenido_producto_mensaje" hidden>Describa a detalle los productos que desea agregar a su pedido</div>

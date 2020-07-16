@@ -135,7 +135,7 @@ document.ontouchmove = event => {event.preventDefault();};
 		$(".input_orden").val(1);
 		$(".check_asado").prop('checked',false);
 		$(".check_asado").attr('departamento',$(this).attr('departamento'));
-		$(".check_preparado_input").prop('checked',false);
+		$(".check_preparado_input").val(0);
 		$(".ord_detalles").val("");
 		$(".check_asado_input").val(0);
 
@@ -147,6 +147,7 @@ document.ontouchmove = event => {event.preventDefault();};
 		$("#cliente_modal_form").val(sesion_local.getItem("FerbisAPP_id"));
 		$("#descripcion_modal_form").val($(this).attr('descripcion'));
 
+		$(".fyv_asado").hide(500);
 		//etiquetas
 		if($(this).attr('departamento')=='005'||$(this).attr('departamento')=='002'){
 			$(".row_asado").show();
@@ -161,6 +162,15 @@ document.ontouchmove = event => {event.preventDefault();};
 		else{
 			$(".row_asado").hide();
 		}
+		if($(this).attr('departamento')=='005'){
+		$(".row_preparado").hide();
+		$(".row_preparado2").show();
+		}else{
+			$(".row_preparado").show();
+			$(".row_preparado2").hide();
+		}
+		if($(this).attr('departamento')=='002'){$(".contenedor_corte").show();}
+		else{ $(".contenedor_corte").hide(); }
 	})
 	// al pesionar el texto del servicio_asado
 	$(document).on("click",".servicio_asado",function(){
@@ -183,7 +193,7 @@ document.ontouchmove = event => {event.preventDefault();};
 		$(this).parent('div').find('.div_check_preparado').find('input').click();
 	})
 	//actualizacion de input de asado
-	$(document).on('click',".check_asado",function(){
+	$(document).on('change',".check_asado",function(){
 		if($(this).is(":checked")){
 			$(".check_asado_input").val(1);
 			$(".select_termino").val('B/A');
@@ -197,7 +207,7 @@ document.ontouchmove = event => {event.preventDefault();};
 		}
 	})
 	//actualizacion de input de asado
-	$(document).on('click',".check_preparado",function(){
+	$(document).on('change',".check_preparado",function(){
 		if($(this).is(":checked")){$(".check_preparado_input").val(1);}
 		else{$(".check_preparado_input").val(0);}
 	})
@@ -261,6 +271,15 @@ $(document).on("click",".agregar_al_carrito_btn",function(){
 //funcion para abrir modal de edicion deun pedido
 $(document).on("click",".articulo_carrito",function(){
 	$("#editarArticuloModal").modal("show");
+	if($(this).attr('producto')=="01010101"){
+			$(".ocultar_contenido_producto").hide();
+			$(".ocultar_contenido_producto_mensaje").show();
+			$(".ord_detalles").attr("rows",4);
+	}else{
+			$(".ocultar_contenido_producto").show();
+			$(".ocultar_contenido_producto_mensaje").hide();
+			$(".ord_detalles").attr("rows",2);
+	}
 
 	//transicion de imagen
 	$(".img_modal_loader_e").html(loader_mini());
@@ -273,11 +292,15 @@ $(document).on("click",".articulo_carrito",function(){
 	$(".unidad_modal_e").html($(this).attr('unidad'));
 	$(".input_orden").val(parseFloat($(this).attr('cantidad')).toFixed(2));
 	$(".check_asado").prop('checked',false);
+	$(".check_preparado").prop('checked',false);
 	$(".check_asado").attr('departamento',$(this).attr('departamento'));
 	if($(this).attr('asado')=='1'){$(".fyv_asado").show();$(".check_asado").prop('checked',true);}
+	if($(this).attr('preparado')=='1'){$(".check_preparado").prop('checked',true);}
 	$(".ord_detalles").val($(this).attr('detalles'));
 	$(".check_asado_input").val($(this).attr('asado'));
+	$(".check_preparado_input").val($(this).attr('preparado'));
 	$(".select_termino").val($(this).attr('termino'));
+	$(".select_corte").val($(this).attr('corte'));
 
 	//datos fara formulario 
 	$("#producto_carrito_modal_form_e").val($(this).attr('id_carrito_det'));
@@ -292,18 +315,26 @@ $(document).on("click",".articulo_carrito",function(){
 
 	if($(this).attr('departamento')=='005'||$(this).attr('departamento')=='002'){
 		$(".row_asado").show();
-
-		if($(this).attr('unidad')=='KG'){
-			$(".unidad_modal_e").html("<div class='col-xs-4'></div><div class='col-xs-4'>"+
+		$(".unidad_modal_e").html("<div class='col-xs-4'></div><div class='col-xs-4'>"+
 			"<select name='unidad' class='form-control cambio_unidad' style='text-align-last:center;' precio='"+$(this).attr('precio')+"'>"+
 			"<option value='KG'>KG</option>"+
 			"<option value='PZA'>PZA</option>"+
 			"</select></div><div class='col-xs-4'></div>");
-		}
+		console.log($(this).attr('unidad'));
+		$(".cambio_unidad").val($(this).attr('unidad'));
 			
 	}else{
 		$(".row_asado").hide();
 	}
+	if($(this).attr('departamento')=='005'){
+		$(".row_preparado").hide();
+		$(".row_preparado2").show();
+	}else{
+		$(".row_preparado").show();
+		$(".row_preparado2").hide();
+	}
+	if($(this).attr('departamento')=='002'){$(".contenedor_corte").show();}
+	else{ $(".contenedor_corte").hide(); }
 })
 
 //funcion para agregar otro producto que no se encontro en el catalogo
@@ -387,13 +418,14 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 		$.each(jQuery.parseJSON(string_json), function( i, prod ) {
 			// se utiliza puntuacion para la imagen
 			var total=0;
+			var unidad="";
 			var descripcion=prod.descripcion; if(prod.producto=="01010101"){ 
 				descripcion=prod.detalles;
 				prod.unidad="-";
 				prod.precio="0";
 				total="";
 			}else{
-				prod.unidad=parseFloat(prod.cantidad).toFixed(2)+"<br><b>"+prod.unidad;
+				unidad=parseFloat(prod.cantidad).toFixed(2)+"<br><b>"+prod.unidad;
 				total=parseFloat(prod.cantidad*prod.precio).toFixed(2);
 			}
 			if(total=="0.00"){total="";}
@@ -405,14 +437,16 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 							"departamento='"+prod.departamento+"' "+
 							"cantidad='"+prod.cantidad+"' "+
 							"asado='"+prod.asado+"' "+
+							"preparado='"+prod.preparado+"' "+
 							"termino='"+prod.termino+"' "+
+							"corte='"+prod.corte+"' "+
 							"descripcion='"+capitalize(prod.descripcion)+"' "+
 							"unidad='"+prod.unidad+"' "+
 							"detalles='"+prod.detalles+"' "+
 							"imagen='"+prod.puntuacion+"' "+
 							"precio='"+prod.precio+"' >";
 
-			  	string_ret+="<div class='col-xs-2 car_cantidad'>"+prod.unidad+"</b></div>"+
+			  	string_ret+="<div class='col-xs-2 car_cantidad'>"+unidad+"</b></div>"+
 			  				"<div class='col-xs-8 car_desc'>"+asado+" "+capitalize(descripcion)+"</div>"+
 			  				"<div class='col-xs-2 car_importe'>"+total+"</div>"+
 			  				"</a>";
