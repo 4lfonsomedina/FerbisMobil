@@ -348,7 +348,7 @@ $(document).on("click",".btn_otro_pedido", function(){
 
 //funcion para eliminar producto del carrito
 $(document).on("click",".btn_modal_borrar_e", function(){
-	if(confirm("Esta seguro de que desea remover el articulo del carrito?")){
+	if(confirm("¿Está seguro que desea remover el artículo de carrito?")){
 		var id_carrito_det=$("#producto_carrito_modal_form_e").val();
 		$("#editarArticuloModal").modal("hide");
 		$.post(url_api+'remover_carrito',{id_carrito_det:id_carrito_det},function(r){
