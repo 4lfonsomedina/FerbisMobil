@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="ferbis.com" version="1.0.5" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.phonegap.sd_ferbis" version="1.0.51" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Ferbis</name>
     <description>
         Ferbis
@@ -18,6 +18,10 @@
     <preference name="StatusBarStyle" value="lightcontent" />
     <preference name="StatusBarDefaultScrollToTop" value="false" />
     <preference name="SplashScreen" value="none"/>
+    <feature name="CDVWKWebViewEngine">
+    <param name="ios-package" value="CDVWKWebViewEngine" />
+    </feature>
+    <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
 
     
     <plugin name="cordova-plugin-file" source="npm" spec="~4.3.3" 
@@ -30,6 +34,7 @@
         value="Necesario para navegar entre ventanas"/>
     <plugin name="cordova-plugin-statusbar" spec="~2.4.3" source="npm" 
         value="Necesario para cambiar color de la barra"/>
+
 
     <allow-navigation href="http://*/*" />
     <access origin="*" />
