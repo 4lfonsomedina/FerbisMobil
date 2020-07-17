@@ -110,6 +110,7 @@ document.ontouchmove = event => {event.preventDefault();};
 
 // Al presionar un articulo
 	$(document).on("click",".row_articulo",function(){
+		$(".sombra_menu").click();
 		$("#agregarArticuloModal").modal("show");
 		if($(this).attr('producto')=="01010101"){
 			$(".ocultar_contenido_producto").hide();
@@ -262,6 +263,7 @@ $(document).on("click",".agregar_al_carrito_btn",function(){
 			notificacion("Producto agregado a su carrito");
 			actualizar_burbuja_carrito();
 			actualizar_burbuja_notificaciones();
+			$('.sombra_menu').click();
 		}else{
 			notificacion("Error");
 		}
@@ -270,6 +272,7 @@ $(document).on("click",".agregar_al_carrito_btn",function(){
 
 //funcion para abrir modal de edicion deun pedido
 $(document).on("click",".articulo_carrito",function(){
+	$('.sombra_menu').click();
 	$("#editarArticuloModal").modal("show");
 	if($(this).attr('producto')=="01010101"){
 			$(".ocultar_contenido_producto").hide();
@@ -361,6 +364,7 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 	$("#editarArticuloModal").modal("hide");
 	$.post(url_api+'editar_carrito',$("#form_editar_carrito").serialize(),function(r){
 		notificacion("Artículo del pedido actualizado");
+		$('.sombra_menu').click();
 	}).fail(function(error) { alert("Error de conexión...");  console.log(error.responseJSON); });
 })
 

@@ -17,7 +17,7 @@
 					if(estatus==0){estatusB[0]='Captura'; status_desc="Captura";}
 					if(estatus==1){estatusB[1]='Surtiendo'; status_desc="Surtiendo";}
 					if(estatus==2){estatusB[2]='Preparado'; status_desc="Preparado";}
-					if(estatus==3){estatusB[3]='Entregado'; status_desc="Entregado";}
+					if(estatus==3){estatusB[3]='Listo'; status_desc="Entrega";}
 					if(estatus==4){estatusB[4]='Cancelado'; status_desc="Cancelado";}
 
 					string_contenido+='<a href="#" class="pedido_row_a" id_carrito="'+pedido.id_carrito+'" '+

@@ -52,7 +52,6 @@ function cargar_datos() {
 					$(".sucursal_distancia_input").val(sucursal.distancia);
 					$(".pedido_id_sucursal").val(sucursal.id_sucursal);
 					$(".pedido_sucursal").val(sucursal.sucursal);
-					calcular_envio(sucursal.id_sucursal);
 				})
 		}
 
@@ -154,9 +153,11 @@ function cargar_datos() {
 				return;
 			}
 			$( ".btn_enviar_pedido" ).prop( "disabled", true );
+			//verificar fecha programada
+			$("#select_horas_disponibles").val()
 			$.post(url_api+'alta_pedido',$("#pedido_form").serialize(),function(r){
 				console.log(r);
-				$(".entrega_pedido_mensaje").html($("#fecha_pedido").val()+" "+formato_12hrs($("#select_horas_disponibles").val().split(":")[0]));
+				$(".entrega_pedido_mensaje").html($("#fecha_pedido").val()+" "+$("#select_horas_disponibles").val());
 				$('#modal_pedido_enviado').modal({backdrop: 'static', keyboard: false});
 			})
 			//console.log($("#pedido_form").serializeArray());
