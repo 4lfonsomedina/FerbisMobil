@@ -17,10 +17,6 @@
               "count": 1
             },
             {
-              "xml": "<feature name=\"Globalization\"><param name=\"android-package\" value=\"org.apache.cordova.globalization.Globalization\" /></feature>",
-              "count": 1
-            },
-            {
               "xml": "<feature name=\"NetworkStatus\"><param name=\"android-package\" value=\"org.apache.cordova.networkinformation.NetworkManager\" /></feature>",
               "count": 1
             },
@@ -72,9 +68,6 @@
     "cordova-plugin-geolocation": {
       "PACKAGE_NAME": "com.phonegap.helloworld"
     },
-    "cordova-plugin-globalization": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
-    },
     "cordova-plugin-network-information": {
       "PACKAGE_NAME": "com.phonegap.helloworld"
     },
@@ -124,22 +117,6 @@
       "runs": true
     },
     {
-      "id": "cordova-plugin-globalization.GlobalizationError",
-      "file": "plugins/cordova-plugin-globalization/www/GlobalizationError.js",
-      "pluginId": "cordova-plugin-globalization",
-      "clobbers": [
-        "window.GlobalizationError"
-      ]
-    },
-    {
-      "id": "cordova-plugin-globalization.globalization",
-      "file": "plugins/cordova-plugin-globalization/www/globalization.js",
-      "pluginId": "cordova-plugin-globalization",
-      "clobbers": [
-        "navigator.globalization"
-      ]
-    },
-    {
       "id": "cordova-plugin-network-information.network",
       "file": "plugins/cordova-plugin-network-information/www/network.js",
       "pluginId": "cordova-plugin-network-information",
@@ -177,7 +154,6 @@
   "plugin_metadata": {
     "cordova-plugin-dialogs": "1.3.4",
     "cordova-plugin-geolocation": "2.4.3",
-    "cordova-plugin-globalization": "1.0.9",
     "cordova-plugin-network-information": "1.3.4",
     "cordova-plugin-whitelist": "1.3.4",
     "cordova-plugin-wkwebview-engine": "1.2.1",

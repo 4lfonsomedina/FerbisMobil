@@ -39,14 +39,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-globalization": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-globalization@~1.0.7"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-network-information": {
     "source": {
       "type": "registry",

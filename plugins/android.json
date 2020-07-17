@@ -13,9 +13,6 @@
     "cordova-plugin-geolocation": {
       "PACKAGE_NAME": "com.phonegap.helloworld"
     },
-    "cordova-plugin-globalization": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
-    },
     "cordova-plugin-network-information": {
       "PACKAGE_NAME": "com.phonegap.helloworld"
     },
