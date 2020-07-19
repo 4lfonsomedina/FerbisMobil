@@ -242,6 +242,23 @@ document.ontouchmove = event => {event.preventDefault();};
 			}else{	
 				$(".div_procesar_pedido").show();
 				$(".contenido_carrito").html(string_carrito(r));
+				$(".articulo_carrito_drag").draggable({ axis: "x",revert: true,stop: function( event, ui ) {
+					var distancia=Math.min( 100, ui.position.left );
+			       console.log($(this).find('a').attr('class'));
+			       if(distancia>=100||distancia<=-100){
+			       		if(confirm("¿Está seguro que desea remover el artículo de carrito?")){
+			       			$(".sombra_menu").click();
+			       			$(this).remove();
+			       			var id_carrito_det=$(this).find('a').attr("id_carrito_det");
+							$.post(url_api+'remover_carrito',{id_carrito_det:id_carrito_det},function(r){
+								actualizar_burbuja_carrito();
+								actualizar_burbuja_notificaciones();
+								notificacion("Artículo removido del carrito");
+							}).fail(function(error) { alert("Error de conexión...");  console.log(error.responseJSON); });
+			       		}
+			       }
+			       	
+			      }	});
 			}
 			var total_aprox=0;
 			$(".articulo_carrito").each(function() {total_aprox+=parseFloat($(this).attr('cantidad'))*parseFloat($(this).attr('precio'));});
@@ -435,7 +452,7 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 			if(total=="0.00"){total="";}
 			var asado=""; if(prod.asado=='1'){ asado='<i class="fa fa-fire ico_asado" aria-hidden="true"></i>';}
 
-			string_ret+="<a href='#' class='articulo_carrito' "+
+			string_ret+="<div class='articulo_carrito_drag'><a href='#' class='articulo_carrito' "+
 							"id_carrito_det='"+prod.id_carrito_det+"' "+
 							"producto='"+prod.producto+"' "+
 							"departamento='"+prod.departamento+"' "+
@@ -453,7 +470,7 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 			  	string_ret+="<div class='col-xs-2 car_cantidad'>"+unidad+"</b></div>"+
 			  				"<div class='col-xs-8 car_desc'>"+asado+" "+capitalize(descripcion)+"</div>"+
 			  				"<div class='col-xs-2 car_importe'>"+total+"</div>"+
-			  				"</a>";
+			  				"</a></div>";
 		});
 		return string_ret;
 	}
