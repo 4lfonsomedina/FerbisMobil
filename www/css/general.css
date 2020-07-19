@@ -53,6 +53,7 @@
 .abrir_menu_lateral_der:active
 {
 	color: white;
+	text-decoration: none;
 }
 
 .menu_bar{

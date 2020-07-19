@@ -247,13 +247,13 @@ document.ontouchmove = event => {event.preventDefault();};
 			       console.log($(this).find('a').attr('class'));
 			       if(distancia>=100||distancia<=-100){
 			       		if(confirm("¿Está seguro que desea remover el artículo de carrito?")){
-			       			$(".sombra_menu").click();
 			       			$(this).remove();
+			       			$(".sombra_menu").click();
 			       			var id_carrito_det=$(this).find('a').attr("id_carrito_det");
 							$.post(url_api+'remover_carrito',{id_carrito_det:id_carrito_det},function(r){
 								actualizar_burbuja_carrito();
 								actualizar_burbuja_notificaciones();
-								notificacion("Artículo removido del carrito");
+								$(".abrir_menu_lateral_der").click();
 							}).fail(function(error) { alert("Error de conexión...");  console.log(error.responseJSON); });
 			       		}
 			       }
