@@ -137,8 +137,10 @@ document.ontouchmove = event => {event.preventDefault();};
 		$(".check_asado").prop('checked',false);
 		$(".check_asado").attr('departamento',$(this).attr('departamento'));
 		$(".check_preparado_input").val(0);
+		$(".check_preparado").prop('checked',false);
 		$(".ord_detalles").val("");
 		$(".check_asado_input").val(0);
+
 
 		//datos fara formulario 
 		$("#producto_modal_form").val($(this).attr('producto'));
