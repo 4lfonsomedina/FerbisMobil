@@ -35,6 +35,7 @@ document.ontouchmove = event => {event.preventDefault();};
 	$(document).on("click",".img_dep",function(){
 		var temp_dep=$(this).attr('dep');
 		$("#input_search_dep").val($(this).attr('dep'));
+		$(".input_search").attr('placeholder','Buscar en '+$(this).attr('nombre'))
 		if(temp_dep==0){regresar_inicio(); return;}
 
 		$("#contenedor_articulos").fadeOut(500,"swing",function(){	
