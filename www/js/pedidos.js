@@ -54,26 +54,46 @@
 			$(".modal_pedido_productos").html($(this).attr('productos'));
 			$(".modal_pedido_total").html($(this).attr('total'));
 			$(".contenido_pedido").html(loader());	
+			$(".boton_re-ordenar").attr('id_carrito',$(this).attr('id_carrito'));
+			if($(this).attr('status')=='Entrega'){$(".boton_re-ordenar").show();}
+			else{$(".boton_re-ordenar").hide();}
 			$.post(url_api+"get_carritos_id",{id:$(this).attr('id_carrito')},function(r){
 				$(".contenido_pedido").html(string_carrito_pedido(r));
+				
 				$("#modal_pedido").modal("show");
 			})
 			
 		})
 
+		//boton de re-ordenar
+		$(document).on("click",".boton_re-ordenar",function(){
+			console.log($(this).attr('id_carrito'));
+			$.post(url_api+"re_ordenar", {id_carrito:$(this).attr('id_carrito')}, function(r) {
+				alert("Pedido agregado a su carrito actual");
+				closeBrowser();
+			});
+		})
 
 
 		function string_carrito_pedido(string_json){
 		var string_ret="";
+		var id_departamento = "0";
 		$.each(jQuery.parseJSON(string_json), function( i, prod ) {
+			//dividir por departamento
 			var icon="";
 			if(prod.status==0){icon="<div class='col-xs-3' style='text-align:center'><i class='fa fa-shopping-basket' aria-hidden='true'></i></div>";}
 			if(prod.status==1){icon="<div class='col-xs-3' style='color:#1E8449;text-align:center'><i class='fa fa-check-square-o' aria-hidden='true'></i></div>";}
 			if(prod.status==2){icon="<div class='col-xs-3' style='color:#A93226;text-align:center'>Agotado</div>";}
-			var asado=""; if(prod.asado=='1'){ asado='<i class="fa fa-fire ico_asado" aria-hidden="true"></i>';}
-			string_ret+="<div class='articulo_carrito_pedido row' >"+
+			if(prod.detalles!=""){prod.detalles="<br>"+prod.detalles;}
+			var asado=""; if(prod.asado=='1'){ asado='(ASA) ';}
+
+			var preparado=""; if(prod.preparado=='1'&&prod.id_departamento=='002'){ preparado='(PRE) ';}
+			var corte=""; if(prod.corte!='N'&&prod.corte!=''&&prod.id_departamento=='002'){ corte='(COR '+prod.corte+') '; }
+			var termino=""; if(prod.termino!=''&&prod.asado=='1'&&prod.id_departamento=='002'){ termino='(TER '+prod.termino+') ';}
+ 
+			string_ret+="<div class='articulo_carrito_pedido' >"+
 			  				"<div class='col-xs-2 car_cantidad'>"+parseFloat(prod.cantidad).toFixed(2)+"<br><b>"+prod.unidad+"</b></div>"+
-			  				"<div class='col-xs-7 car_desc'>"+asado+" "+capitalize(prod.descripcion)+"</div>"+icon+
+			  				"<div class='col-xs-7 car_desc'><b>"+prod.descripcion+"</b>"+asado+preparado+corte+termino+prod.detalles+"</div>"+icon+
 			  				"</div>";
 		});
 		return string_ret;
