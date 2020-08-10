@@ -246,6 +246,8 @@ document.ontouchmove = event => {event.preventDefault();};
 			}else{	
 				$(".div_procesar_pedido").show();
 				$(".contenido_carrito").html(string_carrito(r));
+
+/*
 				$(".articulo_carrito_drag").draggable({ axis: "x",revert: true,stop: function( event, ui ) {
 					var distancia=Math.min( 100, ui.position.left );
 			       console.log($(this).find('a').attr('class'));
@@ -263,6 +265,8 @@ document.ontouchmove = event => {event.preventDefault();};
 			       }
 			       	
 			      }	});
+*/
+
 			}
 			var total_aprox=0;
 			$(".articulo_carrito").each(function() {total_aprox+=parseFloat($(this).attr('cantidad'))*parseFloat($(this).attr('precio'));});
