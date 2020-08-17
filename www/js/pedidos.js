@@ -26,7 +26,7 @@
 					'productos="'+pedido.cantidad+'" '+
 					'total="'+parseFloat(pedido.total).toFixed(2)+'" '+
 					'">'+
-					'<div class="pedido_row">'+
+					'<div class="contenedor_paso_1 pedido_row">'+
   					'<div class="row">'+
     				'<div class="col-xs-4"><b>'+pedido.cantidad+'.Articulos</b><br><span class="small_pedido">'+pedido.fecha_entrega+'</span></div>'+
     '<div class="col-xs-4 pedido_tot"><span class="small_pedido"><b>Total Aprox.</b></span><br>'+parseFloat(pedido.total).toFixed(2)+'</div>'+

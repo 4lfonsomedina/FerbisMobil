@@ -30,37 +30,65 @@
 
 
 <div class="contenedor_cuenta" style="height: 80vh;">
-<ul class="nav nav-tabs">
-	<li class="active li_paso"><a data-toggle="tab" href="#contacto">Contacto</a></li>
-	<li class="li_paso"><a data-toggle="tab" href="#direccion">Dirección</a></li>
-</ul>
 <form id="form_datos_cuenta">
-	<input type="hidden" class="cuenta_id_cliente" name="id_cliente">
-	<input type="hidden" class="cuenta_lat" name="lat">
-	<input type="hidden" class="cuenta_lon" name="lon">
-<div class="tab-content">
-	<div id="contacto" class="tab-pane fade in active">
-		<table class="table tabla_cuenta">
-			<tr>
-				<td class="tabla_cuenta_titulo">Nombre</td>
-				<td><input type="text" class="form-control cuenta_nombre" name="nombre"></td>
-			</tr>
-			<tr>
-				<td class="tabla_cuenta_titulo">Teléfono</td>
-				<td><input type="number" class="form-control cuenta_telefono" name="telefono"></td>
-			</tr>
-			<tr>
-				<td class="tabla_cuenta_titulo">Correo</td>
-				<td><input type="text" class="form-control cuenta_correo" name="correo"></td>
-			</tr>
-			<tr>
-				<td class="tabla_cuenta_titulo">No.Cliente Frecuente</td>
-				<td><input type="text" class="form-control cuenta_numero" name="numero"></td>
-			</tr>
-		</table>
-	</div>
-	<div id="direccion" class="tab-pane fade">
-		<table class="table tabla_cuenta">
+
+
+
+	<table class="table tabla_cuenta">
+		<tr>
+			<td class="tabla_cuenta_titulo">Nombre</td>
+			<td><input type="text" class="form-control cuenta_nombre" name="nombre"></td>
+		</tr>
+		<tr>
+			<td class="tabla_cuenta_titulo">Teléfono</td>
+			<td><input type="number" class="form-control cuenta_telefono" name="telefono"></td>
+		</tr>
+		<tr>
+			<td class="tabla_cuenta_titulo">Correo</td>
+			<td><input type="text" class="form-control cuenta_correo" name="correo"></td>
+		</tr>
+		<tr>
+			<td class="tabla_cuenta_titulo">#Cliente Frec.</td>
+			<td><input type="text" class="form-control cuenta_numero" name="numero"></td>
+		</tr>
+	</table>
+
+
+	<a href="#" class="pedido_row_a panel_direccion">
+		<div class="contenedor_paso_1 tabla_cuenta">
+			<div class="row">
+				<div class="col-xs-12">
+			  		<center><b>Dirección:</b></center>
+			  	</div>
+			  	<div class="col-xs-10">
+			  		<span class="resumen_direccion"></span>
+			  	</div>
+			  	<div class="col-xs-2" style="position:relative; top:-10px;">
+		  			<i class="fa fa-pencil" aria-hidden="true"></i>
+		  		</div>
+		  		<div class="col-xs-12" style="font-weight: bold;">
+		  			<span class="sucursal_distancia"></span> <span class="sucursal_cercana"></span>
+		  		</div>
+		  	</div>
+	  	</div>
+	  	</a>
+
+	  	<!-- MODAL CON MAPA DE UBICACION -->
+<div id="modal_direccion" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+      	<h4 class="modal-title"><b>Dirección</b></h4></div>
+      <div class="modal-body">
+
+		<input type="hidden" class="cuenta_lat" name="lat">
+		<input type="hidden" class="cuenta_lon" name="lon">
+		<input type="hidden" class="cuenta_id_cliente" name="id_cliente">
+
+	  	
+	  	
+	  	
+	  	<table class="table tabla_cuenta">
 			<tr>
 				<td class="tabla_cuenta_titulo">Colonia</td>
 				<td colspan="3"><input type="text" class="form-control cuenta_colonia" name="dir_colonia"></td>
@@ -80,33 +108,27 @@
 				<td colspan="3"><textarea rows="2" class="form-control cuenta_referencia" name="referencia"></textarea></td>
 			</tr>
 		</table>
-	</div>
-</div>
-</form>
-</div>
-<div class="boton_guardar" style="height: 10vh">
-	<button type="button" class="btn btn-success btn-lg btn_guardar_cuenta"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar datos de cuenta</button>
-</div>
+		
 
-<!-- MODAL CON MAPA DE UBICACION -->
-<div id="modal_mapa" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button>
-      	<h4 class="modal-title"><b>Ubicación</b></h4></div>
-      <div class="modal-body">
-      	*Presione el mapa o arrastre el marcador hasta la posición donde desea recibir su pedido.
-      	<div id="map_cuenta" style="height: 300px;"></div>
+
+
+
       </div>
       <div class="modal-footer">
-      	<button type="button" class="btn btn-success" data-dismiss="modal">
-            <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Aceptar
+      	<button type="button" class="btn btn-success btn_guardar_direccion" data-dismiss="modal">
+             Aceptar <i class="fa fa-check" aria-hidden="true"></i>
         </button>
       </div>
     </div>
   </div>
 </div> <!--FIN MODAL-->
 
+</div>
+</form>
+</div>
+<div class="boton_guardar" style="height: 10vh">
+	<button type="button" class="btn btn-success btn-lg btn_guardar_cuenta"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar datos de cuenta</button>
+</div>
 
 <div class="alerta_multiusos" hidden></div>
     </div>

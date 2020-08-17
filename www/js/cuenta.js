@@ -14,9 +14,23 @@
 			$(".cuenta_num").val(cuenta.dir_numero1);
 			$(".cuenta_num2").val(cuenta.dir_numero2);
 			$(".cuenta_referencia").val(cuenta.referencia);
+
+			$(".resumen_direccion").html(cuenta.dir_calle+", "+cuenta.dir_numero1+" "+cuenta.dir_numero2+", "+cuenta.dir_colonia);
+
 			verificar_ubicacion();
 		})
 	}
+
+	$(document).on("click",".panel_direccion",function(){
+		$("#modal_direccion").modal({backdrop: 'static', keyboard: false});
+	})
+
+	$(document).on("click",".btn_guardar_direccion",function(){
+		$(".resumen_direccion").html($(".cuenta_calle").val()+", "+$(".cuenta_num").val()+" "+$(".cuenta_num2").val()+", "+$(".cuenta_colonia").val());
+		verificar_ubicacion();
+	})
+
+
 	function verificar_ubicacion(){
 	if($(".cuenta_calle").val()!=""&&$(".cuenta_num").val()!=""&&$(".cuenta_colonia").val()!=""){
 		var direccion=	$(".cuenta_calle").val()+", "+$(".cuenta_num").val()+", "+$(".cuenta_colonia").val()+", Mexicali, BC";

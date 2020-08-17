@@ -29,12 +29,12 @@ $(document).ready(function() {
 					if(notificacion.leido==1){estatus='-open'; status_desc='Leído'; label="default"}
 					string_contenido+='<a href="#" class="notificacion_row_a" id_notificacion="'+
 					notificacion.id_notificacion+'">'+
-					'<div class="notificacion_row row" >'+
+					'<div class="contenedor_paso_1 notificacion_row"><div class=" row" >'+
 		'<div class="col-xs-3"><span class="label label-'+label+'">'+
 			'<i class="fa fa-envelope'+estatus+'" aria-hidden="true"></i> '+status_desc+'</span></div>'+
 		'<div class="col-xs-9"><b>'+notificacion.asunto+'</b><br>'+
 		'<span class="small_notificacion">'+notificacion.fecha+'</span></div>'+
-	'</div></a>';
+	'</div></div></a>';
 				})
 
 				$(".contenedor_notificaciones").html(string_contenido);

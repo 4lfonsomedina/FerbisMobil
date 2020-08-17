@@ -236,7 +236,11 @@
 	font-size: 14px;
 	/*text-transform: lowercase;*/
 }
-
+.boton_guardar button{
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+}
 .img_art{
 	width: 120px;
 	height: 120px;
@@ -308,7 +312,7 @@
 	padding-top:20px;
 	padding-left: 10px; 
 	color:white;
-	background-color:#2196f3;
+	background-color:#0c7cd5;
 }
 .menu_lateral_cliente i{
 	position:absolute;
@@ -327,6 +331,9 @@
 	width: 100%;
 	height: 100vh;
 	z-index: 2;
+}
+.datos_cliente{
+	max-width: 70%;
 }
 .menu_lateral_der{
 	position: absolute;
@@ -354,7 +361,7 @@
 	height: 10vh;
 	padding:10px;
 	color:white;
-	background-color:#2196f3;
+	background-color:#0c7cd5;
 	text-align: center;
 	display: flex;
     align-items: center;
@@ -544,6 +551,7 @@
 }
 .tabla_cuenta_titulo{
 	padding-top: 20px !important;
+	font-weight: bold;
 }
 .tabla_cuenta tr td{
 	padding: 6px ;
