@@ -539,6 +539,7 @@ function crecer_buscador(){
 		$(".menu_buscar").find(".col-xs-10").removeClass('col-xs-10');
 		$('#contenedor_articulos').scrollTop(0);
 		$(".input_search").val("");
+		$(".producto_no_encontrado").hide(500);
 	});
 	
 }
@@ -547,7 +548,7 @@ function reducir_buscador(){
 	$(".menu_buscar").find(".col-xs-12").addClass('col-xs-10');
 	$(".menu_buscar").find(".col-xs-12").removeClass('col-xs-12');
 	$('#contenedor_articulos').scrollTop(0);
-	
+	$(".producto_no_encontrado").show(500);
 }
 function regresar_inicio(){
 	location.reload();

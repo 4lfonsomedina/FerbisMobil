@@ -18,24 +18,16 @@
 		})
 	}
 	function verificar_ubicacion(){
-		var lat = parseFloat($(".cuenta_lat").val());
-		var lon = parseFloat($(".cuenta_lon").val());
-		if(lat!=""&&lon!=""){
+	if($(".cuenta_calle").val()!=""&&$(".cuenta_num").val()!=""&&$(".cuenta_colonia").val()!=""){
+		var direccion=	$(".cuenta_calle").val()+", "+$(".cuenta_num").val()+", "+$(".cuenta_colonia").val()+", Mexicali, BC";
+		geocoder = new google.maps.Geocoder();
+		geocoder.geocode({ 'address': direccion}, function(results, status) {
+			$(".cuenta_lat").val(results[0].geometry.location.lat);
+			$(".cuenta_lon").val(results[0].geometry.location.lng);
 			sucursal_cercana();
-			construir_mapa({lat: lat, lng: lon});
-		}
-		else if($(".cuenta_calle").val()!=""&&$(".cuenta_num").val()!=""&&$(".cuenta_colonia").val()!=""){
-			geolacalizar_direccion();
-		}else{
-			navigator.geolocation.getCurrentPosition(function(e){
-				$(".cuenta_lat").val(e.coords.latitude);
-				$(".cuenta_lon").val(e.coords.longitude);
-				construir_mapa({lat: e.coords.latitude, lng: e.coords.longitude});
-			}, function(e){
-				geolacalizar_direccion();
-			});
-		}
+		});
 	}
+}
 	function sucursal_cercana(){
 		$.post(url_api+'sucursal_cercana',{lat:$(".cuenta_lat").val(),lon:$(".cuenta_lon").val()},function(r){
 			var sucursal = jQuery.parseJSON(r);

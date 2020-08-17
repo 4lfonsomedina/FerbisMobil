@@ -39,48 +39,19 @@
 	</ul>
 
 <form id="pedido_form">
-	<div class="tab-content">
-	  <div id="pedido_1" class="tab-pane fade in active">
-	  	<div class="articulo row">
-<!--seleccion de servicio-->
-	  	<div class="col-xs-6 pedido_radio"><label>
-	  		<div class="col-xs-3">
-	  			<input type="radio" class="form-control" name="servicio" checked value="1">
-	  		</div>
-	  		<div class="col-xs-9">
-	  			A domicilio
-	  		</div>
-	  	</label></div>
-	  	<div class="col-xs-6 pedido_radio"><label>
-	  		<div class="col-xs-3">
-	  			<input type="radio" class="form-control" name="servicio" value="2">
-	  		</div>
-	  		<div class="col-xs-9">
-	  			Paso por el
-	  		</div>
-	  	</label></div>
 
-		<div class="col-xs-12" style="text-align: center; font-weight: bold;">Programar Entrega</div>
-		<div class="col-xs-8 fecha_entrega"><input type="date" id="fecha_pedido" class="form-control" name="fecha_entrega"></div>
-		<div class="col-xs-4 hora_entrega"><select id="select_horas_disponibles" class="form-control" name="hora_entrega"></select></div>
 
-<!-- en caso de que sea paso por el-->
-		<table class="table tabla_cuenta_recoger">
-			<tr>
-				<td align="center">Recoger en:</td>
-			</tr>
-			<tr>
-				<td>
-					<select class="form-control ">
-						<option value="Brasil">Sucursal Brasil</option>
-						<option value="San Marcos">Sucursal San Marcos</option>
-					</select>
-				</td>
-			</tr>
-		</table>
 
-<!-- en caso de que sea a domicilio pedir datos de la ubicacion-->
-		<input type="hidden" class="pedido_id_carrito" name="id_carrito">
+	<!-- MODAL CON MAPA DE UBICACION -->
+<div id="modal_direccion" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+      	<h4 class="modal-title"><b>Dirección</b></h4></div>
+      <div class="modal-body">
+
+
+      	<input type="hidden" class="pedido_id_carrito" name="id_carrito">
 		<input type="hidden" class="cuenta_id_cliente" name="id_cliente">
 		<input type="hidden" class="pedido_id_sucursal" name="id_sucursal">
 		<input type="hidden" class="pedido_sucursal" name="sucursal">
@@ -90,12 +61,9 @@
 		<input type="hidden" class="pedido_articulos_input" name="articulos">
 		<input type="hidden" class="pedido_total_input" name="total">
 	  	
+	  	
+	  	
 	  	<table class="table tabla_cuenta">
-
-			<tr>
-				<td class="tabla_cuenta_titulo">Colonia</td>
-				<td colspan="3"><input type="text" class="form-control cuenta_colonia" name="dir_colonia"></td>
-			</tr>
 			<tr>
 				<td class="tabla_cuenta_titulo">Calle</td>
 				<td colspan="3"><input type="text" class="form-control cuenta_calle" name="dir_calle"></td>
@@ -107,20 +75,99 @@
 				<td><input type="number" class="form-control cuenta_num2" name="dir_numero2"></td>
 			</tr>
 			<tr>
+				<td class="tabla_cuenta_titulo">Colonia</td>
+				<td colspan="3"><input type="text" class="form-control cuenta_colonia" name="dir_colonia"></td>
+			</tr>
+			<tr>
 				<td class="tabla_cuenta_titulo">Referencia</td>
 				<td colspan="3"><textarea rows="2" class="form-control cuenta_referencia" name="referencia"></textarea></td>
 			</tr>
-			<tr>
-				<td colspan="4">
-					<button type="button" class="btn btn-info btn_mapa_cuenta">
-						<i class="fa fa-map-marker" aria-hidden="true"></i> Ubicación
-					</button>
-				</td>
-			</tr>
-			<tr class="tabla_cuenta_sucursal">
-				<td>Sucursal</td><td class="sucursal_cercana" colspan="2"></td><td class="sucursal_distancia"></td>
-			</tr>
+			
 		</table>
+		
+
+
+
+
+      </div>
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-success btn_guardar_direccion" data-dismiss="modal">
+             Aceptar <i class="fa fa-check" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div> <!--FIN MODAL-->
+
+
+
+	<div class="tab-content">
+	  <div id="pedido_1" class="tab-pane fade in active">
+	  	<div class="articulo row my_radio_box">
+<!--seleccion de servicio-->
+	  	<div class="col-xs-6 pedido_radio_div"><label>
+	  		<div class="col-xs-3">
+	  			<input type="radio" class="form-control pedido_radio" name="servicio" checked value="1">
+	  		</div>
+	  		<div class="col-xs-9">
+	  			A domicilio
+	  		</div>
+	  	</label></div>
+	  	<div class="col-xs-6 pedido_radio_div"><label>
+	  		<div class="col-xs-3">
+	  			<input type="radio" class="form-control pedido_radio" name="servicio" value="2">
+	  		</div>
+	  		<div class="col-xs-9">
+	  			Paso por el
+	  		</div>
+	  	</label></div>
+
+		
+		</div>
+
+		<!-- RECOGER EN -->	
+		<div class="contenedor_paso_1 tabla_cuenta_recoger">
+			<div class="row">
+				<center><b>Recoger en:</b></center>
+				<select class="form-control recoger_sucursal">
+					<option value="1">Brasil</option>
+					<option value="2">San Marcos</option>
+				</select>
+			</div>
+		</div>
+
+
+		<!-- DOMICILIO -->
+		<a href="#" class="pedido_row_a panel_direccion">
+		<div class="contenedor_paso_1 tabla_cuenta">
+			<div class="row">
+				<div class="col-xs-12">
+			  		<center><b>Dirección:</b></center>
+			  	</div>
+			  	<div class="col-xs-10">
+			  		<span class="resumen_direccion">Artemisa #4245 Victoria Residencial</span>
+			  	</div>
+			  	<div class="col-xs-2" style="position:relative; top:-10px;">
+		  			<i class="fa fa-pencil" aria-hidden="true"></i>
+		  		</div>
+		  		<div class="col-xs-12" style="font-weight: bold;">
+		  			<span class="sucursal_distancia"></span> <span class="sucursal_cercana"></span>
+		  		</div>
+		  	</div>
+	  	</div>
+	  	</a>
+
+	  	<!-- PROGRAMAR ENTREGA -->
+		<div class="contenedor_paso_1">
+			<div class="row">
+				<div class="col-xs-12" style="text-align: center; font-weight: bold;">Programar Entrega</div>
+				<div class="col-xs-8 fecha_entrega"><input type="date" id="fecha_pedido" class="form-control" name="fecha_entrega">
+					<span class="mini_form">Fecha</span><br>
+				</div>
+				<div class="col-xs-4 hora_entrega">
+					<select id="select_horas_disponibles" class="form-control" name="hora_entrega"></select><span class="mini_form">Hora</span><br>
+				</div>
+			</div>
 		</div>
 
 	  </div>
@@ -146,12 +193,12 @@
 	  		<center><b>Total Aprox:</b> <span class="pedido_total">$10000</span> <span class="pedido_envio"></span></center>
 	  		<p></p>
 	  		<div class="contenedor_tipo_pago">
-		  	<div class="col-xs-6 pedido_radio"><label>
+		  	<div class="col-xs-6 pedido_radio_div"><label>
 		  		<div class="col-xs-2"><input type="radio" class="form-control" name="pago" checked value="1"></div>
 			  		<div class="col-xs-10">Efectivo</div>
 			  	</label></div>
 
-			  	<div class="col-xs-6 pedido_radio"><label>
+			  	<div class="col-xs-6 pedido_radio_div"><label>
 			  		<div class="col-xs-2"><input type="radio" class="form-control" name="pago" value="2"></div>
 			  		<div class="col-xs-10">Tarjeta</div>
 			  	</label></div>
@@ -173,20 +220,20 @@
 			  </div>
 		  </div> 
 	  </div>
-	   <div id="pedido_3" class="tab-pane fade">
-	  	<div class="articulo">
+	   <div id="pedido_3" class="tab-pane fade" style="padding-top: 0px !important">
+	  	<div class="articulo" style="margin-bottom: 0px !important">
 		  	<table class="table tabla_paso_3">
 		  		<tr>
-		  			<td><b>Nombre:</b></td><td class="p3_nombre"></td>
+		  			<td class="p3_nombre" colspan="2" style="text-align: center;font-weight: bold;"></td>
 		  		</tr>
 		  		<tr>
-		  			<td><b>Servicio:</b></td><td class="p3_servicio"></td>
+		  			<td class="p3_servicio" colspan="2" style="text-align: center"></td>
 		  		</tr>
 		  		<tr>
-		  			<td><b>Total (aprox):</b></td><td><span class="pedido_total"></span> <span class="pedido_envio"></span></td>
+		  			<td style="text-align: right;"><b>Total (aprox):</b></td><td><span class="pedido_total"></span> <span class="pedido_envio"></span></td>
 		  		</tr>
 		  		<tr>
-		  			<td><b>Articulos:</b></td><td class="pedido_articulos" ></td>
+		  			<td style="text-align: right;"><b>Articulos:</b></td><td class="pedido_articulos" ></td>
 		  		</tr>
 		  	</table>
 	  	</div>
@@ -196,6 +243,9 @@
 	  </div>
 	</div>
 </form>
+
+
+
 </div>
 <div class="contenedor_pedido_btn">
 	<div class="btn_paso btn_paso_1" paso='2'>
@@ -210,24 +260,7 @@
 </div>
 
 
-<!-- MODAL CON MAPA DE UBICACION -->
-<div id="modal_mapa" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button>
-      	<h4 class="modal-title"><b>Ubicación</b></h4></div>
-      <div class="modal-body">
-      	*Presione el mapa o arrastre el marcador hasta la posición donde desea recibir su pedido.
-      	<div id="map_cuenta" style="height: 300px;"></div>
-      </div>
-      <div class="modal-footer">
-      	<button type="button" class="btn btn-warning" data-dismiss="modal">
-            <i class="fa fa-reply" aria-hidden="true"></i> Regresar
-        </button>
-      </div>
-    </div>
-  </div>
-</div> <!--FIN MODAL-->
+
 
 
 
