@@ -158,7 +158,7 @@ document.ontouchmove = event => {event.preventDefault();};
 			$(".row_asado").show();
 			if($(this).attr('unidad')=='KG'){
 				$(".unidad_modal").html("<div class='col-xs-4'></div><div class='col-xs-4'>"+
-				"<select name='unidad' class='form-control cambio_unidad' style='text-align-last:center;' precio='"+$(this).attr('precio')+"'>"+
+				"<select name='unidad' class='form-control cambio_unidad' style='text-align-last:center;' precio_kg='"+parseFloat($(this).attr('precio')).toFixed(2)+"' precio='"+(parseFloat($(this).attr('precio'))*parseFloat($(this).attr('peso_promedio'))).toFixed(2)+"'>"+
 				"<option value='KG'>KG</option>"+
 				"<option value='PZA'>PZA</option>"+
 				"</select></div><div class='col-xs-4'></div>");
@@ -185,11 +185,11 @@ document.ontouchmove = event => {event.preventDefault();};
 		$("#unidad_modal_form_e").val($(this).val());
 		$("#unidad_modal_form").val($(this).val());
 		if($(this).val()=="PZA"){
-			$("#precio_modal_form").val(0);
-			$("#precio_modal_form_e").val(0);
-		}else{
 			$("#precio_modal_form").val($(this).attr('precio'));
 			$("#precio_modal_form_e").val($(this).attr('precio'));
+		}else{
+			$("#precio_modal_form").val($(this).attr('precio_kg'));
+			$("#precio_modal_form_e").val($(this).attr('precio_kg'));
 		}
 		
 	})
@@ -342,9 +342,17 @@ $(document).on("click",".articulo_carrito",function(){
 	
 
 	if($(this).attr('departamento')=='005'||$(this).attr('departamento')=='002'){
+		var precio_kg=parseFloat($(this).attr('precio')).toFixed(2);
+		var precio_pza=(parseFloat($(this).attr('precio'))*parseFloat($(this).attr('peso_promedio'))).toFixed(2);
+		if($(this).attr('unidad')=='PZA'){
+			precio_kg=(parseFloat($(this).attr('precio'))/parseFloat($(this).attr('peso_promedio'))).toFixed(2);
+			precio_pza=parseFloat($(this).attr('precio')).toFixed(2);
+		}
+
+
 		$(".row_asado").show();
 		$(".unidad_modal_e").html("<div class='col-xs-4'></div><div class='col-xs-4'>"+
-			"<select name='unidad' class='form-control cambio_unidad' style='text-align-last:center;' precio='"+$(this).attr('precio')+"'>"+
+			"<select name='unidad' class='form-control cambio_unidad' style='text-align-last:center;' precio_kg='"+precio_kg+"' precio='"+precio_pza+"'>"+
 			"<option value='KG'>KG</option>"+
 			"<option value='PZA'>PZA</option>"+
 			"</select></div><div class='col-xs-4'></div>");
@@ -404,6 +412,7 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 							"descripcion='"+capitalize(prod.descripcion)+"' "+
 							"unidad='"+prod.unidad+"' "+
 							"imagen='"+prod.puntuacion+"' "+
+							"peso_promedio='"+prod.peso_promedio+"' "+
 							"precio='"+prod.precio+"' "+
 							">"+
 			  				"<div class='col-xs-12 articulo'><div class='col-xs-5 cont_imagen_articulo'>"+
@@ -473,6 +482,7 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 							"unidad='"+prod.unidad+"' "+
 							"detalles='"+prod.detalles+"' "+
 							"imagen='"+prod.puntuacion+"' "+
+							"peso_promedio='"+prod.peso_promedio+"' "+
 							"precio='"+prod.precio+"' >";
 
 			  	string_ret+="<div class='col-xs-2 car_cantidad'>"+unidad+"</b></div>"+
