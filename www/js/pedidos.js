@@ -21,7 +21,7 @@
 					if(estatus==4){estatusB[4]='Cancelado'; status_desc="Cancelado";}
 
 					string_contenido+='<a href="#" class="pedido_row_a" id_carrito="'+pedido.id_carrito+'" '+
-					'fecha="'+pedido.fecha+'" '+
+					'fecha="'+pedido.fecha_entrega+'" '+
 					'status="'+status_desc+'" '+
 					'productos="'+pedido.cantidad+'" '+
 					'total="'+parseFloat(pedido.total).toFixed(2)+'" '+

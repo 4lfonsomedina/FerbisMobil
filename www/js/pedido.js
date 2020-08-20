@@ -139,7 +139,7 @@ $(document).on("click",".btn_enviar_pedido",function(){
 	$("#select_horas_disponibles").val()
 	$.post(url_api+'alta_pedido',$("#pedido_form").serialize(),function(r){
 		console.log(r);
-		$(".entrega_pedido_mensaje").html($("#fecha_pedido").val()+" "+$("#select_horas_disponibles").val());
+		$(".entrega_pedido_mensaje").html($("#fecha_pedido").val()+" "+formato_12hrs($("#select_horas_disponibles").val()));
 		$('#modal_pedido_enviado').modal({backdrop: 'static', keyboard: false});
 	})
 	//console.log($("#pedido_form").serializeArray());
@@ -168,7 +168,7 @@ function actualizar_paso3(){
 	$(".p3_telefono").html(pedido.telefono);
 	$(".p3_frecuente").html(pedido.numero);
 	var servicio = "A domicilio"; if(pedido.servicio!=1){ servicio = "Paso por el"; }
-	$(".p3_servicio").html(servicio);
+	$(".p3_servicio").html(servicio+" "+$("#fecha_pedido").val()+" "+formato_12hrs($("#select_horas_disponibles").val()));
 	$(".p3_direccion").html(pedido.dir_calle+" "+pedido.dir_numero1+" "+pedido.dir_numero1+","+pedido.dir_colonia);
 	$(".p3_referencia").html(pedido.referencia);
 }
@@ -265,11 +265,15 @@ function calcular_envio(id_sucursal){
 	})
 }
 function formato_12hrs(hora){
+	if(hora==null){return "";}
+	hora_array=hora.split(':');
+	hora=hora_array[0];
+
 	var ampm='am';
 	if(hora>11){
 		ampm='pm';
 		hora=hora-12;
 	}
 	if(hora==0){hora=12;}
-	return hora+ampm;
+	return hora+":"+hora_array[1]+ampm;
 }

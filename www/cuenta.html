@@ -26,32 +26,29 @@
       	Cuenta
       </div>
     </div>
-    <div class="contenido_emergente">
+    <div class="contenido_emergente" style="height: 80vh;">
 
 
-<div class="contenedor_cuenta" style="height: 80vh;">
+<div class="contenedor_cuenta" >
 <form id="form_datos_cuenta">
+	<br>
+	<div class="contenedor_paso_1">
+		<div class="row ">
+			<div class="col-xs-12">
+				<input type="text" class="form-control cuenta_nombre" name="nombre"><br><span class="mini_form">Nombre</span>
+			</div>
+			<div class="col-xs-12">
+				<input type="number" class="form-control cuenta_telefono" name="telefono"><br><span class="mini_form">Teléfono</span>
+			</div>
+			<div class="col-xs-12">
+				<input type="text" class="form-control cuenta_correo" name="correo"><br><span class="mini_form">Correo</span>
+			</div>
+			<div class="col-xs-12">
+				<input type="text" class="form-control cuenta_numero" name="numero"><br><span class="mini_form">#Cliente Frec.</span>
+			</div>
+		</div>
+	</div>
 
-
-
-	<table class="table tabla_cuenta">
-		<tr>
-			<td class="tabla_cuenta_titulo">Nombre</td>
-			<td><input type="text" class="form-control cuenta_nombre" name="nombre"></td>
-		</tr>
-		<tr>
-			<td class="tabla_cuenta_titulo">Teléfono</td>
-			<td><input type="number" class="form-control cuenta_telefono" name="telefono"></td>
-		</tr>
-		<tr>
-			<td class="tabla_cuenta_titulo">Correo</td>
-			<td><input type="text" class="form-control cuenta_correo" name="correo"></td>
-		</tr>
-		<tr>
-			<td class="tabla_cuenta_titulo">#Cliente Frec.</td>
-			<td><input type="text" class="form-control cuenta_numero" name="numero"></td>
-		</tr>
-	</table>
 
 
 	<a href="#" class="pedido_row_a panel_direccion">
@@ -85,32 +82,23 @@
 		<input type="hidden" class="cuenta_lon" name="lon">
 		<input type="hidden" class="cuenta_id_cliente" name="id_cliente">
 
-	  	
-	  	
-	  	
-	  	<table class="table tabla_cuenta">
-			<tr>
-				<td class="tabla_cuenta_titulo">Colonia</td>
-				<td colspan="3"><input type="text" class="form-control cuenta_colonia" name="dir_colonia"></td>
-			</tr>
-			<tr>
-				<td class="tabla_cuenta_titulo">Calle</td>
-				<td colspan="3"><input type="text" class="form-control cuenta_calle" name="dir_calle"></td>
-			</tr>
-			<tr>
-				<td class="tabla_cuenta_titulo">#ext.</td>
-				<td><input type="text" class="form-control cuenta_num" name="dir_numero1"></td>
-				<td class="tabla_cuenta_titulo">#int.</td>
-				<td><input type="text" class="form-control cuenta_num2" name="dir_numero2"></td>
-			</tr>
-			<tr>
-				<td class="tabla_cuenta_titulo">Referencia</td>
-				<td colspan="3"><textarea rows="2" class="form-control cuenta_referencia" name="referencia"></textarea></td>
-			</tr>
-		</table>
-		
-
-
+		<div class="row ">
+			<div class="col-xs-12">
+				<input type="text" class="form-control cuenta_calle" name="dir_calle"><br><span class="mini_form">Calle</span>
+			</div>
+			<div class="col-xs-6">
+				<input type="text" class="form-control cuenta_num" name="dir_numero1"><br><span class="mini_form">Num. externo</span>
+			</div>
+			<div class="col-xs-6">
+				<input type="text" class="form-control cuenta_num2" name="dir_numero2"><br><span class="mini_form">Num. interno</span>
+			</div>
+			<div class="col-xs-12">
+				<input type="text" class="form-control cuenta_colonia" name="dir_colonia"><br><span class="mini_form">Colonia</span>
+			</div>
+			<div class="col-xs-12">
+				<textarea rows="2" class="form-control cuenta_referencia" name="referencia"></textarea><br><span class="mini_form">Referencia</span>
+			</div>
+		</div>
 
 
       </div>

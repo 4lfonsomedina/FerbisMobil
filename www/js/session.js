@@ -28,7 +28,6 @@ $(document).ready(function() {
 			}
 		});
 	}
-
 	//actualizamos interfaz
 	function actualizar_interfaz(){
 		$("#nombre_usuario").html(sesion_local.getItem("FerbisAPP_nombre"));
