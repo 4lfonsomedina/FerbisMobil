@@ -101,10 +101,26 @@ document.ontouchmove = event => {event.preventDefault();};
 	})
 
 // Al escribir en el filtro buscador
+/*
 	$(document).on("keyup",".input_search",function(){
 		if($(this).val()==""||$(this).val().length<2){return;}
 		$("#contenedor_articulos").html(loader());
 		$.post(url_api+'get_productos_filtro',{desc:$(this).val(),dep:$("#input_search_dep").val()}, function(resp_json){
+			reducir_buscador();
+			string_articulos(resp_json);
+		}).fail(function(error) { alert("Error de conexión...");  console.log(error.responseJSON); });
+	})
+*/
+	
+	$(document).on("submit","#form_buscar",function(event){
+		event.preventDefault();
+		if($(".input_search").val()==""||$(".input_search").val().length<3){ 
+			alert('Por lo menos escriba 3 caracteres...'); 
+			$(".input_search").focus(); 
+			return;
+		}
+		$("#contenedor_articulos").html(loader());
+		$.post(url_api+'get_productos_filtro',{desc:$(".input_search").val(),dep:$("#input_search_dep").val()}, function(resp_json){
 			reducir_buscador();
 			string_articulos(resp_json);
 		}).fail(function(error) { alert("Error de conexión...");  console.log(error.responseJSON); });

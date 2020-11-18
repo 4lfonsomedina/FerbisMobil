@@ -21,8 +21,8 @@ $(document).ready(function() {
 				sesion_local.setItem("FerbisAPP_dir_numero2", cliente.dir_numero2);
 				sesion_local.setItem("FerbisAPP_lat", cliente.lat);
 				sesion_local.setItem("FerbisAPP_lon", cliente.lon);
-
 				actualizar_interfaz();
+				verificacion_encuesta(cliente.id_cliente);
 			}else{
 				$('#modal_bienvenida').modal({backdrop: 'static', keyboard: false});
 			}

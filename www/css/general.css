@@ -141,12 +141,24 @@
 	border-radius: 0px;
 }
 /* SEARCH */
-.fa-search {
+/*
+
+.fa-search{
 	position: absolute;
 	top: 13px;
 	margin-left: 26px;
     right: initial;
     left: 0;
+    color: #222;
+}
+
+*/
+
+.btn-buscar{
+	width: 50px;
+	position: absolute;
+	top: 7px;
+	right: 16px;
     color: #222;
 }
 .fa-pencil{
