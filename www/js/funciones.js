@@ -1,9 +1,14 @@
 //variables genericas en todos los scripts posteriores a funciones.js
 var url_api = "https://sd.ferbis.com/index.php/api_controller/";
+if( /iPhone|iPad/i.test(navigator.userAgent) ) {
+   console.log('IOS');
+}
+if(/Android/i.test(navigator.userAgent)){
+	console.log('ANDROID');
+}
 $(document).ready(function() {
 
 //quitar slash
-
 //deshabilitar zoom
 // stop ios bounce and zoom 
 document.ontouchmove = event => {event.preventDefault();}; 
