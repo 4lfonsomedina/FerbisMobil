@@ -17,6 +17,10 @@
     bottom:0px;
     width: 100%;
 }
+.td_star{
+	font-size: 20px;
+	padding: 0px !important;
+}
 .producto_no_encontrado{
 	text-align: center;
 	background-color: orange;
