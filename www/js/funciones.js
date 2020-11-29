@@ -121,6 +121,7 @@ document.ontouchmove = event => {event.preventDefault();};
 		}
 		$("#contenedor_articulos").html(loader());
 		$.post(url_api+'get_productos_filtro',{desc:$(".input_search").val(),dep:$("#input_search_dep").val()}, function(resp_json){
+			$(".input_search").blur();
 			reducir_buscador();
 			string_articulos(resp_json);
 		}).fail(function(error) { alert("Error de conexión...");  console.log(error.responseJSON); });

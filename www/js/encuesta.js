@@ -1,11 +1,11 @@
 function verificacion_encuesta(id_cliente){
-	$.post(url_api+'realizar_encuesta', {id: sesion_local.getItem("FerbisAPP_id")}, function(r) {
+	$("#id_cliente_encuesta").val(id_cliente);
+	$.post(url_api+'realizar_encuesta2', {id: sesion_local.getItem("FerbisAPP_id")}, function(r) {
 		if(r=='1'){
 			actualizar_botones_encuesta1();
 			$("#Modal_encuesta").modal('show');
 		}
 	});
-	
 }
 
 
@@ -53,6 +53,8 @@ $(document).ready(function() {
 		actualizar_botones_encuesta1();
 	});
 	$(".enc_btn_finalizar").click(function() {
+		$.post(url_api+'guardar_encuesta', $("#contenedor_encuesta").serialize(), function(r) {
+		});
 		$(".encuesta1").hide();
 		$(".enc_btn_anterior").parent('div').hide();
 		$(".enc_btn_siguiente").parent('div').hide();

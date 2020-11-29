@@ -64,6 +64,9 @@
 	padding-bottom: 5px;
 	text-decoration: none;
 }
+.menu_inicio img{
+	max-width: 200px;
+}
 .abrir_menu_lateral,
 .abrir_menu_lateral:active,
 .abrir_menu_lateral_der,
@@ -333,10 +336,9 @@
 	height: 100vh;
 	z-index: 3;
 	border-top-right-radius: 7px;
-	border-bottom-right-radius: 7px;
 }
 .menu_lateral_cliente{
-	padding-top:20px;
+	width: 102%;
 	padding-left: 10px; 
 	color:white;
 	background-color:#0c7cd5;
@@ -348,8 +350,9 @@
 	top:20px;
 }
 .datos_cliente{
-	margin-left: 60px;
-	padding-bottom: 20px;
+    margin-left: 60px;
+    /* padding-bottom: 20px; */
+    padding-top: 28px;
 }
 .sombra_menu{
 	position: absolute;
@@ -373,7 +376,6 @@
 	height: 100vh;
 	z-index: 3;
 	border-top-left-radius: 7px;
-	border-bottom-left-radius: 7px;
 }
 .opcion_menu{
 	width: 100%;
@@ -387,10 +389,12 @@
 }
 .opcion_menu span{
 	padding-left: 15px;
+    top: -5px;
+    position: relative;
 }
 .menu_lateral_carrito{
-	height: 10vh;
-	padding:10px;
+	margin-left: -2%;
+	padding:0px 0px 0px 0px;
 	color:white;
 	background-color:#0c7cd5;
 	text-align: center;
@@ -409,7 +413,7 @@
 	font-weight: bold;
 }
 .menu_lateral_carrito h3{
-	font-size: 20px;
+	font-size: 18px;
 	color: white;
 }
 .contenido_carrito{
@@ -424,6 +428,9 @@
 	height: 20vh;
 	padding: 5px;
 }
+.modal-body{
+	padding-top: 0px;
+}
 .alerta_multiusos{
 	position: absolute;
 	width: 100%;
@@ -434,6 +441,7 @@
 	background-color: #222;
 	color:white;
 	text-align: center;
+	z-index: 1;
 }
 .ico_asado{
 	color: #A60000;
