@@ -57,10 +57,6 @@
         <allow-intent href="itms-apps:*" />
 
         <preference name="WKWebViewOnly" value="true" />
-        <feature name="CDVWKWebViewEngine">
-            <param name="ios-package" value="CDVWKWebViewEngine" />
-        </feature>
-        <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
 
         <edit-config target="NSLocationAlwaysUsageDescription" file="*-Info.plist" mode="overwrite">
             <string>La Aplicación necesita permiso de ubicación para envio de pedido de compra.</string>
