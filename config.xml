@@ -19,10 +19,7 @@
     <preference name="StatusBarStyle" value="lightcontent" />
     <preference name="StatusBarDefaultScrollToTop" value="false" />
     <preference name="SplashScreen" value="none"/>
-    <feature name="CDVWKWebViewEngine">
-        <param name="ios-package" value="CDVWKWebViewEngine" />
-    </feature>
-    <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
+    
     <preference name="scheme" value="app" />
     <preference name="hostname" value="localhost" />
     <preference name="deployment-target" value="11.0" />
@@ -36,8 +33,7 @@
         value="Necesario para consultar catalogo de productos"/>
     <plugin name="cordova-plugin-statusbar" spec="~2.4.3" source="npm" 
         value="Necesario para cambiar color de la barra"/>
-    <plugin name="cordova-plugin-inappbrowser" spec="~3.2.0" source="npm" 
-        value="Necesario para navegar entre ventanas"/>
+
 
 
     <allow-navigation href="http://*/*" />
@@ -55,8 +51,6 @@
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
-
-        <!--<preference name="WKWebViewOnly" value="true" />-->
 
         <edit-config target="NSLocationAlwaysUsageDescription" file="*-Info.plist" mode="overwrite">
             <string>La Aplicación necesita permiso de ubicación para envio de pedido de compra.</string>
