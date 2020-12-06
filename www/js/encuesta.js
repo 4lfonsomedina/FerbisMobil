@@ -110,11 +110,11 @@ function actualizar_botones_encuesta1(){
 					btn_siguiente.addClass('col-xs-12');
 					btn_siguiente.show();
 				}
-				if(encuesta_c=='5'){
+				if(encuesta_c=='6'){
 					btn_finalizar.show();
 					btn_anterior.show();
 				}
-				if(encuesta_c!='5'&&encuesta_c!='1'){
+				if(encuesta_c!='6'&&encuesta_c!='1'){
 					btn_siguiente.removeClass('col-xs-12');
 					btn_siguiente.addClass('col-xs-6');
 					btn_siguiente.show();
