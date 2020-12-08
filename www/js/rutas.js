@@ -29,7 +29,7 @@ $(document).ready(function() {
 			$(".sombra_menu").click();
 	   		window.open(el.attr('href'));
 		}else{
-			alert($(this).attr("mensaje"));
+			alert_2($(this).attr("mensaje"));
 		}
 		
 	});	

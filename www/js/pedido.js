@@ -105,32 +105,32 @@ $(document).on("click",".btn_enviar_pedido",function(){
 	*/
 	// 1 - Nunca debe de faltar el nombre ni el telefono
 	if($(".cuenta_nombre").val()==''){
-		alert('Es necesario capturar su nombre');
+		alert_2('Es necesario capturar su nombre');
 		$(".li_paso2 > a").click();
 		return;
 	}
 	if($(".cuenta_telefono").val()==''){
-		alert('Es necesario capturar su telefono para comunicarnos con usted cuando su pedido este listo');
+		alert_2('Es necesario capturar su telefono para comunicarnos con usted cuando su pedido este listo');
 		$(".li_paso2 > a").click();
 		return;
 	}
 	if($("#fecha_pedido").val()==''){
-		alert('Es necesario capturar la fecha del pedido');
+		alert_2('Es necesario capturar la fecha del pedido');
 		$(".li_paso1 > a").click();
 		return;
 	}
 	if($('input:radio[name=servicio]:checked').val()==1&&$(".cuenta_colonia").val()==''){
-		alert('Es necesario capturar su colonia');
+		alert_2('Es necesario capturar su colonia');
 		$(".li_paso1 > a").click();
 		return;
 	}
 	if($('input:radio[name=servicio]:checked').val()==1&&$(".cuenta_calle").val()==''){
-		alert('Es necesario capturar la calle de su domicilio');
+		alert_2('Es necesario capturar la calle de su domicilio');
 		$(".li_paso1 > a").click();
 		return;
 	}
 	if($('input:radio[name=servicio]:checked').val()==1&&$(".cuenta_num").val()==''){
-		alert('Es necesario capturar el numero de su domicilio');
+		alert_2('Es necesario capturar el numero de su domicilio');
 		$(".li_paso1 > a").click();
 		return;
 	}
@@ -246,7 +246,7 @@ function calcular_envio(id_sucursal){
 		try{var horarios = jQuery.parseJSON(r);}
 		catch(err){
 			$("#fecha_pedido").val("");
-			alert(r); 
+			alert_2(r); 
 			return;}
 		//llenamos el select
 		

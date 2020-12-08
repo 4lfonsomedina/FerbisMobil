@@ -69,7 +69,7 @@
 		$(document).on("click",".boton_re-ordenar",function(){
 			console.log($(this).attr('id_carrito'));
 			$.post(url_api+"re_ordenar", {id_carrito:$(this).attr('id_carrito')}, function(r) {
-				alert("Pedido agregado a su carrito actual");
+				alert_2("Pedido agregado a su carrito actual");
 				closeBrowser();
 			});
 		})

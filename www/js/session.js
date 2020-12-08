@@ -57,7 +57,7 @@ $(document).ready(function() {
 				$("#modal_bienvenida").modal("hide");
 			})
 		}else{
-			alert("Es importante que contemos su nombre para saber con quien nos dirigimos.");
+			alert_2("Es importante que contemos su nombre para saber con quien nos dirigimos.");
 		}
 	})
 });
