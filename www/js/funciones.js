@@ -204,6 +204,7 @@ document.ontouchmove = event => {event.preventDefault();};
 		$(this).parent('div').find('.div_check_asado').find('input').click();
 	})
 	$(document).on("change",".cambio_unidad",function(){
+		$(".input_orden").val( Math.round($(".input_orden").val()) );
 		$("#unidad_modal_form_e").val($(this).val());
 		$("#unidad_modal_form").val($(this).val());
 		if($(this).val()=="PZA"){
@@ -241,12 +242,34 @@ document.ontouchmove = event => {event.preventDefault();};
 	
 // Al precional el boton de mas producto
 	$(document).on("click",".ord_mas",function(){
-		$(".input_orden").val(parseInt($(".input_orden").val())+1);
+		if($(".cambio_unidad").val()!='KG'){
+			$(".input_orden").val(parseInt($(".input_orden").val())+1);
+		}else{
+			$(".input_orden").val(parseFloat($(".input_orden").val())+0.5);
+		}
 	})
 // Al precional el boton de menos producto
 	$(document).on("click",".ord_menos",function(){
-		if($(".input_orden").val()>1)
-			$(".input_orden").val(parseInt($(".input_orden").val())-1);
+		//
+		if($(".cambio_unidad").val()!='KG'){
+			if($(".input_orden").val()>1)
+				$(".input_orden").val(parseInt($(".input_orden").val())-1);
+		}else{
+			if($(".input_orden").val()>0.5)
+				$(".input_orden").val(parseFloat($(".input_orden").val())-0.5);
+		}
+
+	})
+	// evitar que manualmente pongan 0 o negativos
+	$(".input_orden").change(function(){
+		if($(".cambio_unidad").val()!='KG'){
+			$(".input_orden").val(parseInt($(".input_orden").val()));
+			if($(".input_orden").val()<=0)
+				$(".input_orden").val(1);
+		}else{
+			if($(".input_orden").val()<=0)
+				$(".input_orden").val(0.5);
+		}
 	})
 // Al precional el input de cantidad
 	$(document).on("click",".input_orden",function(){
