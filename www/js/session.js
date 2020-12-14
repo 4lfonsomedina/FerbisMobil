@@ -21,10 +21,10 @@ $(document).ready(function() {
 				sesion_local.setItem("FerbisAPP_dir_numero2", cliente.dir_numero2);
 				sesion_local.setItem("FerbisAPP_lat", cliente.lat);
 				sesion_local.setItem("FerbisAPP_lon", cliente.lon);
+				sesion_local.setItem("link_banner", cliente.link_banner);
 				actualizar_interfaz();
 				try{verificacion_encuesta(cliente.id_cliente);}
 				catch{}
-				
 			}else{
 				$('#modal_bienvenida').modal({backdrop: 'static', keyboard: false});
 			}
@@ -33,6 +33,9 @@ $(document).ready(function() {
 	//actualizamos interfaz
 	function actualizar_interfaz(){
 		$("#nombre_usuario").html(sesion_local.getItem("FerbisAPP_nombre"));
+		if(sesion_local.getItem("link_banner")=='1'){
+			 $("#link_banner").removeAttr('disabled');
+		}
 	}
 	//evitar que se pueda ocultar el modal de bienvenida
 

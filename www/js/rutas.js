@@ -29,7 +29,8 @@ $(document).ready(function() {
 			$(".sombra_menu").click();
 	   		window.open(el.attr('href'));
 		}else{
-			alert_2($(this).attr("mensaje"));
+			if($(this).attr("mensaje")!="0")
+				alert_2($(this).attr("mensaje"));
 		}
 		
 	});	
