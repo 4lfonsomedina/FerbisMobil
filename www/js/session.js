@@ -65,13 +65,6 @@ $(document).ready(function() {
 	})
 });
 
-
-
-
-// Add to index.js or the first page that loads with your app.
-// For Intel XDK and please add this to your app.js.
-
-document.addEventListener('deviceready', function () {
   //Remove this method to stop OneSignal Debugging 
   window.plugins.OneSignal.setLogLevel({logLevel: 6, visualLevel: 0});
   
@@ -94,5 +87,3 @@ document.addEventListener('deviceready', function () {
   window.plugins.OneSignal.promptForPushNotificationsWithUserResponse(function(accepted) {
     console.log("User accepted notifications: " + accepted);
   });
-  
-}, false);
