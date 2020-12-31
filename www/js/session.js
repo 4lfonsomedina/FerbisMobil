@@ -23,6 +23,7 @@ $(document).ready(function() {
 				sesion_local.setItem("FerbisAPP_lon", cliente.lon);
 				sesion_local.setItem("link_banner", cliente.link_banner);
 				actualizar_interfaz();
+				token_firebase(cliente.id_cliente);
 				try{verificacion_encuesta(cliente.id_cliente);}
 				catch{}
 			}else{
@@ -65,25 +66,31 @@ $(document).ready(function() {
 	})
 });
 
-  //Remove this method to stop OneSignal Debugging 
-  window.plugins.OneSignal.setLogLevel({logLevel: 6, visualLevel: 0});
-  
-  var notificationOpenedCallback = function(jsonData) {
-    console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-  };
-  // Set your iOS Settings
-  var iosSettings = {};
-  iosSettings["kOSSettingsKeyAutoPrompt"] = false;
-  iosSettings["kOSSettingsKeyInAppLaunchURL"] = false;
-  
-  window.plugins.OneSignal
-    .startInit("82e5a9a1-634d-4c23-8629-0524c9fc5379")
-    .handleNotificationOpened(notificationOpenedCallback)
-    .iOSSettings(iosSettings)
-    .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.Notification)
-    .endInit();
-  
-  // The promptForPushNotificationsWithUserResponse function will show the iOS push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission (See step 6)
-  window.plugins.OneSignal.promptForPushNotificationsWithUserResponse(function(accepted) {
-    console.log("User accepted notifications: " + accepted);
-  });
+
+
+function token_firebase(id_cliente){
+		const messaging = firebase.messaging();
+      // Get registration token. Initially this makes a network call, once retrieved
+	    // subsequent calls to getToken will return from cache.
+	    messaging.getToken({vapidKey: 'BJEl5N1MisRuwTpbSDCgVDuQKZ4jRs0jmzxBNRLYDnLVJ1OvvMDpPCBCWO96sMNqHQsONL-QUafGmV_ycU58avU'}).then((currentToken) => {
+	      if (currentToken) {
+	        sendTokenToServer(currentToken,id_cliente);
+	        //updateUIForPushEnabled(currentToken);
+	      } else {
+	        // Show permission request.
+	        console.log('No registration token available. Request permission to generate one.');
+	        // Show permission UI.
+	        //updateUIForPushPermissionRequired();
+	        //setTokenSentToServer(false);
+	      }
+	    }).catch((err) => {
+	      console.log('An error occurred while retrieving token. ', err);
+	      console.log('Error retrieving registration token. ', err);
+	      //setTokenSentToServer(false);
+	    });
+	}
+function sendTokenToServer(currentToken,id_cliente){
+        $.post(url_api+"guardar_token", {token: currentToken,id: id_cliente}, function(r) {
+        	console.log(r);
+        });
+    }
