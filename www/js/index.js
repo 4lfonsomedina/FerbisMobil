@@ -43,7 +43,7 @@ var app = {
       
       var notificationOpenedCallback = function(jsonData) {
         //console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-        alert_2('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+        alert('notificationOpenedCallback: ' + JSON.stringify(jsonData));
       };
       // Set your iOS Settings
       var iosSettings = {};
