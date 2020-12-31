@@ -19,6 +19,7 @@
     <preference name="StatusBarStyle" value="lightcontent" />
     <preference name="StatusBarDefaultScrollToTop" value="false" />
     <preference name="SplashScreen" value="none"/>
+
     
     <preference name="scheme" value="app" />
     <preference name="hostname" value="localhost" />
@@ -33,6 +34,9 @@
         value="Necesario para consultar catalogo de productos"/>
     <plugin name="cordova-plugin-statusbar" spec="~2.4.3" source="npm" 
         value="Necesario para cambiar color de la barra"/>
+    <plugin name="onesignal-cordova-plugin" spec="^2.4.1" source="npm" 
+        value="Necesario para Notificaciones"/>
+
 
 
     <allow-navigation href="http://*/*" />
