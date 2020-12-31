@@ -12,7 +12,8 @@
       "cordova-plugin-file": {},
       "cordova-plugin-geolocation": {},
       "cordova-plugin-network-information": {},
-      "cordova-plugin-statusbar": {}
+      "cordova-plugin-statusbar": {},
+      "onesignal-cordova-plugin": {}
     },
     "platforms": [
       "android"
@@ -20,6 +21,7 @@
   },
   "dependencies": {
     "cordova-android": "^8.1.0",
-    "cordova-plugin-statusbar": "^2.4.3"
+    "cordova-plugin-statusbar": "^2.4.3",
+    "onesignal-cordova-plugin": "2.11.2"
   }
 }

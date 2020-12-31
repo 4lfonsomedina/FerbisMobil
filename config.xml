@@ -35,7 +35,6 @@
         value="Necesario para cambiar color de la barra"/>
 
 
-
     <allow-navigation href="http://*/*" />
     <access origin="*" />
     <plugin name="cordova-plugin-whitelist" version="1" />
