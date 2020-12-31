@@ -19,7 +19,6 @@
     <preference name="StatusBarStyle" value="lightcontent" />
     <preference name="StatusBarDefaultScrollToTop" value="false" />
     <preference name="SplashScreen" value="none"/>
-
     
     <preference name="scheme" value="app" />
     <preference name="hostname" value="localhost" />
@@ -34,8 +33,6 @@
         value="Necesario para consultar catalogo de productos"/>
     <plugin name="cordova-plugin-statusbar" spec="~2.4.3" source="npm" 
         value="Necesario para cambiar color de la barra"/>
-    <plugin name="cordova-plugin-firebase" spec="^2.0.0" 
-        value="Necesario para Notificaciones"/>
 
 
 
