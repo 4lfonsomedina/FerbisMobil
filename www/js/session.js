@@ -25,6 +25,7 @@ $(document).ready(function() {
 				actualizar_interfaz();
 				try{verificacion_encuesta(cliente.id_cliente);}
 				catch{}
+				iniciar_push(cliente.id_cliente);
 			}else{
 				$('#modal_bienvenida').modal({backdrop: 'static', keyboard: false});
 			}
@@ -64,3 +65,8 @@ $(document).ready(function() {
 		}
 	})
 });
+
+
+
+
+
