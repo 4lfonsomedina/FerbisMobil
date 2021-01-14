@@ -23,7 +23,7 @@ $(document).ready(function() {
 				sesion_local.setItem("FerbisAPP_lon", cliente.lon);
 				sesion_local.setItem("link_banner", cliente.link_banner);
 				actualizar_interfaz();
-				token_firebase(cliente.id_cliente);
+				//token_firebase(cliente.id_cliente);
 				try{verificacion_encuesta(cliente.id_cliente);}
 				catch{}
 			}else{

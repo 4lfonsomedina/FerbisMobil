@@ -33,7 +33,6 @@ document.ontouchmove = event => {event.preventDefault();};
 		});
 		*/
 	}
-
 	
 
 // Al precionar el departamento
@@ -155,7 +154,7 @@ document.ontouchmove = event => {event.preventDefault();};
 		$(".img_modal_loader").show();
 		$(".img_prod_modal").hide();
 		$(".img_prod_modal").attr('src',$(this).attr('imagen'));
-		setTimeout(function() {$(".img_modal_loader").hide();$(".img_prod_modal").show();},1500)
+		setTimeout(function() {$(".img_modal_loader").hide();$(".img_prod_modal").fadeIn(500);},1500)
 		
 		$(".input_orden").val(1);
 		$(".check_asado").prop('checked',false);
@@ -282,15 +281,18 @@ document.ontouchmove = event => {event.preventDefault();};
 	})
 	$(document).on("click",".abrir_menu_lateral_der",function(){
 		$(".contenedor_menu_lateral_der").show(300);
+		$(".div_procesar_pedido").hide();
 		$(".contenido_carrito").html(loader());
 		$.post(url_api+'get_carrito_activo',{id_cliente:sesion_local.getItem("FerbisAPP_id")},function(r){
 			$(".cant_carrito").html(jQuery.parseJSON(r).length);
-			if(r==0){
+			$(".contenido_carrito").hide();
+			if(jQuery.parseJSON(r).length>0){
+				$(".div_procesar_pedido").fadeIn(500);
+				$(".contenido_carrito").html(string_carrito(r));
+				$(".contenido_carrito").fadeIn(500);
+			}else{	
 				$(".contenido_carrito").html("<div class='carrito_vacio'>Carrito vacío</div>");
 				$(".div_procesar_pedido").hide();
-			}else{	
-				$(".div_procesar_pedido").show();
-				$(".contenido_carrito").html(string_carrito(r));
 
 /*
 				$(".articulo_carrito_drag").draggable({ axis: "x",revert: true,stop: function( event, ui ) {
@@ -308,7 +310,6 @@ document.ontouchmove = event => {event.preventDefault();};
 							}).fail(function(error) { alert_2("Error de conexión...");  console.log(error.responseJSON); });
 			       		}
 			       }
-			       	
 			      }	});
 */
 
@@ -321,8 +322,8 @@ document.ontouchmove = event => {event.preventDefault();};
 		}).fail(function(error) { alert_2("Error de conexión...");  console.log(error.responseJSON); });
 	})
 	$(document).on("click",".sombra_menu",function(){
-		$(".contenedor_menu_lateral_izq").hide(300);
-		$(".contenedor_menu_lateral_der").hide(300);
+		$(".contenedor_menu_lateral_izq").hide();
+		$(".contenedor_menu_lateral_der").hide();
 	})
 
 //funcion alta de producto al carrito
@@ -426,7 +427,7 @@ $(document).on("click",".btn_otro_pedido", function(){
 
 //funcion para eliminar producto del carrito
 $(document).on("click",".btn_modal_borrar_e", function(){
-	if(confirm("¿Está seguro que desea remover el artículo de carrito?")){
+	confirm_2("¿ Está seguro que desea remover el artículo de carrito ?",function (){
 		var id_carrito_det=$("#producto_carrito_modal_form_e").val();
 		$("#editarArticuloModal").modal("hide");
 		$.post(url_api+'remover_carrito',{id_carrito_det:id_carrito_det},function(r){
@@ -434,7 +435,7 @@ $(document).on("click",".btn_modal_borrar_e", function(){
 			actualizar_burbuja_notificaciones();
 			notificacion("Artículo removido del carrito");
 		}).fail(function(error) { alert_2("Error de conexión...");  console.log(error.responseJSON); });
-	}
+	})
 })
 
 //funcion para guardar cambios de la edicion del pedido
@@ -482,11 +483,12 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 		})*/
 		$(".art_img").each(function(index, el) {
 			setTimeout(function() {
-				$(el).fadeOut(100,function(){
+				$(el).fadeOut(150,function(){
 					$(el).html("<img src='"+$(el).attr('imagen')+"' class='img_art'>");
-					$(el).fadeIn(100);
+					setTimeout(function() {$(el).fadeIn(500);},150);
+					
 				});
-			},100*index);
+			},300*index);
 
 		});
 /*
@@ -542,8 +544,8 @@ $(document).on("click",".btn_modal_guardar_e", function(){
 // alerta global
 function notificacion(mensaje){
 	$(".alerta_multiusos").html(mensaje);
-	$(".alerta_multiusos").show(100);
-	setTimeout(function() {$(".alerta_multiusos").hide(100);}, 3000);
+	$(".alerta_multiusos").fadeIn(200);
+	setTimeout(function() {$(".alerta_multiusos").fadeOut(200);}, 3000);
 }
 
 //funcion que actualiza la cantidad de productos en el carrito de compras
@@ -552,9 +554,9 @@ function actualizar_burbuja_carrito(){
 		var productos_carrito = jQuery.parseJSON(r).length;
 		if(productos_carrito>0){
 			$(".mini_burbuja").html(productos_carrito);
-			$(".mini_burbuja").show(100);
+			$(".mini_burbuja").fadeIn(100);
 		}else{
-			$(".mini_burbuja").hide(100);
+			$(".mini_burbuja").fadeOut(100);
 		}
 	}).fail(function(error) { alert_2("Error de conexión...");  console.log(error.responseJSON); });
 }
@@ -573,10 +575,10 @@ function actualizar_burbuja_notificaciones(){
 
 // loader global
 function loader(){
-		return '<div style="text-align:center;padding-top:100px;color:gray;"><i class="fa fa-spinner fa-spin fa-5x fa-fw"></i><span class="sr-only"></span></div>';
+		return '<div style="text-align:center;padding-top:100px;color:#BCBCBC;"><i class="fa fa-spinner fa-spin fa-5x fa-fw"></i><span class="sr-only"></span></div>';
 }
 function loader_mini(){
-		return '<div style="height: 120px;display: flex;align-items: center;justify-content: center; color:gray;"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i><span class="sr-only"></span></div>';
+		return '<div style="height: 120px;display: flex;align-items: center;justify-content: center; color:#BCBCBC;"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i><span class="sr-only"></span></div>';
 }
 
 function diaSemana(){
@@ -594,7 +596,7 @@ function crecer_buscador(){
 		$(".menu_buscar").find(".col-xs-10").removeClass('col-xs-10');
 		$('#contenedor_articulos').scrollTop(0);
 		$(".input_search").val("");
-		$(".producto_no_encontrado").hide(500);
+		$(".producto_no_encontrado").fadeOut(500);
 	});
 	
 }
@@ -603,7 +605,7 @@ function reducir_buscador(){
 	$(".menu_buscar").find(".col-xs-12").addClass('col-xs-10');
 	$(".menu_buscar").find(".col-xs-12").removeClass('col-xs-12');
 	$('#contenedor_articulos').scrollTop(0);
-	$(".producto_no_encontrado").show(500);
+	$(".producto_no_encontrado").fadeIn(100);
 }
 function regresar_inicio(){
 	location.reload();
@@ -651,3 +653,17 @@ function alert_2(mensaje){
 	$("#Modal_alerta").modal("show");
 }
 
+function confirm_2(mensaje, funcionSI) {
+	console.log("confirm");
+    $("#Modal_confirm_mensaje").html(mensaje);
+    $("#Modal_confirm").modal("show");
+
+    $('#btnYes').off("click").click(function() {
+       $("#Modal_confirm").modal("hide");
+       funcionSI();
+    });
+    $('#btnNo').off("click").click(function() {
+        $("#Modal_confirm").modal("hide");
+    });
+    
+}

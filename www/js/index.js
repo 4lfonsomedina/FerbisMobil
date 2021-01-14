@@ -42,8 +42,7 @@ var app = {
       window.plugins.OneSignal.setLogLevel({logLevel: 6, visualLevel: 0});
       
       var notificationOpenedCallback = function(jsonData) {
-        //console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-        alert('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+        console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
       };
       // Set your iOS Settings
       var iosSettings = {};
@@ -51,7 +50,7 @@ var app = {
       iosSettings["kOSSettingsKeyInAppLaunchURL"] = false;
       
       window.plugins.OneSignal
-        .startInit("82e5a9a1-634d-4c23-8629-0524c9fc5379")
+        .startInit("YOUR_ONESIGNAL_APP_ID")
         .handleNotificationOpened(notificationOpenedCallback)
         .iOSSettings(iosSettings)
         .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.Notification)

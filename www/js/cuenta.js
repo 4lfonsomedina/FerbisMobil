@@ -16,11 +16,57 @@
 			$(".cuenta_referencia").val(cuenta.referencia);
 
 			$(".resumen_direccion").html(cuenta.dir_calle+", "+cuenta.dir_numero1+" "+cuenta.dir_numero2+", "+cuenta.dir_colonia);
+			get_t();
 
 			verificar_ubicacion();
-		})
+		}).fail(function(error) { alert_2("Error de conexión...");  console.log(error.responseJSON); });
 	}
+/***************************/
+	$(document).on("click",".btn_alta_tarjeta",function(){
+		$("#form_nueva_tarjeta :input").val("");
+		$("#modal_alta_tarjeta").modal("show");
+	})
 
+	$(document).on("click",".btn_guardar_tarjeta",function(){
+		$("#t_i_c").val(sesion_local.getItem("FerbisAPP_id"));
+		var datos_t = $("#form_nueva_tarjeta :input").serialize();
+		var datos_a = $("#form_nueva_tarjeta :input").serializeArray();
+		if(datos_a[1].value.length<16||datos_a[2].value.length<2||datos_a[3].value.length<2||datos_a[4].value.length<3){
+			alert_2("Datos de tarjeta incorrectos<br> por favor verifica la informacion");
+		}else{
+			$.post(url_api+'alta_tarjeta', datos_t , function(r) {
+				$("#modal_alta_tarjeta").modal("hide");
+				notificacion("Tarjeta registrada");
+				get_t();
+			}).fail(function(error) { alert_2("Error de conexión...");  console.log(error.responseJSON); });
+		}
+	})
+
+	function get_t(){
+		$.post(url_api+'get_t', {id:sesion_local.getItem("FerbisAPP_id")}, function(r) {
+			var trs = "";
+			$.each(jQuery.parseJSON(r), function( i, ttt ) {
+				trs+='<tr>'+
+            			'<td>XXXX XXXX XXXX '+ttt.valor+'</td>'+
+            			'<td class="borrar_ttt">'+
+            				'<a id_opc3="'+ttt.id_opc3+'"><i class="fa fa-trash" aria-hidden="true"></i></a>'+
+            			'</td>'+
+          			'</tr>';
+			})
+			$(".tabla_ttt").html(trs);
+		}).fail(function(error) { alert_2("Error de conexión...");  console.log(error.responseJSON); });
+	}
+	$(document).on("click",".borrar_ttt",function(){
+		var id_t = $(this).find("a").attr("id_opc3");
+		confirm_2("¿ Esta seguro de que desea borrar esta tarjeta ?",function (){
+			$.post(url_api+'baja_tarjeta', {id_t:id_t} , function(r) {
+				notificacion("Tarjeta retirada");
+				get_t();
+			}).fail(function(error) { alert_2("Error de conexión...");  console.log(error.responseJSON); });
+		});
+	})
+
+/****************************/
 	$(document).on("click",".panel_direccion",function(){
 		$("#modal_direccion").modal({backdrop: 'static', keyboard: false});
 	})
@@ -29,6 +75,8 @@
 		$(".resumen_direccion").html($(".cuenta_calle").val()+", "+$(".cuenta_num").val()+" "+$(".cuenta_num2").val()+", "+$(".cuenta_colonia").val());
 		verificar_ubicacion();
 	})
+
+	
 
 
 	function verificar_ubicacion(){
@@ -47,7 +95,7 @@
 			var sucursal = jQuery.parseJSON(r);
 			$(".sucursal_cercana").html(sucursal.sucursal);
 			$(".sucursal_distancia").html(sucursal.distancia+"km");
-		})
+		}).fail(function(error) { alert_2("Error de conexión...");  console.log(error.responseJSON); });
 	}
 
 	function geolacalizar_direccion(){
@@ -94,7 +142,7 @@
 		$(document).on("click",".btn_guardar_cuenta",function(){
 			$.post(url_api+'actualizar_cuenta',$("#form_datos_cuenta").serialize(),function(r){
 				notificacion("Datos guardados con éxito");
-			})
+			}).fail(function(error) { alert_2("Error de conexión...");  console.log(error.responseJSON); });
 		})
 		$.post(url_api+'datos_cuenta',{id_cliente:sesion_local.getItem("FerbisAPP_id")},function(r){
 			var cuenta = jQuery.parseJSON(r);
@@ -110,7 +158,7 @@
 			$(".cuenta_num").val(cuenta.dir_numero1);
 			$(".cuenta_num2").val(cuenta.dir_numero2);
 			$(".cuenta_referencia").val(cuenta.referencia);
-		})
+		}).fail(function(error) { alert_2("Error de conexión...");  console.log(error.responseJSON); });
 		$(document).on("click",".btn_mapa_cuenta",function(){
 			$("#modal_mapa").modal("show").on('shown.bs.modal', function () {
   			//si existen las coordenadas no se hace geolocalizacion

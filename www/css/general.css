@@ -11,6 +11,15 @@
 .slash img{
 	width: 60%;
 }
+.borrar_ttt a{
+	position: absolute;
+
+	color: red;
+}
+.borrar_ttt{
+	padding-top: 0px !important;
+	font-size: 19px;
+}
 .btn_paso{
 	position:absolute;
 	left: 0px;                  
@@ -25,7 +34,7 @@
 	text-align: center;
 	background-color: orange;
 	padding: 10px;
-	border-radius: 10px;
+	border-radius: 15px;
 	color:white;
 	position: fixed;
 	right: 20px;
@@ -89,11 +98,11 @@
 	display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 0px 0px 7px 7px;
+    border-radius: 0px 0px 10px 10px;
 }
 .menu_bar2{
 	/*background-color: #cc0000; */
-	background-color: #0b76cc;
+	background-color: #4d8cce;
 	padding: 10px;
 	height: 10vh;
 	color: white;
@@ -243,6 +252,8 @@
 	/*border-color: #E8E8E8;*/
 	margin-bottom: 8px;
 	padding: 5px;
+	height: 130px;
+
 	/*box-shadow: 1px 1px 1px 0px rgba(138,138,138,1);*/
 }
 .articulo_desc{
@@ -301,7 +312,7 @@
 	/*background-color: #84B51B;*/
 	background-color: white;
 	font-weight: bold;
-	color: #0c7cd5;
+	color: #4d8cce;
 	border-radius: 10px;
 }
 .mini_burbuja{
@@ -345,7 +356,7 @@
 	width: 102%;
 	padding-left: 10px; 
 	color:white;
-	background-color:#0c7cd5;
+	background-color:#4d8cce;
 	border-top-right-radius: 7px;
 	border-bottom-right-radius: 7px;
 }
@@ -400,7 +411,7 @@
 	margin-left: -2%;
 	padding:0px 0px 0px 0px;
 	color:white;
-	background-color:#0c7cd5;
+	background-color:#4d8cce;
 	text-align: center;
 	display: flex;
     align-items: center;
@@ -422,27 +433,33 @@
 }
 .contenido_carrito{
 	border: solid 1px #E8E8E8;
-	height: 70vh;
+	height: 73vh;
 	overflow-y: auto;
 	padding-top: 10px;
 }
 .div_procesar_pedido{
 	text-align: center;
 	font-weight: bold;
-	height: 20vh;
+	height: 17vh;
 	padding: 5px;
+}
+.div_procesar_pedido_contenido{
+	position: absolute;
+	bottom: 10px;
+	left:2%;
+	width: 96%;
 }
 .modal-body{
 	padding-top: 0px;
 }
 .alerta_multiusos{
 	position: absolute;
-	width: 100%;
-	padding:10px;
-	bottom: 10px;
-	left: 0px;
+	width: 90%;
+	padding:15px;
+	margin-left:5%;
+	top: 200px;
 	border-radius: 5px;
-	background-color: #222;
+	background-color: #373737;
 	color:white;
 	text-align: center;
 	z-index: 1;

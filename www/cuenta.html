@@ -48,7 +48,7 @@
 			</div>
 		</div>
 	</div>
-
+</form>
 
 
 	<a href="#" class="pedido_row_a panel_direccion">
@@ -69,6 +69,26 @@
 		  	</div>
 	  	</div>
 	  	</a>
+
+      <!-- Modulo de tarjetas 
+	<div class="contenedor_paso_1">
+		<div class="row">
+			<div class="col-xs-12" >
+			  		<b> <i class="fa fa-credit-card-alt" aria-hidden="true"></i> Tarjetas</b>
+			  		<span class="pull-right" style="margin-top: -20px;margin-right: -30px;">
+			  			<a href="#" class="btn btn-success btn_alta_tarjeta" style="padding: 8px 14px;border-radius: 25px;"> 
+			  		 <i class="fa fa-plus" aria-hidden="true"></i></a>
+			  		</span>
+			</div>
+      <div class="col-xs-12 tabla_tarjetas">
+        <table class="table" style="margin-top: 20px;">
+          <tbody class="tabla_ttt">
+            
+          </tbody>
+        </table>
+      </div>
+		</div>
+	</div> Modulo de tarjetas -->
 
 	  	<!-- MODAL CON MAPA DE UBICACION -->
 <div id="modal_direccion" class="modal fade" role="dialog">
@@ -111,8 +131,54 @@
   </div>
 </div> <!--FIN MODAL-->
 
+
+<!--modal tarjeta -->
+<div id="modal_alta_tarjeta" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+      	<h4 class="modal-title"><b>Nueva tarjeta</b> <button type="button" class="close" data-dismiss="modal">×</button></h4></div>
+      <div class="modal-body row" id="form_nueva_tarjeta">
+
+    
+    	<div class="col-xs-12">
+        <input type="hidden" name="id_cliente" id="t_i_c">
+    		<input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+        class="form-control t_nt" placeholder="XXXX XXXX XXXX XXXX" name="nt" maxlength="16"/><br>
+    		<span class="mini_form" style="font-weight: bold">NÚMERO DE TARJETA</span>
+    </div>
+    <div class="col-xs-3">
+          <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+          class="form-control" id="expityMonth" placeholder="MM" name="em" maxlength="2"/><br>
+		<span class="mini_form" style="font-weight: bold; width: 200px;">FECHA DE EXPIRACIÓN</span>
+      </div>
+      <div class="col-xs-3">
+          <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+          class="form-control" id="expityYear" placeholder="AA" name="ea" maxlength="2"/>
+      </div>
+      <div class="col-xs-3"></div>
+    <div class="col-xs-3">
+        <input type="password" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+        class="form-control" id="cvCode" placeholder="CVV" name="cv" maxlength="4"/><br>
+		<span class="mini_form" style="font-weight: bold">CÓDIGO</span>
+    </div>
+
+	    
+	</div>
+	<div class="modal-footer row">
+    <span style="color:green"><i class="fa fa-shield" aria-hidden="true"></i></span> Encriptación SSL 100% segura y confidencial<br>
+    <br><br>
+      	<button type="button" class="btn btn-success btn_guardar_tarjeta">
+             CONTINUAR
+        </button>
+      </div>
+    </div>
+  </div>
+</div><!--FIN MODAL-->
+
+
 </div>
-</form>
+
 </div>
 <div class="boton_guardar" style="height: 10vh">
 	<button type="button" class="btn btn-success btn-lg btn_guardar_cuenta"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar datos de cuenta</button>
@@ -131,6 +197,26 @@
             </div>
             <div class="modal-footer">
                 <a href="#" class="btn btn-success" data-dismiss="modal"> Continuar </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal de confirmacion -->
+<div id="Modal_confirm" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button></div>
+            <div class="modal-body" style="text-align: center; font-size: 18px; padding:20px 30px 20px 20px;" id="Modal_confirm_mensaje">
+                Este es un mensaje de confirm para reemplazar los confirm!!!
+            </div>
+            <div class="modal-footer">
+              <div class="col-xs-6">
+                <a href="#" class="btn btn-danger" data-dismiss="modal" id="btnNo"> <i class="fa fa-times" aria-hidden="true"></i> </a>
+              </div>
+              <div class="col-xs-6">
+                <a href="#" class="btn btn-success" data-dismiss="modal" id="btnYes"> <i class="fa fa-check" aria-hidden="true"></i> </a>
+              </div>
             </div>
         </div>
     </div>

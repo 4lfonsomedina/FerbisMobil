@@ -70,7 +70,11 @@
                 </div>
             </a>
             <div class="img_banner img_subdep" subdep="999" dep="000">
-                <img src="img/2999.png" width="100%">
+                <img id="imgnc2" src="#" width="100%" style="border-radius: 15px">
+                <script>
+                    var d = new Date(); 
+                    document.getElementById("imgnc2").src="https://sd.ferbis.com/assets/img/APP/sub-banner.png?ver=" + d.getTime();
+                </script>
             </div>
             <div class="img_banner img_dep ini_" dep="005" nombre="Frutas y Verduras">
                 <img src="img/2005.png" width="100%">
@@ -168,14 +172,16 @@
             contenido en lista
         </div>
         <div class="div_procesar_pedido">
-             <a href="#" class="btn btn-default btn-sm btn_otro_pedido row_articulo"
-             producto="01010101" departamento="000" descripcion="Otro producto" unidad="NA" imagen="https://sd.ferbis.com/assets/img/productos/01010101.png" precio="0.0000">
-                Agregar producto no encontrado</i>
-            </a>
-            Total (aprox) $<span class="total_pedido">0.00</span>
-            <a href="pedido.html" class="btn btn-success btn-lg blank_a btn_realizar_pedido" mensaje="El consumo mínimo es de $200.00">
-                Realizar Pedido <i class="fa fa-arrow-right" aria-hidden="true"></i>
-            </a>
+            <div class="div_procesar_pedido_contenido">
+                 <a href="#" class="btn btn-default btn-sm btn_otro_pedido row_articulo"
+                 producto="01010101" departamento="000" descripcion="Otro producto" unidad="NA" imagen="https://sd.ferbis.com/assets/img/productos/01010101.png" precio="0.0000">
+                    Agregar producto no encontrado</i>
+                </a>
+                Total (aprox) $<span class="total_pedido">0.00</span>
+                <a href="pedido.html" class="btn btn-success btn-lg blank_a btn_realizar_pedido" mensaje="El consumo mínimo es de $200.00">
+                    Realizar Pedido <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </a>
+            </div>
         </div>
     </div>
 </div>
@@ -660,6 +666,25 @@
             </div>
             <div class="modal-footer">
                 <a href="#" class="btn btn-success" data-dismiss="modal"> Continuar </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal de confirmacion -->
+<div id="Modal_confirm" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button></div>
+            <div class="modal-body" style="text-align: center; font-size: 18px; padding:20px 30px 20px 20px;" id="Modal_confirm_mensaje">
+                Este es un mensaje de confirm para reemplazar los confirm!!!
+            </div>
+            <div class="modal-footer">
+              <div class="col-xs-6">
+                <a href="#" class="btn btn-danger" data-dismiss="modal" id="btnNo"> <i class="fa fa-times" aria-hidden="true"></i> </a>
+              </div>
+              <div class="col-xs-6">
+                <a href="#" class="btn btn-success" data-dismiss="modal" id="btnYes"> <i class="fa fa-check" aria-hidden="true"></i> </a>
+              </div>
             </div>
         </div>
     </div>
