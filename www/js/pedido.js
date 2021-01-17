@@ -168,7 +168,7 @@ function actualizar_paso3(){
 	$(".p3_telefono").html(pedido.telefono);
 	$(".p3_frecuente").html(pedido.numero);
 	var servicio = "A domicilio"; if(pedido.servicio!=1){ servicio = "Paso por el"; }
-	$(".p3_servicio").html(servicio+" "+$("#fecha_pedido").val()+" "+formato_12hrs($("#select_horas_disponibles").val()));
+	$(".p3_servicio").html(servicio+" <b>"+$("#fecha_pedido").val()+" "+formato_12hrs($("#select_horas_disponibles").val())+"</b>");
 	$(".p3_direccion").html(pedido.dir_calle+" "+pedido.dir_numero1+" "+pedido.dir_numero1+","+pedido.dir_colonia);
 	$(".p3_referencia").html(pedido.referencia);
 }
