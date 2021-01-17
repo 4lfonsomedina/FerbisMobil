@@ -124,7 +124,7 @@
 	font-size: 20px;
 }
 .emergente_a,.menu_inicio{
-	color: #333;
+	color:#565656; 
 	font-size: 14px;
 	display: flex;
     align-items: center;
@@ -564,9 +564,10 @@
 	overflow-y: auto;
 }
 .pedido_radio_div{
-	padding-bottom: 0px;
+	font-weight: bold;
 	text-align: center;
-	height: 30px;
+    padding-top: 20px;
+    height: 60px;
 }
 .pedido_radio_div input{
 	padding-bottom: 0px;
@@ -636,7 +637,7 @@
     bottom: 5px;
 }
 .contenedor_resumen_pedido{
-	height: 55vh;
+	height: 54vh;
 	border-bottom:solid 1px #E8E8E8;
 	overflow-y: auto;
 }
@@ -650,6 +651,22 @@
 	padding: 10px 14px 10px 14px;
 	color:#0b76cc;
 	border-radius: 18px;
+}
+.pedido_articulos{
+	background-color: #4d8cce;
+	border-radius: 25px;
+	text-align: center;
+	color: white;
+	font-weight: bold;
+	padding: 1px 5px 1px 5px;
+}
+.p3_servicio{
+	background-color: #565656;
+	border-radius: 25px;
+	padding: 2px 7px 2px 7px;
+	color: white;
+	font-weight: bold;
+	text-align: center;
 }
 .tiendas_mapa{
 	width: 100%; 
