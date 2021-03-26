@@ -6,6 +6,7 @@
 			if(jQuery.parseJSON(r).length>0){
 				$.each(jQuery.parseJSON(r), function( i, pedido ) {
 					var estatus = pedido.status;
+					var leyenda_pago = '<div class="label label-primary" >'
 					var status_desc = "";
 					var estatusB = ["","","",""];
 					var estatusA = ["default","default","default","default"];
@@ -14,30 +15,43 @@
 					if(estatus>=2){estatusA[2]='warning';}
 					if(estatus>=3){estatusA[3]='success';}
 					if(estatus>=4){estatusA[4]='danger';}
-					if(estatus==0){estatusB[0]='Captura'; status_desc="Captura";}
+					if(estatus==0){estatusB[0]='Captura'; 	status_desc="Captura";	}
 					if(estatus==1){estatusB[1]='Surtiendo'; status_desc="Surtiendo";}
 					if(estatus==2){estatusB[2]='Preparado'; status_desc="Preparado";}
-					if(estatus==3){estatusB[3]='Listo'; status_desc="Entrega";}
+					if(estatus==3){estatusB[3]='Listo'; 	status_desc="Entrega";}
 					if(estatus==4){estatusB[4]='Cancelado'; status_desc="Cancelado";}
+
+					/* Pago status */
+					var leyenda_pago="";
+					if(pedido.pago_total!=""){pedido.total=pedido.pago_total; }
+					if(pedido.pago_status=='1'){
+						leyenda_pago="<div style='border-radius:5px; font-weight:bold; background-color:#4caf50; color:white'>$"+pedido.pago_total+"<br><i class='fa fa-credit-card-alt' aria-hidden='true'></i> Pagar</div>";}
+					if(pedido.pago_status=='2'){
+						leyenda_pago="<div style='border-radius:5px; font-weight:bold; background-color:#4caf50; color:white'>$"+pedido.pago_total+"<br> Pagado</div>";}
 
 					string_contenido+='<a href="#" class="pedido_row_a" id_carrito="'+pedido.id_carrito+'" '+
 					'fecha="'+pedido.fecha_entrega+'" '+
 					'status="'+status_desc+'" '+
+					'pedido="'+pedido.id_pedido+'" '+
+					'cliente="'+pedido.id_cliente+'" '+
 					'productos="'+pedido.cantidad+'" '+
 					'total="'+parseFloat(pedido.total).toFixed(2)+'" '+
-					'">'+
+					'pago_status="'+pedido.pago_status+'"'+
+					'>'+
 					'<div class="contenedor_paso_1 pedido_row">'+
   					'<div class="row">'+
+  					
     				'<div class="col-xs-4"><b>'+pedido.cantidad+'.Articulos</b><br><span class="small_pedido">'+pedido.fecha_entrega+'</span></div>'+
-    '<div class="col-xs-4 pedido_tot"><span class="small_pedido"><b>Total Aprox.</b></span><br>'+parseFloat(pedido.total).toFixed(2)+'</div>'+
+    '<div class="col-xs-4 pedido_tot"><span class="small_pedido">'+leyenda_pago+'</span></div>'+
     '<div class="col-xs-4 pedido_tot"><span class="small_pedido"><b>Entrega</b></span><br>'+formato_12hrs(pedido.hora_entrega)+'</div>'+
   '</div>'+
   '<div class="row status_pedido_row">'+
-    '<div class="col-xs-3">'+estatusB[0]+'<br><div class="label-'+estatusA[0]+'"></div></div>'+
-    '<div class="col-xs-3">'+estatusB[1]+'<br><div class="label-'+estatusA[1]+'"></div></div>'+
-    '<div class="col-xs-3">'+estatusB[2]+'<br><div class="label-'+estatusA[2]+'"></div></div>'+
-    '<div class="col-xs-3">'+estatusB[3]+'<br><div class="label-'+estatusA[3]+'"></div></div>'+
+    '<div class="col-xs-3"><div class="label-'+estatusA[0]+'"></div>'+estatusB[0]+'</div>'+
+    '<div class="col-xs-3"><div class="label-'+estatusA[1]+'"></div>'+estatusB[1]+'</div>'+
+    '<div class="col-xs-3"><div class="label-'+estatusA[2]+'"></div>'+estatusB[2]+'</div>'+
+    '<div class="col-xs-3"><div class="label-'+estatusA[3]+'"></div>'+estatusB[3]+'</div>'+
   '</div>'+
+  '<div>Recibido en sucursal: <b>'+pedido.sucursal+'</b> con folio: <b>'+pedido.consecutivo+'</b></div>'+
 '</div>';
 				})
 
@@ -49,20 +63,32 @@
 		})
 
 		$(document).on("click",".pedido_row_a",function(){
-			$(".modal_pedido_fecha").html($(this).attr('fecha'));
-			$(".modal_pedido_status").html($(this).attr('status'));
-			$(".modal_pedido_productos").html($(this).attr('productos'));
-			$(".modal_pedido_total").html($(this).attr('total'));
-			$(".contenido_pedido").html(loader());	
+			//$(".modal_pedido_fecha").html($(this).attr('fecha'));
+			//$(".modal_pedido_status").html($(this).attr('status'));
+			//$(".modal_pedido_productos").html($(this).attr('productos')+" productos");
+			$(".modal_pedido_total").html("<b>$ "+$(this).attr('total')+"</b>");
+			$(".contenido_pedido").html(loader());
 			$(".boton_re-ordenar").attr('id_carrito',$(this).attr('id_carrito'));
 			if($(this).attr('status')=='Entrega'){$(".boton_re-ordenar").show();}
 			else{$(".boton_re-ordenar").hide();}
+
+			/* Datos para cobro con tarjeta */
+			if($(this).attr('pago_status')!='1'){ $(".boton_procesar_pago").hide();	}
+			else{$(".boton_procesar_pago").show();}
+			$(".boton_procesar_pago").attr('pedido',$(this).attr('pedido'));
+			$(".boton_procesar_pago").attr('cliente',$(this).attr('cliente'));
+			$(".boton_procesar_pago").attr('total',$(this).attr('total'));
+
 			$.post(url_api+"get_carritos_id",{id:$(this).attr('id_carrito')},function(r){
 				$(".contenido_pedido").html(string_carrito_pedido(r));
-				
 				$("#modal_pedido").modal("show");
 			})
-			
+		})
+
+		/* Modulo cobro con tarjeta */
+		$(document).on("click",".boton_procesar_pago",function(){
+			get_t(2);
+			$("#Modal_pago_con_tarjeta").modal('show');
 		})
 
 		//boton de re-ordenar

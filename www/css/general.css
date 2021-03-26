@@ -132,6 +132,7 @@
     text-decoration: none;
 }
 .contenido_emergente{
+	background-color: #f3f3f3;
 	height: 90vh;
 	overflow-y: auto;
 }
@@ -291,7 +292,7 @@
 	border: solid 1px white;
 }
 .contenedor_banner{
-	background-color: #F7F7F7;
+	background-color: #f3f3f3;
 }
 .img_banner{
 	padding-top:5px;
@@ -326,6 +327,17 @@
 	color:white;
 	border-radius: 20px;
 }
+.mini_burbuja_menu{
+	position: absolute;
+	top:-5px;
+	left: 40px;
+	padding: 2px 12px 2px 12px;
+	/*background-color: #66cc00;*/
+	background-color: #F84A45;
+	font-weight: bold;
+	color:white;
+	border-radius: 20px;
+}
 .regresar_banner{
 	padding-right: 0px;
 	color: gray;
@@ -335,12 +347,12 @@
 
 }
 .mini_burbuja_notificaciones{
-	padding: 3px 8px 3px 8px !important;
+	padding: 4px 9px 4px 8px !important;
 	/*background-color: #84B51B;*/
 	background-color: #F84A45;
 	font-weight: bold;
 	color:white;
-	border-radius: 10px;
+	border-radius: 15px;
 }
 .menu_lateral_izq{
 	position: absolute;
@@ -421,9 +433,13 @@
 }
 .status_pedido{
 	width: 100% !important;
+	position:relative;
+}
+.status_pedido_row{
+	padding-top: 15px;
 }
 .status_pedido_row div{
-	padding: 5px;
+	padding: 4px;
 	text-align: center;
 	font-weight: bold;
 }
@@ -468,12 +484,14 @@
 	color: #A60000;
 }
 .contenedor_paso_1{
-	border:solid 2px #4d8cce;
-	border-radius: 3px;
+	background-color: white;
+	/*border:solid 2px #4d8cce;*/
+	border-radius: 5px;
 	margin-top: 10px;
 	margin-left: 10px;
 	margin-right: 10px;
 	padding: 10px;
+	box-shadow: 1px 1px 1px 0px #ababab;
 }
 .carrito_vacio{
 	text-align: center;
@@ -538,14 +556,15 @@
 .tab-pane{
 	padding-top: 10px;
 }
+/*
 .pedido_row,.notificacion_row{
-	border: solid 1px #E8E8E8;
-	border-radius: 8px;
+	background-color: white;
     box-shadow: 1px 1px 1px 0px rgba(138,138,138,1);
     margin-bottom: 15px;
     padding-bottom: 15px;
     padding-top: 15px;
 }
+*/
 .small_pedido, 
 .resumen_pedido,
 .small_notificacion,
@@ -559,6 +578,9 @@
 .total_pedido{
 	font-size: 18px;
 }
+.status_pedido_txt{
+
+}
 .contenido_pedido{
 	height: 300px;
 	overflow-y: auto;
@@ -566,7 +588,7 @@
 .pedido_radio_div{
 	font-weight: bold;
 	text-align: center;
-    padding-top: 20px;
+    padding-top: 30px;
     height: 60px;
 }
 .pedido_radio_div input{
@@ -607,6 +629,7 @@
 	height: 80vh;
 }
 .contenedor_pedido_btn{
+	background-color: #f3f3f3;
 	height: 10vh;
 	z-index: 4;
 }
@@ -647,7 +670,7 @@
 	font-weight: bold;
 }
 .paso_class{
-	background-color: white;
+	/*background-color: white;*/
 	padding: 10px 14px 10px 14px;
 	color:#0b76cc;
 	border-radius: 18px;

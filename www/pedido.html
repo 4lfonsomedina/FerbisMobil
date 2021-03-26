@@ -103,6 +103,9 @@
 	  		<div class="row">
 <!--seleccion de servicio-->
 	  	<div class="col-xs-6 pedido_radio_div"><label>
+	  		<div class="col-xs-12" style="text-align: center">
+	  			<span style="position:absolute;top:-20px;"><i class="fa fa-motorcycle fa-2x" aria-hidden="true"></i></span>
+	  		</div>
 	  		<div class="col-xs-2">
 	  			<input type="radio" class="form-control pedido_radio" name="servicio" checked value="1">
 	  		</div>
@@ -111,8 +114,11 @@
 	  		</div>
 	  	</label></div>
 	  	<div class="col-xs-6 pedido_radio_div"><label>
+	  		<div class="col-xs-12" style="text-align: center">
+	  			<span style="position:absolute;top:-20px;"><i class="fa fa-hand-o-down fa-2x" aria-hidden="true"></i></span>
+	  		</div>
 	  		<div class="col-xs-2">
-	  			<input type="radio" class="form-control pedido_radio" name="servicio" value="2">
+	  			<input type="radio" class="form-control pedido_radio" name="servicio" value="2" id='scheck2'>
 	  		</div>
 	  		<div class="col-xs-10">
 	  			<b>Paso por el</b>
@@ -125,7 +131,7 @@
 		<!-- RECOGER EN -->	
 		<div class="contenedor_paso_1 tabla_cuenta_recoger">
 			<div class="row">
-				<center><b>Recoger en:</b></center>
+				<center style='font-size: 16px;'><b>Recoger en:</b></center>
 				<select class="form-control recoger_sucursal">
 					<option value="1">Brasil</option>
 					<option value="2">San Marcos</option>
@@ -139,7 +145,7 @@
 		<div class="contenedor_paso_1 tabla_cuenta">
 			<div class="row">
 				<div class="col-xs-12">
-			  		<center><b>Dirección:</b></center>
+			  		<center style='font-size: 16px;'><b>Dirección:</b></center>
 			  	</div>
 			  	<div class="col-xs-10">
 			  		<span class="resumen_direccion"></span>
@@ -157,7 +163,7 @@
 	  	<!-- PROGRAMAR ENTREGA -->
 		<div class="contenedor_paso_1">
 			<div class="row">
-				<div class="col-xs-12" style="text-align: center; font-weight: bold;">Programar Entrega</div>
+				<div class="col-xs-12" style="text-align: center; font-weight: bold; font-size: 16px;">Programar Entrega</div>
 				<div class="col-xs-7 fecha_entrega"><input type="date" id="fecha_pedido" class="form-control" name="fecha_entrega">
 					<span class="mini_form">Fecha</span><br>
 				</div>
@@ -226,8 +232,8 @@
 	  		<div class="row">
 		  		<span class="p3_nombre"></span><br>
 		  		<span class="p3_servicio"></span><br>
-		  		<div class="col-xs-6"><b> Aprox</b> $<span class="pedido_total"></span></div>
 		  		<div class="col-xs-6"><span class="pedido_articulos"></span> Articulos<br></div>
+		  		<div class="col-xs-6"><b> Aprox</b> $<span class="pedido_total"></span></div>
 		  	</div>
 	  		 
 	  	

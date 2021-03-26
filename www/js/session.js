@@ -24,10 +24,30 @@ $(document).ready(function() {
 				sesion_local.setItem("link_banner", cliente.link_banner);
 				actualizar_interfaz();
 				//token_firebase(cliente.id_cliente);
-				try{verificacion_encuesta(cliente.id_cliente);}
-				catch{}
+				setTimeout(function(){
+					notificaciones();
+				}, 1000);
 			}else{
 				$('#modal_bienvenida').modal({backdrop: 'static', keyboard: false});
+			}
+		});
+	}
+	function notificaciones(){
+		var estoy = window.location.href.split("/")[window.location.href.split("/").length-1].split(".")[0];
+		if(estoy!="index"){return;}
+		$.post(url_api+"get_pedidos_por_pagar",{id_cliente:sesion_local.getItem("FerbisAPP_id")},function(r){
+			if(r=='1'){
+				alert_2("Tienes pedidos listos para pago<br><br>"+
+					
+					"<i class='fa fa-bars' aria-hidden='true'></i> Menú -> <i class='fa fa-shopping-basket' aria-hidden='true'></i> Mis Pedidos<br><br>"+ 
+					"Para pagar desde la Aplicación <br><br>"+
+					"<a class='btn btn-default blank_a' href='pedidos.html'>ir ahora</a>"
+					);
+			}else{
+				console.log("error");
+				setTimeout(function(){
+					try{verificacion_encuesta(sesion_local.getItem("FerbisAPP_id"));}catch{}
+				}, 1000);
 			}
 		});
 	}

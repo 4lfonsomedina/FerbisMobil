@@ -56,12 +56,18 @@ function sucursal_cercana(){
 		})
 }
 function mostrar_tabla(){
+	if(parseFloat($('.pedido_total').html())<200&&$('input:radio[name=servicio]:checked').val()==1){
+		alert_2("El total del pedido no alcanza el mínimo de $200.00 para el servicio de envío a domicilio");
+		$('#scheck2').click();
+		return;
+	}
 	if($('input:radio[name=servicio]:checked').val()==1){
 		$(".tabla_cuenta_recoger").fadeOut(0);
 		$(".tabla_cuenta").fadeIn(500);
 		$(".contenedor_tipo_pago").show();
 		$(".pedido_envio").show();
-	}else{
+	}
+	if($('input:radio[name=servicio]:checked').val()==2){
 		$(".tabla_cuenta").fadeOut(0);
 		$(".tabla_cuenta_recoger").fadeIn(500);
 		$(".contenedor_tipo_pago").hide();
@@ -135,13 +141,27 @@ $(document).on("click",".btn_enviar_pedido",function(){
 		return;
 	}
 	$( ".btn_enviar_pedido" ).prop( "disabled", true );
+	
 	//verificar fecha programada
-	$("#select_horas_disponibles").val()
-	$.post(url_api+'alta_pedido',$("#pedido_form").serialize(),function(r){
-		console.log(r);
-		$(".entrega_pedido_mensaje").html($("#fecha_pedido").val()+" "+formato_12hrs($("#select_horas_disponibles").val()));
-		$('#modal_pedido_enviado').modal({backdrop: 'static', keyboard: false});
-	})
+	$("#select_horas_disponibles").val();
+	$.post(url_api+'verificar_horario',{fecha:$("#fecha_pedido").val()+" "+$("#select_horas_disponibles").val()},function(r){
+		if(r=='1'){
+			setTimeout(function() {
+				$.post(url_api+'alta_pedido',$("#pedido_form").serialize(),function(r){
+					console.log(r);
+					$(".entrega_pedido_mensaje").html($("#fecha_pedido").val()+" "+formato_12hrs($("#select_horas_disponibles").val()));
+					$('#modal_pedido_enviado').modal({backdrop: 'static', keyboard: false});
+				})
+			}, 1000);
+		}else{
+			alert_2(r);
+			$( ".btn_enviar_pedido" ).prop( "disabled", false );
+			$("#fecha_pedido").val("");
+			$("#select_horas_disponibles").html("");
+			$(".li_paso1 > a").click();
+		}
+	});
+	
 	//console.log($("#pedido_form").serializeArray());
 })
 

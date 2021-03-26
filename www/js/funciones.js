@@ -317,7 +317,7 @@ document.ontouchmove = event => {event.preventDefault();};
 			var total_aprox=0;
 			$(".articulo_carrito").each(function() {total_aprox+=parseFloat($(this).attr('cantidad'))*parseFloat($(this).attr('precio'));});
 			$(".total_pedido").html(parseFloat(total_aprox).toFixed(2));
-			if(parseFloat(total_aprox)<200){$(".btn_realizar_pedido").attr("disabled",true);}
+			if(parseFloat(total_aprox)==0){$(".btn_realizar_pedido").attr("disabled",true);}
 			else{$(".btn_realizar_pedido").removeAttr('disabled');}
 		}).fail(function(error) { alert_2("Error de conexión...");  console.log(error.responseJSON); });
 	})
@@ -567,8 +567,10 @@ function actualizar_burbuja_notificaciones(){
 		if(parseInt(r)>0){
 			$(".mini_burbuja_notificaciones").html(r);
 			$(".mini_burbuja_notificaciones").show(100);
+			$(".mini_burbuja_menu").show(100);
 		}else{
 			$(".mini_burbuja_notificaciones").hide(100);
+			$(".mini_burbuja_menu").hide(100);
 		}
 	}).fail(function(error) { alert_2("Error de conexión...");  console.log(error.responseJSON); });
 }
