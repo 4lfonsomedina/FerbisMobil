@@ -19,7 +19,6 @@
     <preference name="StatusBarStyle" value="lightcontent" />
     <preference name="StatusBarDefaultScrollToTop" value="false" />
     <preference name="SplashScreen" value="none"/>
-    
     <preference name="scheme" value="app" />
     <preference name="hostname" value="localhost" />
     <preference name="deployment-target" value="11.0" />
@@ -29,18 +28,17 @@
         value="Necesario para guardar la sesión del cliente"/>
     <plugin name="cordova-plugin-geolocation" source="npm" spec="~2.4.3" 
         value="Necesario para saber a donde enviar su pedido"/>
-    <plugin name="cordova-plugin-network-information" source="npm" spec="2.0.2" 
+    <plugin name="cordova-plugin-network-information" source="npm" spec="~2.0.2" 
         value="Necesario para consultar catalogo de productos"/>
     <plugin name="cordova-plugin-statusbar" spec="~2.4.3" source="npm" 
         value="Necesario para cambiar color de la barra"/>
 
-    <feature name="NetworkStatus">
-        <param name="android-package" value="org.apache.cordova.NetworkManager" />
-    </feature>
+    
 
 
 
     <allow-navigation href="http://*/*" />
+    <allow-navigation href="https://*/*" />
     <access origin="*" />
     <plugin name="cordova-plugin-whitelist" version="1" />
     <allow-intent href="http://*/*" />
@@ -51,6 +49,8 @@
     <allow-intent href="geo:*" />
 
     <icon src="www/img/icon/ios/icon.png" />
+
+
 
     <platform name="ios">
         <allow-intent href="itms:*" />
