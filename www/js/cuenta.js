@@ -19,7 +19,7 @@
 			get_t(1);
 
 			verificar_ubicacion();
-		}).fail(function(error) { alert_2("Error de conexión...");  alert_2(error.responseJSON); });
+		}).fail(function(error) { alert_2("Error de conexión...");  console.log(error.responseJSON); });
 	}
 
 	$(document).on("click",".panel_direccion",function(){
@@ -52,7 +52,7 @@
 			var sucursal = jQuery.parseJSON(r);
 			$(".sucursal_cercana").html(sucursal.sucursal);
 			$(".sucursal_distancia").html(sucursal.distancia+"km");
-		}).fail(function(error) { alert_2("Error de conexión...");  alert_2(error.responseJSON); });
+		}).fail(function(error) { alert_2("Error de conexión...");  console.log(error.responseJSON); });
 	}
 
 	function geolacalizar_direccion(){
@@ -101,7 +101,7 @@
 			$.post(url_api+'actualizar_cuenta',$("#form_datos_cuenta").serialize(),function(r){
 
 				notificacion("Datos guardados con éxito");
-			}).fail(function(error) { alert_2("Error de conexión...");  alert_2(error.responseJSON); });
+			}).fail(function(error) { alert_2("Error de conexión...");  console.log(error.responseJSON); });
 		})
 
 		$.post(url_api+'datos_cuenta',{id_cliente:sesion_local.getItem("FerbisAPP_id")},function(r){
@@ -118,7 +118,7 @@
 			$(".cuenta_num").val(cuenta.dir_numero1);
 			$(".cuenta_num2").val(cuenta.dir_numero2);
 			$(".cuenta_referencia").val(cuenta.referencia);
-		}).fail(function(error) { alert_2("Error de conexión...");  alert_2(error.responseJSON); });
+		}).fail(function(error) { alert_2("Error de conexión...");  console.log(error.responseJSON); });
 		$(document).on("click",".btn_mapa_cuenta",function(){
 			$("#modal_mapa").modal("show").on('shown.bs.modal', function () {
   			//si existen las coordenadas no se hace geolocalizacion
