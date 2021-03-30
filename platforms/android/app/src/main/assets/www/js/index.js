@@ -37,13 +37,29 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
+      //START ONESIGNAL CODE
+      //Remove this method to stop OneSignal Debugging 
+      window.plugins.OneSignal.setLogLevel({logLevel: 6, visualLevel: 0});
+      
+      var notificationOpenedCallback = function(jsonData) {
+        console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+      };
+      // Set your iOS Settings
+      var iosSettings = {};
+      iosSettings["kOSSettingsKeyAutoPrompt"] = false;
+      iosSettings["kOSSettingsKeyInAppLaunchURL"] = false;
+      
+      window.plugins.OneSignal
+        .startInit("YOUR_ONESIGNAL_APP_ID")
+        .handleNotificationOpened(notificationOpenedCallback)
+        .iOSSettings(iosSettings)
+        .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.Notification)
+        .endInit();
+      
+      // The promptForPushNotificationsWithUserResponse function will show the iOS push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission (See step 6)
+      window.plugins.OneSignal.promptForPushNotificationsWithUserResponse(function(accepted) {
+        console.log("User accepted notifications: " + accepted);
+      });
+      //END ONESIGNAL CODE
     }
 };

@@ -38,6 +38,8 @@
 
 
     <allow-navigation href="http://*/*" />
+    <allow-navigation href="https://*/*" />
+    <allow-navigation href="data:*" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -84,6 +86,10 @@
         <splash src="www/img/screen/ios/Default@2x~iphone~comany.png" width="750" height="1334" />
     </platform>
     <platform name="android">
+        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+            <application android:usesCleartextTraffic="true" />
+        </edit-config>
+
         <allow-intent href="market:*" />
         <icon density="ldpi" src="www/img/icon/android/ldpi.png"/>
         <icon density="mdpi" src="www/img/icon/android/mdpi.png"/>
