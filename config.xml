@@ -100,7 +100,7 @@
         <splash src="www/img/screen/android/splash-port-xxhdpi.png" qualifier="land-xxhdpi" />
         <splash src="www/img/screen/android/splash-port-xxxhdpi.png" qualifier="land-xxxhdpi" />
 
-        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+        <edit-config file="platforms/android/app/src/main/AndroidManifest.xml" mode="merge"  target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android">
             <application android:usesCleartextTraffic="true" />
         </edit-config>
         
