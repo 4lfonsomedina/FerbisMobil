@@ -86,10 +86,6 @@
         <splash src="www/img/screen/ios/Default@2x~iphone~comany.png" width="750" height="1334" />
     </platform>
     <platform name="android">
-        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
-            <application android:usesCleartextTraffic="true" />
-        </edit-config>
-
         <allow-intent href="market:*" />
         <icon density="ldpi" src="www/img/icon/android/ldpi.png"/>
         <icon density="mdpi" src="www/img/icon/android/mdpi.png"/>
@@ -103,5 +99,10 @@
         <splash src="www/img/screen/android/splash-port-xhdpi.png" qualifier="land-xhdpi" />
         <splash src="www/img/screen/android/splash-port-xxhdpi.png" qualifier="land-xxhdpi" />
         <splash src="www/img/screen/android/splash-port-xxxhdpi.png" qualifier="land-xxxhdpi" />
+
+        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+            <application android:usesCleartextTraffic="true" />
+        </edit-config>
+        
     </platform>
 </widget>
