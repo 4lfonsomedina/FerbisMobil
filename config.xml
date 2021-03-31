@@ -74,6 +74,7 @@
             <application android:usesCleartextTraffic="true" />
             <application android:networkSecurityConfig="platforms/android/app/src/main/res/xml/network_security_config" />
         </edit-config>
+        <resource-file src="network_security_config.xml" target="platforms/android/app/src/main/res/xml/network_security_config.xml" />
 
 
         <icon density="ldpi" src="www/img/icon/android/ldpi.png" />
