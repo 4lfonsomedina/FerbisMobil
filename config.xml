@@ -1,5 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.phonegap.sd_ferbis" version="2.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.phonegap.sd_ferbis" version="2.0.3"
+    xmlns="http://www.w3.org/ns/widgets" 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Ferbis</name>
     <description>
         Ferbis
@@ -24,11 +27,7 @@
     <plugin name="cordova-plugin-file" source="npm" spec="~4.3.3" value="Necesario para guardar la sesión del cliente" />
     <plugin name="cordova-plugin-network-information" source="npm" spec="~1.3.3" value="Necesario para consultar catalogo de productos" />
     <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.4.3" value="Necesario para cambiar color de la barra" />
-    <platform name="android">
-        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
-            <application android:usesCleartextTraffic="true" />
-        </edit-config>
-    </platform>
+    
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -71,6 +70,12 @@
         <splash height="1334" src="www/img/screen/ios/Default@2x~iphone~comany.png" width="750" />
     </platform>
     <platform name="android">
+        <edit-config xmlns:android="http://schemas.android.com/apk/res/android" file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+        <application android:networkSecurityConfig="@xml/network_security_config" />
+        </edit-config>
+        <resource-file src="network_security_config.xml" target="app/src/main/res/xml/network_security_config.xml" />
+
+
         <icon density="ldpi" src="www/img/icon/android/ldpi.png" />
         <icon density="mdpi" src="www/img/icon/android/mdpi.png" />
         <icon density="hdpi" src="www/img/icon/android/hdpi.png" />
