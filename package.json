@@ -13,12 +13,9 @@
       "cordova-plugin-statusbar": {},
       "cordova-plugin-whitelist": {}
     },
-    "platforms": [
-      "android"
-    ]
+    "platforms": []
   },
   "dependencies": {
-    "cordova-android": "^8.1.0",
     "cordova-plugin-statusbar": "^2.4.3"
   }
 }
