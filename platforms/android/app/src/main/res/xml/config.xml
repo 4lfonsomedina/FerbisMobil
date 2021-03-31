@@ -1,5 +1,27 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.phonegap.sd_ferbis" version="2.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="Battery">
+        <param name="android-package" value="org.apache.cordova.batterystatus.BatteryListener" />
+    </feature>
+    <feature name="Notification">
+        <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
+    </feature>
+    <feature name="File">
+        <param name="android-package" value="org.apache.cordova.file.FileUtils" />
+        <param name="onload" value="true" />
+    </feature>
+    <allow-navigation href="cdvfile:*" />
+    <feature name="NetworkStatus">
+        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
+    </feature>
+    <feature name="StatusBar">
+        <param name="android-package" value="org.apache.cordova.statusbar.StatusBar" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
+    </feature>
     <name>Ferbis</name>
     <description>
         Ferbis
@@ -20,7 +42,7 @@
         <application android:networkSecurityConfig="@xml/network_security_config" />
         <application android:usesCleartextTraffic="true" />
     </edit-config>
-    <resource-file src="network_security_config.xml" target="app/src/main/AndroidManifest.xml" />
+    <resource-file src="network_security_config.xml" target="app/src/main/res/xml/network_security_config.xml" />
     <icon density="ldpi" src="www/img/icon/android/ldpi.png" />
     <icon density="mdpi" src="www/img/icon/android/mdpi.png" />
     <icon density="hdpi" src="www/img/icon/android/hdpi.png" />
