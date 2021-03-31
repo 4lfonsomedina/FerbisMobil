@@ -70,8 +70,7 @@
         <splash height="1334" src="www/img/screen/ios/Default@2x~iphone~comany.png" width="750" />
     </platform>
     <platform name="android">
-        <edit-config xmlns:android="http://schemas.android.com/apk/res/android" file="platforms/android/app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
-            <application android:usesCleartextTraffic="true" />
+        <edit-config xmlns:android="http://schemas.android.com/apk/res/android" file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
             <application android:networkSecurityConfig="@xml/network_security_config" />
         </edit-config>
         <resource-file src="network_security_config.xml" target="app/src/main/res/xml/network_security_config.xml" />
