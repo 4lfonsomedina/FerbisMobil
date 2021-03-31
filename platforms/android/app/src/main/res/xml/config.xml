@@ -55,7 +55,6 @@
     <splash qualifier="land-xxhdpi" src="www/img/screen/android/splash-port-xxhdpi.png" />
     <splash qualifier="land-xxxhdpi" src="www/img/screen/android/splash-port-xxxhdpi.png" />
     <preference name="loglevel" value="DEBUG" />
-    <preference name="phonegap-version" value="cli-9.0.0" />
     <preference name="Orientation" value="portrait" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="22" />
