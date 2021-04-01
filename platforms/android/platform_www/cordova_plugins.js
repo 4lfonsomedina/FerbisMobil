@@ -9,14 +9,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-plugin-cleartext.CordovaPluginsCleartext",
-      "file": "plugins/cordova-plugin-cleartext/www/CordovaPluginsCleartext.js",
-      "pluginId": "cordova-plugin-cleartext",
-      "clobbers": [
-        "cordova.plugins.CordovaPluginsCleartext"
-      ]
-    },
-    {
       "id": "cordova-plugin-dialogs.notification",
       "file": "plugins/cordova-plugin-dialogs/www/notification.js",
       "pluginId": "cordova-plugin-dialogs",
@@ -233,9 +225,9 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
   ];
   module.exports.metadata = {
     "cordova-plugin-battery-status": "1.2.5",
-    "cordova-plugin-cleartext": "1.0.0",
     "cordova-plugin-dialogs": "1.3.4",
     "cordova-plugin-file": "4.3.3",
+    "cordova-plugin-legacy-whitelist": "1.1.2",
     "cordova-plugin-network-information": "1.3.4",
     "cordova-plugin-statusbar": "2.4.3",
     "cordova-plugin-whitelist": "1.3.4"

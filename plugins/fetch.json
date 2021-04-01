@@ -47,20 +47,20 @@
     "is_top_level": true,
     "variables": {}
   },
+  "cordova-plugin-legacy-whitelist": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-legacy-whitelist"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
   "cordova-plugin-compat": {
     "source": {
       "type": "registry",
       "id": "cordova-plugin-compat@^1.0.0"
     },
     "is_top_level": false,
-    "variables": {}
-  },
-  "cordova-plugin-cleartext": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-cleartext"
-    },
-    "is_top_level": true,
     "variables": {}
   }
 }
