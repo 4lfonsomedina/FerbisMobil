@@ -38,7 +38,7 @@ var tipo_alta=0;
 		$("#cvCode").val("");
 		$(".btn_realizar_pago").removeClass('disabled');
 		$(".btn_realizar_pago_regresar").removeClass('disabled');
-		$(".btn_realizar_pago").html('<i class="fa fa-shield" aria-hidden="true"></i> Realizar Pago');
+		$(".btn_realizar_pago").html('Realizar Pago');
 		$("#Modal_procesar_cobro").modal({backdrop: 'static', keyboard: false});
 		$("#procesar_pago_total").html($(".boton_procesar_pago").attr('total'));
 		$("#proceso_pago_num_tarjeta").html($(this).attr("texto"));
@@ -116,20 +116,27 @@ function get_t(tipo){
 			$.each(jQuery.parseJSON(r), function( i, ttt ){
 				console.log(tipo);
 				if(tipo==1){
-				trs+='<tr>'+
-            			'<td>XXXX XXXX XXXX '+ttt.valor+'</td>'+
-            			'<td class="borrar_ttt">'+
+				trs+=
+				'<div class="row pago_tarjeta_seleccion_row">'+
+            			'<div class="col-xs-10"> XXXX XXXX XXXX '+ttt.valor+'</div>'+
+            			'<div class="borrar_ttt col-xs-2">'+
             				'<a id_opc3="'+ttt.id_opc3+'"><i class="fa fa-trash" aria-hidden="true"></i></a>'+
-            			'</td>'+
-          			'</tr>';
+            			'</div>'+
+            	'</div>';
           		}
           		if(tipo==2){
-				trs+='<tr class="pago_tarjeta_seleccion" id_opc3="'+ttt.id_opc3+'" texto="XXXX XXXX XXXX '+ttt.valor+'">'+
-						'<td style="font-weight:bold; padding-top:15px"><i class="fa fa-credit-card" aria-hidden="true"></i></td>'+
-            			'<td style="padding-top:15px; font-size:16px">XXXX XXXX XXXX '+ttt.valor+'</td>'+
-          			'</tr>';
+				trs+='<a class="pago_tarjeta_seleccion" id_opc3="'+ttt.id_opc3+'" texto="XXXX XXXX XXXX '+ttt.valor+'">'+
+						'<div class="row pago_tarjeta_seleccion_row">'+
+						'<div class="col-xs-2" style="font-weight:bold; text-align:right"><i class="fa fa-credit-card fa-2x" aria-hidden="true"></i></div>'+
+            			'<div class="col-xs-10" style="text-align:center; font-size:15px;">XXXX XXXX XXXX '+ttt.valor+'</div>'+
+            			'</div>'+
+          			'</a>';
           		}
+          		
 			})
+			trs+="<a href='#' class='btn btn-primary btn_alta_tarjeta' style='padding: 8px 14px;border-radius: 15px; width: 100%' tipo='2'>"+
+                          "Agregar Nueva Tarjeta <i class='fa fa-plus' aria-hidden='true' ></i></a>"+
+                    "</a><br>";
 			$(".tabla_ttt").html(trs);
 		}).fail(function(error) { alert_2("Error de conexión...");  console.log(error.responseJSON); });
 	}

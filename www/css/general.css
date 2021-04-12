@@ -16,7 +16,20 @@
 
 	color: red;
 }
+.pago_tarjeta_seleccion_row{
+	color: #404040;
+	background-color: #f3f3f3;
+	border-radius: 15px;
+	padding: 10px 5px 10px 5px;
+	box-shadow: 1px 1px 1px 0px #ababab;
+	margin-bottom: 12px !important;
+}
+.tabla_ttt tr{
+	box-shadow: 1px 1px 1px 1px #7499C8;
+	border: solid 2px #4d8cce;
+}
 .borrar_ttt{
+	margin-top: -5px;
 	padding-top: 0px !important;
 	font-size: 19px;
 }
@@ -34,12 +47,13 @@
 	text-align: center;
 	background-color: orange;
 	padding: 10px;
-	border-radius: 15px;
+	border-radius: 10px;
 	color:white;
 	position: fixed;
 	right: 20px;
 	bottom: 20px;
 	z-index: 1;
+	box-shadow: 1px 1px 4px rgb(0 0 0 / 40%);
 }
 
 .btns_navegacion{
@@ -607,9 +621,11 @@
 .car_desc{
 	padding-right: 5px;
 }
-.resumen_pedido,
 .resumen_notificacion,.contenido_notificacion{
 	padding: 10px;
+}
+.resumen_pedido{
+	padding: 0px 10px 10px 10px;
 }
 .contenido_notificacion{
 	text-align: justify;

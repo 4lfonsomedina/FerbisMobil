@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="contenido_emergente">
-<a href="tiendas.html" class="blank_a btn btn-info" style="position: absolute; bottom: 0px;">Aclaracion de pedido <i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="tiendas.html" class="blank_a btn btn-info" style="position: absolute; bottom: 0px;z-index: 1;">Aclaracion de pedido <i class="fa fa-phone" aria-hidden="true"></i></a>
 <div class="contenedor_pedidos">
   
 </div>
@@ -44,11 +44,11 @@
       	<h4 class="modal-title"><b>Contenido del pedido</b></h4></div>
       <div class="modal-body" style="padding: 0px;">
       	<div class="resumen_pedido row">
-          <a href="#" class="btn btn-sm btn-primary boton_procesar_pago" 
+          <a href="#" class="btn btn-lg btn-primary boton_procesar_pago"
                 id_tar=''
                 pedido=''
                 total=''
-                > Pagar en APP <i class="fa fa-credit-card" aria-hidden="true"></i></a>
+                > Pagar desde APP <i class="fa fa-credit-card" aria-hidden="true"></i></a>
       		<table style="width: 100%" hidden>
       			<tr>
       				<td class="modal_pedido_productos" align="center"></td>
@@ -80,19 +80,14 @@
 <div id="Modal_pago_con_tarjeta" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header"> Seleccione cuenta <button type="button" class="close" data-dismiss="modal">&times;</button></div>
-            <div class="modal-body" style="height: 410px; overflow-y: auto;">
+            <div class="modal-header" style="text-align: center"><h3 style="font-size: 25px">Seleccionar Tarjeta</h3></div>
+            <div class="modal-body" style="height: 380px; overflow-y: auto;">
                   <div class="row">
-                    <div class="col-xs-12" >
-                        <a href="#" class="btn btn-default btn_alta_tarjeta" style="padding: 8px 14px;border-radius: 25px; width: 100%" tipo='2'> 
-                          Nueva Tarjeta <i class="fa fa-plus" aria-hidden="true" ></i></a>
-                    </div>
+                    
                     <div class="col-xs-12 tabla_tarjetas">
-                      <table class="table" style="margin-top: 20px;">
-                        <tbody class="tabla_ttt">
+                        <div class="tabla_ttt">
                           
-                        </tbody>
-                      </table>
+                        </div>
                     </div>
                   </div>
             </div>
@@ -107,23 +102,22 @@
 <div id="Modal_procesar_cobro" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header"> Procesar Pago </div>
-            <div class="modal-body" style="height: 410px; overflow-y: auto;">
+            <div class="modal-header" style="text-align: center"><h3 style="font-size: 25px">Autorizar Pago </h3></div>
+            <div class="modal-body" style="height: 380px; overflow-y: auto;">
                   <div class="row">
                     <div class="col-xs-12 procesar_cobro" style="text-align: center">
-                      <br><h3 id='proceso_pago_num_tarjeta'></h3>
-                          <h3><br>Importe: <span id='procesar_pago_total'></span></h3><br>
-                          <img width="30%" src="img/cvv.png">
+                      <h2 id='proceso_pago_num_tarjeta' ></h2>
+                          <h2>Importe: <span id='procesar_pago_total'></span></h2><br><br>
                         </div>
-                          <div class="col-xs-4"></div>
-                          <div class="col-xs-4"><br><br>
+                          <div class="col-xs-4"><img width="100%" src="img/cvv.png"></div>
+                          <div class="col-xs-4">
                             <input type="password" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                               class="form-control" id="cvCode" placeholder="CVV" name="cv" maxlength="4"/><br>
                               <span class="mini_form" style="font-weight: bold">CÓDIGO</span>
                           </div>
                           <div class="col-xs-12">
                             <br>
-                            <a class="btn btn-success btn_realizar_pago"><i class="fa fa-shield" aria-hidden="true"></i> Realizar Pago</a>
+                            <a class="btn btn-success btn_realizar_pago btn-lg">Realizar Pago</a>
                           </div>
                     </div>
                   </div>
@@ -145,7 +139,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title"><b>Nueva tarjeta</b> <button type="button" class="close" data-dismiss="modal">×</button></h4></div>
+        <h4 class="modal-title"><b>Agregar nueva tarjeta</b> <button type="button" class="close" data-dismiss="modal">×</button></h4></div>
       <div class="modal-body row" id="form_nueva_tarjeta" style="height: 380px; overflow-y: auto;">
         <div class="col-xs-12" style="text-align: center">
           <img src="img/tar.png" height="150px">
